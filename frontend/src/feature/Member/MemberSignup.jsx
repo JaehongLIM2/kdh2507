@@ -104,7 +104,8 @@ export function MemberSignup() {
   // 로그인 되어 있을때 회원가입 접속 차단
   useEffect(() => {
     if (user) {
-      toast("이미 로그인되어 있습니다.", { type: "error" });
+      // 이미 로그인 되어있을때 toast
+      toast("すでにログインされています。", { type: "error" });
       navigate("/");
     }
   }, [user]);
@@ -158,9 +159,13 @@ export function MemberSignup() {
       return;
     }
     if (!privacyAgreed) {
-      toast("개인정보 수집 및 이용에 동의하셔야 회원가입이 가능합니다.", {
-        type: "error",
-      });
+      // 개인정보 수집이용 안내 toast
+      toast(
+        "個人情報の収集および利用に同意していただくことで登録が可能です。",
+        {
+          type: "error",
+        },
+      );
       return;
     }
 
@@ -181,11 +186,15 @@ export function MemberSignup() {
         privacyAgreed: privacyAgreed,
       })
       .then(() => {
-        toast("회원가입이 완료되었습니다.", { type: "success" });
+        // 회원 가입 완료 안내 toast
+        toast("会員登録が完了しました。", { type: "success" });
         navigate("/login");
       })
       .catch((err) => {
-        toast("잠시 후 다시 시도해주십시오.", { type: "error" });
+        // 잠시 후 다시 시도해주십시오 toast
+        toast("しばらく経ってから再度お試しください。", {
+          type: "error",
+        });
       })
       .finally(() => {
         setIsProcessing(false);
@@ -195,18 +204,21 @@ export function MemberSignup() {
   // 아이디 중복 확인 버튼
   function handleCheckLoginId() {
     if (!loginId.trim()) {
-      setLoginIdCheckMessage("아이디를 입력하세요.");
+      // 아이디를 입력하세요
+      setLoginIdCheckMessage("ログインIDを入力してください。");
       return;
     }
 
     if (hasAdmin.test(loginId.trim())) {
-      setLoginIdCheckMessage("아이디에 'admin' 을 포함할 수 없습니다.");
+      // 아이디에 admin을 포함할 수 없습니다
+      setLoginIdCheckMessage("ログインIDに「admin」を含めることはできません。");
       setLoginIdChecked(false);
       return;
     }
 
     if (!loginIdRegEx.test(loginId.trim())) {
-      setLoginIdCheckMessage("유효한 아이디 형식이 아닙니다.");
+      // 유효한 아이디 형식이 아닙니다.
+      setLoginIdCheckMessage("有効なログインIDの形式ではありません。");
       setLoginIdChecked(false);
       return;
     }
@@ -216,15 +228,18 @@ export function MemberSignup() {
       .then((res) => {
         if (res.data.exists) {
           setLoginIdChecked(false);
-          setLoginIdCheckMessage("이미 사용 중인 아이디입니다.");
+          // 이미 사용 중인 아이디입니다.
+          setLoginIdCheckMessage("既に使用されているログインIDです。");
         } else {
           setLoginIdChecked(true);
-          setLoginIdCheckMessage("사용 가능한 아이디입니다.");
+          // 사용 가능한 아이디입니다.
+          setLoginIdCheckMessage("使用可能なログインIDです。");
         }
       })
       .catch((err) => {
         setLoginIdChecked(false);
-        setLoginIdCheckMessage("확인 중 오류가 발생했습니다");
+        // 확인 중 오류가 발생했습니다.
+        setLoginIdCheckMessage("確認中にエラーが発生しました。");
       })
       .finally(() => {});
   }
@@ -248,7 +263,8 @@ export function MemberSignup() {
       })
       .then((res) => {
         if (res.data.exists) {
-          toast("이미 사용중인 이메일입니다.", { type: "error" });
+          // 이미 사용중인 이메일입니다.
+          toast("既に使用されているメールアドレスです。", { type: "error" });
         } else {
           // 중복이 아니면 인증번호 전송
           sendEmail();
@@ -274,12 +290,14 @@ export function MemberSignup() {
           setEmailSent(true);
           setRemainTime(res.data.remainTimeInSec);
         } else {
-          toast("인증번호 전송에 실패했습니다.", { type: "error" });
+          // 인증 번호 전송에 실패했습니다.
+          toast("認証番号の送信に失敗しました。", { type: "error" });
           setRemainTime(res.data.remainTimeInSec);
         }
       })
       .catch((err) => {
-        toast("인증번호 전송에 실패했습니다.", { type: "error" });
+        // 인증 번호 전송에 실패했습니다.
+        toast("認証番号の送信に失敗しました。", { type: "error" });
       })
       .finally(() => {
         setIsSending(false);
@@ -303,18 +321,23 @@ export function MemberSignup() {
       })
       .then((res) => {
         if (res.data.success) {
-          toast("이메일 인증이 완료되었습니다.", { type: "success" });
+          // 이메일 인증이 완료되었습니다.
+          toast("メール認証が完了しました。", { type: "success" });
           setAuthCompleted(true); // 이메일 인증 완료 처리
           setIsSubmitted(false); // 경고 문구 방지
           setAuthFailed(false);
         } else {
-          toast("인증번호가 일치하지 않습니다.", { type: "error" });
+          //인증 번호가 일치하지 않습니다.
+          toast("認証番号が一致しません。", { type: "error" });
           setAuthFailed(true);
         }
       })
       .catch((err) => {
         // console.error("인증번호 검증 실패", err.response?.data || err.message);
-        toast("서버 오류로 인증번호 확인에 실패했습니다.", { type: "error" });
+        // 서버 오류로 인증 번호 확인에 실패했습니다.
+        toast("サーバーエラーにより、認証番号の確認に失敗しました。", {
+          type: "error",
+        });
         setAuthFailed(true);
       });
   };
