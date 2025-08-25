@@ -349,7 +349,7 @@ export function MemberSignup() {
                 <div className="w-full">
                   <label className="block font-semibold mb-1">ログインID</label>
                   <p className="text-xs text-muted mb-1">
-                    ログインIDは英文で始まり、4~20文字、英文+数字の組み合わせのみ可能です。
+                    ログインIDはアルファベットで始まり、4～20文字、アルファベット+数字の組み合わせのみ可能です。
                   </p>
                   <div className="flex gap-2">
                     <input
@@ -375,7 +375,7 @@ export function MemberSignup() {
                       onClick={() => handleCheckLoginId()}
                       className="btn btn-outline btn-sm btn-neutral mt-1 mb-2"
                     >
-                      ログインID重複確認
+                      ログインID確認
                     </button>
                     {/* 아이디 형식이 맞지않을때 (정규식은 최상단 위치) */}
                     {isSubmitted && !loginIdValid && (
@@ -423,12 +423,12 @@ export function MemberSignup() {
               </div>
               <div>
                 <label className="block font-semibold mb-1">
-                  パスワード確認
+                  パスワード(確認用)
                 </label>
                 <input
                   type="password"
                   value={password2}
-                  placeholder="パスワード確認"
+                  placeholder="パスワード(確認用)"
                   className="w-full rounded px-3 py-2 bg-gray-100 mb-2"
                   onChange={(e) => {
                     setPassword2(e.target.value);
@@ -665,11 +665,12 @@ export function MemberSignup() {
                 <input
                   type="text"
                   value={addressDetail}
-                  placeholder="詳細住所の入力をお願いします。"
+                  placeholder="詳細住所を入力してください。"
                   className="w-full rounded px-3 py-2 bg-gray-100 mb-2"
                   onChange={(e) => setAddressDetail(e.target.value)}
                 />
               </div>
+              {/* 개인정보 수집 이용 동의 */}
               <div className="d-flex justify-content-end mt-2 items-center">
                 {privacyAgreed && (
                   <p className="text-info me-2">
@@ -684,7 +685,7 @@ export function MemberSignup() {
                   disabled={privacyAgreed}
                   onClick={privacyModalShow}
                 >
-                  {privacyAgreed ? "同意完了" : "個人情報収集同意"}
+                  {privacyAgreed ? "同意完了" : "個人情報の取扱いに同意"}
                 </button>
               </div>
               <div className="text-end mt-2">
@@ -700,7 +701,7 @@ export function MemberSignup() {
                       転送中···
                     </>
                   ) : (
-                    "会員登録"
+                    "登録する"
                   )}
                 </button>
               </div>
