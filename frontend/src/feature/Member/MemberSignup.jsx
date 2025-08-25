@@ -327,7 +327,7 @@ export function MemberSignup() {
           setIsSubmitted(false); // 경고 문구 방지
           setAuthFailed(false);
         } else {
-          //인증 번호가 일치하지 않습니다.
+          //인증번호가 일치하지 않습니다.
           toast("認証番号が一致しません。", { type: "error" });
           setAuthFailed(true);
         }
