@@ -341,21 +341,21 @@ export function MemberSignup() {
                   style={{ width: "50px" }}
                   className="mr-1"
                 />
-                <span className="text-center text-2xl font-bold">회원등록</span>
+                {/* 회원 등록*/}
+                <span className="text-center text-2xl font-bold">会員登録</span>
               </div>
               {/* 아이디 */}
               <div className="flex items-start gap-6 mb-2">
                 <div className="w-full">
-                  <label className="block font-semibold mb-1">아이디</label>
-                  <p className="text-sm text-muted mb-1">
-                    아이디는 영문으로 시작하며 4~20자, 영문+숫자 조합만
-                    가능합니다.
+                  <label className="block font-semibold mb-1">ログインID</label>
+                  <p className="text-xs text-muted mb-1">
+                    ログインIDは英文で始まり、4~20文字、英文+数字の組み合わせのみ可能です。
                   </p>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       value={loginId}
-                      placeholder="아이디"
+                      placeholder="ログインID"
                       autoComplete="username"
                       onChange={(e) => {
                         setLoginId(e.target.value);
@@ -375,12 +375,12 @@ export function MemberSignup() {
                       onClick={() => handleCheckLoginId()}
                       className="btn btn-outline btn-sm btn-neutral mt-1 mb-2"
                     >
-                      아이디 중복 확인
+                      ログインID重複確認
                     </button>
                     {/* 아이디 형식이 맞지않을때 (정규식은 최상단 위치) */}
                     {isSubmitted && !loginIdValid && (
                       <p style={{ color: "red", fontSize: "0.875rem" }}>
-                        유효한 아이디 형식이 아닙니다.
+                        有効なID形式ではありません。
                       </p>
                     )}
                     {/* 아이디 중복 관련 메세지 */}
@@ -395,15 +395,17 @@ export function MemberSignup() {
                   </div>
                 </div>
               </div>
+              {/* 비밀번호 */}
               <div>
-                <label className="block font-semibold mb-1">비밀번호</label>
-                <p className="text-sm text-muted mb-1">
-                  비밀번호는 영문+숫자 조합, 8~20자 사이로 입력해주세요.
+                <label className="block font-semibold mb-1">パスワード</label>
+                <p className="text-xs text-muted mb-1">
+                  パスワードは、英字+数字の組み合わせ、8 ~ 20
+                  文字の間で入力します。
                 </p>
                 <input
                   type="password"
                   value={password}
-                  placeholder="비밀번호"
+                  placeholder="パスワード"
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
@@ -415,18 +417,18 @@ export function MemberSignup() {
                 />
                 {isSubmitted && !passwordValid && (
                   <p style={{ color: "red", fontSize: "0.875rem" }}>
-                    유효한 비밀번호 형식이 아닙니다.
+                    有効なパスワード形式ではありません。
                   </p>
                 )}
               </div>
               <div>
                 <label className="block font-semibold mb-1">
-                  비밀번호 확인
+                  パスワード確認
                 </label>
                 <input
                   type="password"
                   value={password2}
-                  placeholder="비밀번호 확인"
+                  placeholder="パスワード確認"
                   className="w-full rounded px-3 py-2 bg-gray-100 mb-2"
                   onChange={(e) => {
                     setPassword2(e.target.value);
@@ -434,19 +436,20 @@ export function MemberSignup() {
                 />
                 {password2 && password !== password2 && (
                   <p style={{ color: "red", fontSize: "0.875rem" }}>
-                    비밀번호가 일치하지 않습니다.
+                    パスワードが一致しません。
                   </p>
                 )}
               </div>
               <div>
-                <label className="block font-semibold mb-1">이름</label>
-                <p className="text-sm text-muted mb-1">
-                  이름은 한글 또는 영문 2~20자까지 입력 가능합니다.
+                {/* TODO : 일본어 정규식 추가 + 일본어 성, 이름으로 테이블 추가 */}
+                <label className="block font-semibold mb-1">氏名</label>
+                <p className="text-xs text-muted mb-1">
+                  名前はハングルまたは英文2~20文字まで入力可能です。
                 </p>
                 <input
                   type="text"
                   value={name}
-                  placeholder="이름"
+                  placeholder="氏名"
                   autoComplete="name"
                   onChange={(e) => {
                     setName(e.target.value);
@@ -459,12 +462,13 @@ export function MemberSignup() {
                 />
                 {isSubmitted && !nameValid && (
                   <p style={{ color: "red", fontSize: "0.875rem" }}>
-                    유효한 이름 형식이 아닙니다.
+                    有効な名前形式ではありません。
                   </p>
                 )}
               </div>
+              {/* 생년월일 */}
               <div>
-                <label className="block font-semibold mb-1">생년월일</label>
+                <label className="block font-semibold mb-1">生年月日</label>
                 <input
                   type="date"
                   value={birthday}
@@ -476,15 +480,17 @@ export function MemberSignup() {
                   }}
                 />
               </div>
+              {/* 전화번호 */}
+              {/*TODO : 전화번호 정규식 변경 080~ */}
               <div>
-                <label className="block font-semibold mb-1">전화번호</label>
-                <p className="text-sm text-muted mb-1">
-                  하이픈(-)없이 숫자만 입력해주세요. (예: 01012345678)
+                <label className="block font-semibold mb-1">電話番号</label>
+                <p className="text-xs text-muted mb-1">
+                  ハイフン(-)なしで数字のみ入力お願いします。 (例:01012345678)
                 </p>
                 <input
                   type="text"
                   value={phone}
-                  placeholder="전화번호"
+                  placeholder="電話番号"
                   autoComplete="tel"
                   className={`w-full rounded px-3 py-2 bg-gray-100 mb-3 ${
                     isSubmitted && !phoneValid
@@ -497,14 +503,15 @@ export function MemberSignup() {
                 />
                 {isSubmitted && !phoneValid && (
                   <p style={{ color: "red", fontSize: "0.875rem" }}>
-                    유효한 전화번호 형식이 아닙니다.
+                    有効な電話番号の形式ではありません。
                   </p>
                 )}
               </div>
+              {/* 이메일 */}
               <div>
-                <label className="block font-semibold mb-1">이메일</label>
-                <p className="text-sm text-muted mb-1">
-                  example@domain.com 형식의 이메일을 입력하세요.
+                <label className="block font-semibold mb-1">メール</label>
+                <p className="text-xs text-muted mb-1">
+                  example@domain.com 形式のメールアドレスを入力お願いします。
                 </p>
                 <div className="flex gap-2 items-center">
                   <input
@@ -544,7 +551,7 @@ export function MemberSignup() {
                         }
                       }}
                     >
-                      <option value="">선택해주세요</option>
+                      <option value="">選択お願いします。</option>
                       <option value="naver.com">naver.com</option>
                       <option value="hanmail.net">hanmail.net</option>
                       <option value="daum.net">daum.net</option>
@@ -553,13 +560,13 @@ export function MemberSignup() {
                       <option value="hotmail.com">hotmail.com</option>
                       <option value="outlook.com">outlook.com</option>
                       <option value="icloud.com">icloud.com</option>
-                      <option value="custom">직접입력</option>
+                      <option value="custom">直接入力</option>
                     </select>
                   )}
                 </div>
                 {isSubmitted && !emailValid && (
                   <p style={{ color: "red", fontSize: "0.875rem" }}>
-                    유효한 이메일 형식이 아닙니다.
+                    有効な電子メール形式ではありません。
                   </p>
                 )}
                 <div className="flex items-center gap-3">
@@ -578,20 +585,20 @@ export function MemberSignup() {
                     {isSending ? (
                       <>
                         <span className="loading loading-spinner loading-sm mr-2" />
-                        전송 중...
+                        転送中···
                       </>
                     ) : (
-                      "인증번호 전송"
+                      "認証番号送信"
                     )}
                   </button>
                   {remainTime > 0 && !authCompleted && (
                     <p className="text-sm text-muted">
-                      인증번호 재전송까지 {remainTime}초 남음
+                      認証番号再送信まで{remainTime}秒残っています
                     </p>
                   )}
                   {authCompleted && (
                     <p className="text-sm text-info">
-                      이메일 인증이 완료되었습니다.
+                      メール認証が完了しました。
                     </p>
                   )}
                 </div>
@@ -601,13 +608,13 @@ export function MemberSignup() {
               {emailSent && (
                 <div>
                   <label className="block font-semibold mb-1 mt-2">
-                    인증번호
+                    認証番号
                   </label>
                   <input
                     type="text"
                     value={authCode}
                     onChange={(e) => setAuthCode(e.target.value)}
-                    placeholder="이메일로 전송된 인증번호를 입력하세요."
+                    placeholder="メールで送信された認証番号を入力します。"
                     className={`w-full rounded px-3 mb-2 bg-gray-100 py-2 border ${authFailed ? "border-red-500" : "border-gray-300"}`}
                     disabled={authCompleted}
                     readOnly={authCompleted}
@@ -619,23 +626,23 @@ export function MemberSignup() {
                       onClick={handleAuthCodeVerify}
                       disabled={authCompleted}
                     >
-                      인증번호 확인
+                      認証番号確認
                     </button>
                     {authFailed && (
                       <p className="text-error text-sm mt-1">
-                        인증번호를 올바르게 입력하세요.
+                        認証番号の正しい入力をお願いします。
                       </p>
                     )}
                   </div>
                 </div>
               )}
               <div>
-                <label className="block font-semibold mb-1 mt-2">주소</label>
+                <label className="block font-semibold mb-1 mt-2">住所</label>
                 <div className="flex items-center gap-3">
                   <input
                     type="text"
                     value={zipCode}
-                    placeholder="우편번호"
+                    placeholder="郵便番号"
                     className="w-full rounded px-3 py-2 bg-gray-100 mb-2"
                     readOnly
                   />
@@ -644,13 +651,13 @@ export function MemberSignup() {
                     className="btn btn-outline btn-neutral mb-2"
                     onClick={handleSearchAddress}
                   >
-                    주소 검색
+                    住所検索
                   </button>
                 </div>
                 <input
                   type="text"
                   value={address}
-                  placeholder="주소"
+                  placeholder="住所"
                   className="w-full rounded px-3 py-2 bg-gray-100 mb-2"
                   autoComplete="address-line1"
                   readOnly
@@ -658,7 +665,7 @@ export function MemberSignup() {
                 <input
                   type="text"
                   value={addressDetail}
-                  placeholder="상세주소를 입력하세요"
+                  placeholder="詳細住所の入力をお願いします。"
                   className="w-full rounded px-3 py-2 bg-gray-100 mb-2"
                   onChange={(e) => setAddressDetail(e.target.value)}
                 />
@@ -666,7 +673,7 @@ export function MemberSignup() {
               <div className="d-flex justify-content-end mt-2 items-center">
                 {privacyAgreed && (
                   <p className="text-info me-2">
-                    개인정보 수집 및 이용에 동의 하셨습니다.
+                    個人情報の収集と利用に同意されました。
                   </p>
                 )}
                 <button
@@ -677,7 +684,7 @@ export function MemberSignup() {
                   disabled={privacyAgreed}
                   onClick={privacyModalShow}
                 >
-                  {privacyAgreed ? "동의 완료" : "개인정보 수집 동의"}
+                  {privacyAgreed ? "同意完了" : "個人情報収集同意"}
                 </button>
               </div>
               <div className="text-end mt-2">
@@ -690,10 +697,10 @@ export function MemberSignup() {
                   {isProcessing ? (
                     <>
                       <span className="loading loading-spinner loading-sm mr-2" />
-                      전송 중...
+                      転送中···
                     </>
                   ) : (
-                    "회원 등록"
+                    "会員登録"
                   )}
                 </button>
               </div>
