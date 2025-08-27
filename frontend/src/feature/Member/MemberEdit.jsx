@@ -58,7 +58,8 @@ export function MemberEdit() {
         setMember(res.data);
       })
       .catch(() => {
-        toast("잠시 후 다시 시도해주십시오.", { type: "error" });
+        // 잠시 후 다시 시도해주십시오.
+        toast("しばらくしてから、もう一度お試しください。", { type: "error" });
       })
       .finally(() => {});
   }, [memberParams]);
@@ -69,7 +70,8 @@ export function MemberEdit() {
         <div>
           <span className="loading loading-spinner loading-sm mr-2" />
         </div>
-        회원 정보를 불러오는 중 . . .{" "}
+        {/*회원 정보를 불러오는 중 . . .{" "}*/}
+        会員情報を読み込み中...{" "}
       </div>
     );
   }
@@ -116,7 +118,8 @@ export function MemberEdit() {
         navigate(`/member?id=${member.id}`);
       })
       .catch(() => {
-        toast("비밀번호가 일치하지 않습니다.", { type: "error" });
+        // 비밀번호가 일치하지 않습니다.
+        toast("パスワードが一致しません。", { type: "error" });
         // alert("비밀번호가 일치하지 않습니다.");
       })
       .finally(() => {
@@ -128,7 +131,8 @@ export function MemberEdit() {
     return (
       <div>
         <span className="loading loading-spinner loading-sm mr-2" />
-        회원 정보를 불러오는 중...
+        {/*회원 정보를 불러오는 중...*/}
+        会員情報を読み込み中...
       </div>
     );
   }
@@ -182,7 +186,8 @@ export function MemberEdit() {
         setChangePasswordModalShow(false);
       })
       .catch(() => {
-        toast("비밀번호가 일치하지 않습2니다.", { type: "error" });
+        // 비밀번호가 일치하지 않습니다.
+        toast("パスワードが一致しません。", { type: "error" });
       })
       .finally(() => {
         setIsPasswordProcessing(false);
@@ -203,12 +208,14 @@ export function MemberEdit() {
           <div className="rounded-card">
             <div className="w-full">
               <h2 className="mb-6 text-center text-2xl font-bold">
-                회원 정보 수정
+                {/*회원 정보 수정*/}
+                会員情報の編集
               </h2>
               {/* 아이디 (읽기 전용) */}
               <div className="flex items-center gap-4 mb-4">
                 <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                  아이디
+                  {/*아이디*/}
+                  ログインID
                 </label>
                 <input
                   type="text"
@@ -221,7 +228,8 @@ export function MemberEdit() {
               {/* 이름 */}
               <div className="flex items-center gap-4 mb-4">
                 <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                  이름
+                  {/*이름*/}
+                  氏名
                 </label>
                 <input
                   type="text"
@@ -233,7 +241,8 @@ export function MemberEdit() {
                 />
                 {isSubmitted && !nameValid && (
                   <span className="text-error text-sm mt-1">
-                    이름 형식이 올바르지 않습니다.
+                    {/*이름 형식이 올바르지 않습니다.*/}
+                    氏名の形式が正しくありません。
                   </span>
                 )}
               </div>
@@ -241,7 +250,8 @@ export function MemberEdit() {
               {/* 생년월일 */}
               <div className="flex items-center gap-4 mb-4">
                 <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                  생년월일
+                  {/*생년월일*/}
+                  生年月日
                 </label>
                 <input
                   type="date"
@@ -256,7 +266,8 @@ export function MemberEdit() {
               {/* 전화번호 */}
               <div className="flex items-center gap-4 mb-4">
                 <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                  전화번호
+                  {/*전화번호*/}
+                  電話番号
                 </label>
                 <input
                   type="text"
@@ -268,7 +279,8 @@ export function MemberEdit() {
                 />
                 {isSubmitted && !phoneValid && (
                   <span className="text-error text-sm mt-1">
-                    전화번호 형식이 올바르지 않습니다.
+                    {/*전화번호 형식이 올바르지 않습니다.*/}
+                    電話番号の形式が正しくありません。
                   </span>
                 )}
               </div>
@@ -276,7 +288,8 @@ export function MemberEdit() {
               {/* 이메일 (읽기 전용) */}
               <div className="flex items-center gap-4 mb-4">
                 <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                  이메일
+                  {/*이메일*/}
+                  メール
                 </label>
                 <input
                   type="email"
@@ -290,7 +303,8 @@ export function MemberEdit() {
               <div className="flex items-center gap-4 mb-4">
                 {/* 좌측: 고정 라벨 */}
                 <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                  주소
+                  {/*주소*/}
+                  住所
                 </label>
 
                 {/* 우측: input 요소들 */}
@@ -306,7 +320,8 @@ export function MemberEdit() {
                       onClick={handleSearchAddress}
                       className="btn btn-outline btn-neutral w-24 px-2 ml-1"
                     >
-                      주소찾기
+                      {/*주소찾기*/}
+                      住所検索
                     </button>
                   </div>
                   <input
@@ -332,7 +347,8 @@ export function MemberEdit() {
                   className="btn btn-neutral"
                   onClick={() => setChangePasswordModalShow(true)}
                 >
-                  암호 변경
+                  {/*암호 변경*/}
+                  パスワード変更
                 </button>
 
                 {/* 오른쪽: 저장 / 취소 */}
@@ -348,13 +364,15 @@ export function MemberEdit() {
                       !member?.address?.trim()
                     }
                   >
-                    저장
+                    {/*저장*/}
+                    保存
                   </button>
                   <button
                     className="btn btn-neutral"
                     onClick={() => setCancelSaveModalShow(true)}
                   >
-                    취소
+                    {/*취소*/}
+                    戻る
                   </button>
                 </div>
               </div>
