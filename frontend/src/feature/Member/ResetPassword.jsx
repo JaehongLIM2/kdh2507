@@ -40,7 +40,8 @@ export function ResetPassword() {
   // 새로고침시 토큰 초기화
   useEffect(() => {
     if (!token) {
-      toast("유효하지 않은 접근입니다.", { type: "error" });
+      // 유효하지 않은 접근입니다.
+      toast("無効なアクセスです。", { type: "error" });
       navigate("/");
     }
   }, [token, navigate]);
@@ -74,13 +75,16 @@ export function ResetPassword() {
         token: token,
       })
       .then(() => {
+        toast("登録が完了しました", { type: "error" });
         navigate("/login");
         setPassword("");
         setPassword2("");
       })
       .catch((err) => {
-        console.error("비밀번호 변경 실패", err.response?.data || err.message);
-        toast("비밀번호 변경에 실패했습니다. 다시 시도해주세요.", {
+        // TODO: 이전 비밀번호와 같을때도 toast 메세지 띄우기
+        // console.error("비밀번호 변경 실패", err.response?.data || err.message);
+        // 비밀번호 변경에 실패했습니다. 다시 시도해주세요.
+        toast("パスワードの変更に失敗しました。もう一度お試しください。", {
           type: "error",
         });
       })
@@ -97,19 +101,21 @@ export function ResetPassword() {
             <div>
               <div>
                 <h3 className="text-center text-xl font-bold mb-3">
-                  비밀번호 재설정
+                  {/*비밀번호 재설정*/}
+                  パスワード再設定
                 </h3>
                 <label
                   htmlFor="newPassword"
                   className="block text-sm ml-1 mb-2"
                 >
-                  비밀번호는 영문+숫자 조합, 8~20자 사이로 입력해주세요.
+                  {/*비밀번호는 영문+숫자 조합, 8~20자 사이로 입력해주세요.*/}
+                  パスワードは英字と数字の組み合わせで、8～20文字で入力してください。
                 </label>
                 <input
                   type="password"
                   value={password}
                   id="newPassword"
-                  placeholder="비밀번호"
+                  placeholder="パスワード"
                   onChange={(e) => setPassword(e.target.value)}
                   className={`input input-bordered w-full ${
                     isSubmitted && !passwordValid ? "border-red-500" : ""
@@ -120,7 +126,8 @@ export function ResetPassword() {
                     className="ml-1"
                     style={{ color: "red", fontSize: "0.875rem" }}
                   >
-                    유효한 비밀번호 형식이 아닙니다.
+                    {/*유효한 비밀번호 형식이 아닙니다.*/}
+                    有効なパスワードの形式ではありません。
                   </p>
                 )}
               </div>
@@ -130,7 +137,8 @@ export function ResetPassword() {
                   htmlFor="passwordCheck"
                   className="block text-sm ml-1 mb-2"
                 >
-                  비밀번호 확인
+                  {/* 비밀번호 확인 */}
+                  パスワード（再入力）
                 </label>
                 <input
                   type="password"
@@ -139,7 +147,7 @@ export function ResetPassword() {
                     !passwordConfirm ? "border-red-500" : ""
                   }`}
                   value={password2}
-                  placeholder="비밀번호 확인"
+                  placeholder="パスワード（再入力）"
                   onChange={(e) => setPassword2(e.target.value)}
                 />
                 {passwordConfirm || (
@@ -147,7 +155,8 @@ export function ResetPassword() {
                     className="ml-1"
                     style={{ color: "red", fontSize: "0.875rem" }}
                   >
-                    비밀번호가 일치하지 않습니다.
+                    {/*비밀번호가 일치하지 않습니다.*/}
+                    パスワードが一致しません。
                   </p>
                 )}
               </div>
@@ -163,10 +172,12 @@ export function ResetPassword() {
                     {isPasswordProcessing ? (
                       <>
                         <span className="loading loading-spinner loading-sm mr-2" />
-                        저장 중...
+                        {/*저장 중...*/}
+                        保存中...
                       </>
                     ) : (
-                      "재설정"
+                      // "재설정"
+                      "再設定する"
                     )}
                   </button>
                 </div>
@@ -175,7 +186,8 @@ export function ResetPassword() {
                     className="btn btn-sm btn-neutral mt-2 me-2"
                     onClick={() => navigate("/")}
                   >
-                    돌아가기
+                    {/*돌아가기*/}
+                    戻る
                   </button>
                 </div>
               </div>
