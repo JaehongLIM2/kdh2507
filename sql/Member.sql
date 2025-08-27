@@ -61,7 +61,40 @@ ALTER TABLE member
 
 
 
+SELECT *
+FROM orders
+WHERE order_token = '2519205415054585';
 
-SELECT * FROM orders WHERE order_token = '2519205415054585';
+
+-- 외래키 제약조건 잠시 해제
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 모든 테이블 truncate (자동 증가 id도 초기화됨)
+TRUNCATE TABLE guest_orders;
+TRUNCATE TABLE member;
+TRUNCATE TABLE alert;
+TRUNCATE TABLE chat_room;
+TRUNCATE TABLE chat_log;
+TRUNCATE TABLE faq;
+TRUNCATE TABLE orders;
+TRUNCATE TABLE payments;
+TRUNCATE TABLE product;
+TRUNCATE TABLE product_comment;
+TRUNCATE TABLE product_image;
+TRUNCATE TABLE product_like;
+TRUNCATE TABLE product_option;
+TRUNCATE TABLE cart;
+TRUNCATE TABLE guest_order_item;
+TRUNCATE TABLE order_item;
+TRUNCATE TABLE product_thumbnail;
+TRUNCATE TABLE question;
+TRUNCATE TABLE answer;
+TRUNCATE TABLE recent_views;
+TRUNCATE TABLE role;
+TRUNCATE TABLE member_role;
+
+-- 외래키 제약조건 다시 켜기
+SET FOREIGN_KEY_CHECKS = 1;
+
 
 
