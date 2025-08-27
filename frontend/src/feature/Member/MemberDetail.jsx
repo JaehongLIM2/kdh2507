@@ -37,7 +37,8 @@ export function MemberDetail() {
         <div>
           <span className="loading loading-spinner loading-sm mr-2" />
         </div>
-        회원 정보를 불러오는 중 . . .{" "}
+        {/*회원 정보를 불러오는 중 . . .{" "}*/}
+        会員情報を読み込み中...{" "}
       </div>
     );
   }
@@ -56,7 +57,8 @@ export function MemberDetail() {
         logout();
       })
       .catch(() => {
-        setPasswordError("비밀번호가 일치하지 않습니다");
+        // 비밀번호가 일치하지 않습니다.
+        setPasswordError("パスワードが一致しません。");
       })
       .finally(() => {
         setIsWithdrawProcessing(false);
@@ -75,7 +77,8 @@ export function MemberDetail() {
         <div className="w-full max-w-[600px] mx-auto px-4 max-[500px]:px-4">
           <div className="rounded-card">
             <div className="w-full">
-              <h2 className="mb-6 text-center text-2xl font-bold">회원 정보</h2>
+              {/*회원정보*/}
+              <h2 className="mb-6 text-center text-2xl font-bold">会員情報</h2>
               <div className="space-y-4">
                 {/* 아이디 */}
                 <div className="flex items-center gap-4 mb-4">
@@ -83,7 +86,8 @@ export function MemberDetail() {
                     htmlFor="loginId"
                     className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0"
                   >
-                    아이디
+                    {/*아이디*/}
+                    ログインID
                   </label>
                   <input
                     type="text"
@@ -100,7 +104,8 @@ export function MemberDetail() {
                     htmlFor="name"
                     className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0"
                   >
-                    이름
+                    {/*이름*/}
+                    氏名
                   </label>
                   <input
                     type="text"
@@ -117,7 +122,8 @@ export function MemberDetail() {
                     htmlFor="birthDate"
                     className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0"
                   >
-                    생년월일
+                    {/*생년월일*/}
+                    生年月日
                   </label>
                   <input
                     type="text"
@@ -134,7 +140,8 @@ export function MemberDetail() {
                     htmlFor="phone"
                     className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0"
                   >
-                    전화번호
+                    {/*전화번호*/}
+                    電話番号
                   </label>
                   <input
                     type="text"
@@ -151,7 +158,8 @@ export function MemberDetail() {
                     htmlFor="email"
                     className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0"
                   >
-                    이메일
+                    {/*이메일*/}
+                    メール
                   </label>
                   <input
                     type="text"
@@ -165,7 +173,8 @@ export function MemberDetail() {
                 {/* 주소 */}
                 <div className="flex items-start gap-4 mb-4">
                   <label className="label w-24 shrink-0 font-semibold px-0 py-0 min-h-0">
-                    주소
+                    {/*주소*/}
+                    住所
                   </label>
                   <div className="flex flex-col flex-1 gap-2">
                     <input
@@ -212,13 +221,15 @@ export function MemberDetail() {
                     className="btn btn-info"
                     onClick={() => navigate(`/member/edit?id=${member.id}`)}
                   >
-                    수정
+                    {/*수정*/}
+                    更新
                   </button>
                   <button
                     className="btn btn-error"
                     onClick={() => setWithdrawModalShow(true)}
                   >
-                    탈퇴
+                    {/*탈퇴*/}
+                    退会
                   </button>
                 </div>
               )}
