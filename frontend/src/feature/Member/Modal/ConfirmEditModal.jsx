@@ -15,7 +15,8 @@ export default function ConfirmEditModal({
         {" "}
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-6">
-          <h3 className="font-bold text-lg">회원 정보 수정 확인</h3>
+          {/* 회원 정보 수정 확인 */}
+          <h3 className="font-bold text-lg">会員情報編集の確認</h3>
           <button
             className="btn btn-sm btn-circle"
             onClick={() => {
@@ -30,7 +31,8 @@ export default function ConfirmEditModal({
         {/* 내용 */}
         <div className="flex items-start gap-6 mb-2">
           <label className="block text-sm font-semibold pt-2">
-            비밀번호 입력
+            {/*비밀번호 입력*/}
+            パスワード入力
           </label>
 
           <div className="flex flex-col flex-1">
@@ -45,7 +47,8 @@ export default function ConfirmEditModal({
             />
             {isSubmitted && oldPassword.trim() === "" && (
               <span className="text-error text-sm mt-2 ml-3">
-                암호를 입력해주세요.
+                {/*암호를 입력해주세요.*/}
+                パスワードを入力してください。
               </span>
             )}
           </div>
@@ -60,10 +63,12 @@ export default function ConfirmEditModal({
             {isEditProcessing ? (
               <>
                 <span className="loading loading-spinner loading-sm mr-2"></span>
-                저장 중...
+                {/*저장 중...*/}
+                保存中...
               </>
             ) : (
-              "저장"
+              // "저장"
+              "保存"
             )}
           </button>
           <button
@@ -74,7 +79,8 @@ export default function ConfirmEditModal({
               setIsSubmitted(false);
             }}
           >
-            취소
+            {/*취소*/}
+            戻る
           </button>
         </div>
       </div>

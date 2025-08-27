@@ -26,7 +26,8 @@ export default function ChangePasswordModal({
       <div className="modal-box max-w-lg mx-4 sm:mx-auto">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-2">
-          <h3 className="font-bold text-lg">비밀번호 변경</h3>
+          {/* 비밀번호 변경 */}
+          <h3 className="font-bold text-lg">パスワード変更</h3>
           <button className="btn btn-sm btn-circle" onClick={handleClose}>
             ✕
           </button>
@@ -34,13 +35,15 @@ export default function ChangePasswordModal({
 
         {/* 설명 */}
         <p className="text-sm text-gray-600 mb-4">
-          비밀번호는 영문+숫자 조합, 8~20자 사이로 입력하세요.
+          {/*비밀번호는 영문+숫자 조합, 8~20자 사이로 입력하세요.*/}
+          パスワードは英字と数字の組み合わせで、8～20文字で入力してください。
         </p>
 
         {/* 현재 비밀번호 */}
         <div className="form-control mb-4">
           <label className="block text-sm font-semibold mb-1">
-            현재 비밀번호
+            {/*현재 비밀번호*/}
+            現在のパスワード
           </label>
           <input
             type="password"
@@ -53,7 +56,10 @@ export default function ChangePasswordModal({
 
         {/* 새 비밀번호 */}
         <div className="form-control mb-4">
-          <label className="block text-sm font-semibold">변경할 비밀번호</label>
+          {/*변경할 비밀번호*/}
+          <label className="block text-sm font-semibold">
+            新しいパスワード
+          </label>
           <input
             type="password"
             value={newPassword1}
@@ -65,7 +71,8 @@ export default function ChangePasswordModal({
         {/* 새 비밀번호 확인 */}
         <div className="form-control mb-2">
           <label className="block text-sm font-semibold mb-1">
-            변경할 비밀번호 확인
+            {/*변경할 비밀번호 확인*/}
+            新しいパスワード（再入力）
           </label>
           <input
             type="password"
@@ -77,7 +84,8 @@ export default function ChangePasswordModal({
           />
           {!passwordConfirm && (
             <span className="text-error text-sm mt-1">
-              비밀번호가 일치하지 않습니다.
+              {/*비밀번호가 일치하지 않습니다.*/}
+              パスワードが一致しません。
             </span>
           )}
         </div>
@@ -92,14 +100,17 @@ export default function ChangePasswordModal({
             {isPasswordProcessing ? (
               <>
                 <span className="loading loading-spinner loading-sm mr-2" />
-                저장 중...
+                {/*저장 중...*/}
+                保存中...
               </>
             ) : (
-              "저장"
+              // "저장"
+              "保存"
             )}
           </button>
           <button className="btn btn-neutral" onClick={handleClose}>
-            취소
+            {/*취소*/}
+            戻る
           </button>
         </div>
       </div>

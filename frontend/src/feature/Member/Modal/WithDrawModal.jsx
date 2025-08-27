@@ -14,7 +14,8 @@ export default function WithdrawModal({
       <div className="modal-box max-w-lg mx-4 sm:mx-auto">
         {/* 모달 헤더 */}
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-lg font-bold">회원 탈퇴 확인</h3>
+          {/*회원 탈퇴 확인*/}
+          <h3 className="text-lg font-bold">退会の確認</h3>
           <button className="btn btn-sm btn-circle" onClick={onClose}>
             ✕
           </button>
@@ -22,7 +23,8 @@ export default function WithdrawModal({
 
         {/* 설명 */}
         <p className="text-sm text-gray-600 mb-4">
-          정말 탈퇴하시겠습니까? 탈퇴를 위해 비밀번호를 입력해주세요.
+          {/*정말 탈퇴하시겠습니까? 탈퇴를 위해 비밀번호를 입력해주세요.*/}
+          本当に退会しますか？ 退会するにはパスワードを入力してください。
         </p>
 
         {/* 비밀번호 입력란 */}
@@ -32,7 +34,8 @@ export default function WithdrawModal({
             htmlFor="withdraw-password"
             className="w-24 pt-2 font-semibold text-sm text-gray-700"
           >
-            비밀번호
+            {/*비밀번호*/}
+            パスワード
           </label>
 
           {/* 오른쪽 input + 에러 */}
@@ -63,10 +66,12 @@ export default function WithdrawModal({
             {isWithdrawProcessing && (
               <span className="loading loading-spinner loading-sm mr-2" />
             )}
-            탈퇴
+            {/*탈퇴*/}
+            退会する
           </button>
           <button className="btn btn-neutral" onClick={onClose}>
-            취소
+            {/*취소*/}
+            戻る
           </button>
         </div>
       </div>
