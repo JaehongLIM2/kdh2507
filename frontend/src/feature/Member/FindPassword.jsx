@@ -278,7 +278,7 @@ export function FindPassword() {
                 <>
                   <div className="form-control mb-4 mt-4">
                     <label htmlFor="email" className="block text-sm ml-1 mb-2">
-                      회원가입시 등록한 이메일을 입력해주세요.
+                      회원가입시 등록한 이메일을 입력해주세요.s
                     </label>
                     <input
                       type="text"

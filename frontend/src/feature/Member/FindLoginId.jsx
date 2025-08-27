@@ -72,7 +72,8 @@ export function FindLoginId() {
           setEmailSent(true);
           setRemainTime(res.data.remainTimeInSec);
         } else {
-          toast(res?.data?.message || "인증번호 전송에 실패했습니다.", {
+          // 인증번호 전송에 실패했습니다.
+          toast(res?.data?.message || "認証番号の送信に失敗しました。", {
             type: "error",
           });
           setRemainTime(res.data.remainTimeInSec);
@@ -103,18 +104,23 @@ export function FindLoginId() {
       })
       .then((res) => {
         if (res.data.success) {
-          toast("이메일 인증이 완료되었습니다.", { type: "success" });
+          // 이메일 인증이 완료되었습니다.
+          toast("メール認証が完了しました。", { type: "success" });
           setAuthCompleted(true); // 이메일 인증 완료 처리
           setIsSubmitted(false); // 경고 문구 방지
           setAuthFailed(false);
           showFoundId();
         } else {
-          toast("인증번호가 일치하지 않습니다.", { type: "error" });
+          // 인증번호가 일치하지않습니다
+          toast("認証番号が一致しません。", { type: "error" });
           setAuthFailed(true);
         }
       })
       .catch((err) => {
-        toast("서버 오류로 인증번호 확인에 실패했습니다.", { type: "error" });
+        // 서버오류로 인증번호 확인에 실패했습니다.
+        toast("サーバーエラーにより、認証番号の確認に失敗しました。", {
+          type: "error",
+        });
         setAuthFailed(true);
       });
   };
@@ -128,7 +134,8 @@ export function FindLoginId() {
         if (res.data.success) {
           setFoundLoginId(res.data.loginId); // 마스킹된 ID
         } else {
-          toast(res.data.message || "아이디를 찾을 수 없습니다.", {
+          // 아이디를 찾을 수 없습니다.
+          toast(res.data.message || "ログインIDが見つかりません。", {
             type: "error",
           });
         }
@@ -151,13 +158,15 @@ export function FindLoginId() {
                     className="mr-1"
                   />
                   <span className="text-center text-xl font-bold">
-                    아이디 찾기
+                    {/* 로그인 아이디 찾기 */}
+                    ログインIDを探す
                   </span>
                 </div>
                 {!authCompleted && (
                   <div>
+                    {/* 회원가입시 등록한 이메일을 입력해주세요. */}
                     <label className="block text-sm ml-1 mb-2">
-                      회원가입시 등록한 이메일을 입력해주세요.
+                      会員登録時に登録したメールアドレスを入力してください。
                     </label>
                     <input
                       type="text"
@@ -165,7 +174,7 @@ export function FindLoginId() {
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
-                      placeholder="이메일"
+                      placeholder="メール"
                       className="input input-bordered w-full"
                       disabled={authCompleted}
                     />
@@ -175,7 +184,8 @@ export function FindLoginId() {
                           className="ml-1"
                           style={{ color: "red", fontSize: "0.875rem" }}
                         >
-                          유효한 이메일 형식이 아닙니다.
+                          {/*유효한 이메일 형식이 아닙니다.*/}
+                          有効なメールアドレスの形式ではありません。
                         </p>
                       )}
                     </div>
@@ -185,7 +195,8 @@ export function FindLoginId() {
                           className="text-muted"
                           style={{ fontSize: "0.875rem" }}
                         >
-                          인증번호 재전송까지 {remainTime}초 남음
+                          {/*인증번호 재전송까지 {remainTime}초 남음*/}
+                          再送信可能まで {remainTime}秒
                         </p>
                       )}
                       {authCompleted && (
@@ -193,7 +204,8 @@ export function FindLoginId() {
                           className="text-muted"
                           style={{ fontSize: "0.875rem" }}
                         >
-                          이메일 인증이 완료되었습니다.
+                          {/*이메일 인증이 완료되었습니다.*/}
+                          メール認証が完了しました。
                         </p>
                       )}
                       <button
@@ -205,10 +217,12 @@ export function FindLoginId() {
                         {isSending ? (
                           <>
                             <span className="loading loading-spinner loading-sm mr-2" />
-                            전송 중...
+                            {/*전송 중...*/}
+                            転送中···
                           </>
                         ) : (
-                          "인증번호 전송"
+                          // "인증번호 전송"
+                          "認証番号送信"
                         )}
                       </button>
                     </div>
@@ -219,12 +233,12 @@ export function FindLoginId() {
               {emailSent && !authCompleted && (
                 <div className="form-control mb-4 mt-4">
                   <label className="block text-sm font-semibold mb-2">
-                    인증번호
+                    認証番号
                   </label>
                   <input
                     type="text"
                     value={authCode}
-                    placeholder="인증번호"
+                    placeholder="認証番号"
                     className="input input-bordered w-full"
                     onChange={(e) => setAuthCode(e.target.value)}
                     isInvalid={authFailed}
@@ -234,7 +248,7 @@ export function FindLoginId() {
                   <div className="flex justify-end items-center text-end mt-2 gap-2">
                     {authFailed && (
                       <p style={{ color: "red", fontSize: "0.875rem" }}>
-                        인증번호를 올바르게 입력하세요.
+                        認証番号の正しい入力してください。
                       </p>
                     )}
                     <button
@@ -243,7 +257,7 @@ export function FindLoginId() {
                       onClick={handleAuthCodeVerify}
                       disabled={authCompleted}
                     >
-                      인증번호 확인
+                      認証番号確認
                     </button>
                   </div>
                 </div>
@@ -252,9 +266,11 @@ export function FindLoginId() {
                 <>
                   <div className="mt-5">
                     <p className="text-info fw-bold">
-                      가입된 아이디는
+                      {/*가입된 아이디는*/}
+                      登録されているログインIDは
                       <span className="text-dark"> {foundLoginId} </span>
-                      입니다.
+                      です。
+                      {/*입니다.*/}
                     </p>
                   </div>
                   <div className="text-end mt-2">
@@ -271,7 +287,7 @@ export function FindLoginId() {
                           })
                         }
                       >
-                        비밀번호 찾기
+                        パスワード再設定
                       </button>
                     </div>
                     <div>
@@ -280,7 +296,7 @@ export function FindLoginId() {
                         className="btn btn-neutral btn-sm mt-2 me-2"
                         onClick={() => navigate("/")}
                       >
-                        돌아가기
+                        戻る
                       </button>
                     </div>
                   </div>

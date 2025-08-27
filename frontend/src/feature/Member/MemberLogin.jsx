@@ -17,11 +17,13 @@ export function MemberLogin() {
     e.preventDefault(); // form submit 기본 동작 방지(리로드 X)
 
     if (!loginId.trim()) {
-      toast("아이디를 입력하세요.", { type: "error" });
+      // 아이디를 입력하세요 toast
+      toast("ログインIDを入力してください。", { type: "error" });
       return;
     }
     if (!password.trim()) {
-      toast("비밀번호를 입력하세요.", { type: "error" });
+      // 패스워드를 입력해주세요 toast
+      toast("パスワードを入力してください。", { type: "error" });
       return;
     }
 
@@ -49,7 +51,8 @@ export function MemberLogin() {
         navigate("/");
       })
       .catch((err) => {
-        toast("아이디 또는 비밀번호가 일치하지않습니다.", { type: "error" }); // { type: 'error', text: '...' }
+        // 아이디 혹은 패스워드가 일치하지 않습니다.
+        toast("IDまたはパスワードが一致しません。", { type: "error" }); // { type: 'error', text: '...' }
       })
       .finally(() => {});
   }
@@ -70,9 +73,11 @@ export function MemberLogin() {
                   style={{ width: "80px" }}
                   className="mr-2"
                 />
-                <span className="text-4xl font-bold">코데헌</span>
+                {/* 코데헌 로고 */}
+                <span className="text-4xl font-bold">コーデハン</span>
               </Link>
-              <h3 className="text-center text-xl font-bold mb-6">로그인</h3>
+              {/* 로그인 */}
+              <h3 className="text-center text-xl font-bold mb-6">ログイン</h3>
 
               <form onSubmit={handleLogInButtonClick}>
                 {/* 아이디 */}
@@ -81,7 +86,7 @@ export function MemberLogin() {
                     htmlFor="loginId"
                     className="block text-sm font-semibold mb-2"
                   >
-                    아이디
+                    ログインID
                   </label>
                   <input
                     id="loginId"
@@ -98,7 +103,7 @@ export function MemberLogin() {
                     htmlFor="password"
                     className="block text-sm font-semibold mb-2"
                   >
-                    비밀번호
+                    パスワード
                   </label>
                   <input
                     id="password"
@@ -115,7 +120,7 @@ export function MemberLogin() {
                     type="submit"
                     className="btn btn-neutral w-full font-bold py-2"
                   >
-                    로그인
+                    ログイン
                   </button>
                 </div>
               </form>
@@ -123,21 +128,21 @@ export function MemberLogin() {
               {/* 회원가입 링크 */}
               <div className="text-right mt-2 text-sm">
                 <Link to="/signup" className="link link-hover text-gray-700">
-                  회원가입
+                  会員登録
                 </Link>
               </div>
 
               {/* 아이디/비밀번호 찾기 링크 */}
               <div className="text-right mt-2 text-sm">
                 <Link to="/find/id" className="link link-hover text-gray-700">
-                  아이디 찾기
+                  ログインIDを忘れた方
                 </Link>
                 <span className="mx-2 text-gray-400">/</span>
                 <Link
                   to="/find/password"
                   className="link link-hover text-gray-700"
                 >
-                  비밀번호 찾기
+                  パスワード再設定
                 </Link>
               </div>
 
@@ -147,7 +152,7 @@ export function MemberLogin() {
                   to="/order/guest-order"
                   className="link link-hover text-gray-700"
                 >
-                  비회원 주문 조회
+                  非会員注文照会
                 </Link>
               </div>
             </div>
