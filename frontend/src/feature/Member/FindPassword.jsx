@@ -88,7 +88,8 @@ export function FindPassword() {
     if (!isLoginIdOk || loginId.trim() === "") return;
 
     if (!loginId.trim()) {
-      setLoginIdCheckMessage("아이디를 입력하세요.");
+      // 아이디를 입력해주세요
+      setLoginIdCheckMessage("ログインIDを入力してください。");
       setLoginIdExists(false);
       setIsLoginIdChecked(true);
       return;
@@ -99,15 +100,18 @@ export function FindPassword() {
       .then((res) => {
         if (res.data.exists) {
           setLoginIdExists(true);
-          setLoginIdCheckMessage("가입된 아이디입니다.");
+          // 가입된 아이디입니다.
+          setLoginIdCheckMessage("登録されているログインIDです。");
         } else {
           setLoginIdExists(false);
-          setLoginIdCheckMessage("존재하지 않는 아이디입니다.");
+          // 존재하지 않는 아이디입니다.
+          setLoginIdCheckMessage("存在しないログインIDです。");
         }
       })
       .catch((err) => {
         setLoginIdExists(false);
-        setLoginIdCheckMessage("확인 중 오류가 발생했습니다");
+        // 획인 중 오류가 발생했습니다.
+        setLoginIdCheckMessage("確認中にエラーが発生しました。");
       })
       .finally(() => {
         setIsLoginIdChecked(true);
@@ -122,7 +126,8 @@ export function FindPassword() {
       })
       .then((res) => {
         if (!res.data.matched) {
-          toast("입력하신 아이디와 이메일이 일치하지 않습니다.", {
+          // 입력하신 아이디와 이메일이 일치하지 않습니다.
+          toast("入力されたログインIDとメールアドレスが一致しません。", {
             type: "error",
           });
           return;
@@ -130,7 +135,10 @@ export function FindPassword() {
         sendEmail();
       })
       .catch(() => {
-        toast("서버 오류로 이메일 확인에 실패했습니다.", { type: "error" });
+        // 서버 오류로 이메일 확인에 실패했습니다.
+        toast("サーバーエラーにより、メールアドレスの確認に失敗しました。", {
+          type: "error",
+        });
       });
   };
 
@@ -157,7 +165,8 @@ export function FindPassword() {
           setEmailSent(true);
           setRemainTime(res.data.remainTimeInSec);
         } else {
-          toast(res?.data?.message || "인증번호 전송에 실패했습니다.", {
+          // 인증번호 전송에 실패했습니다.
+          toast(res?.data?.message || "認証番号の送信に失敗しました。", {
             type: "error",
           });
           return;
@@ -188,17 +197,22 @@ export function FindPassword() {
       })
       .then((res) => {
         if (res.data.success) {
-          toast("이메일 인증이 완료되었습니다.", { type: "success" });
+          // 이메일 인증이 완료되었습니다.
+          toast("メール認証が完了しました。", { type: "success" });
           setAuthCompleted(true); // 이메일 인증 완료 처리
           setIsSubmitted(false); // 경고 문구 방지
           setAuthFailed(false);
         } else {
-          toast("인증번호가 일치하지 않습니다.", { type: "error" });
+          // 인증번호가 일치하지 않습니다.
+          toast("認証番号が一致しません。", { type: "error" });
           setAuthFailed(true);
         }
       })
       .catch((err) => {
-        toast("서버 오류로 인증번호 확인에 실패했습니다.", { type: "error" });
+        // 서버 오류로 인증번호 확인에 실패했습니다.
+        toast("サーバーエラーにより、認証番号の確認に失敗しました。", {
+          type: "error",
+        });
         setAuthFailed(true);
       });
   };
@@ -218,16 +232,21 @@ export function FindPassword() {
         });
       })
       .catch((err) => {
-        toast("토큰 발급 실패: " + (err.response?.data || err.message), {
-          type: "error",
-        });
+        // 토큰 발급 실패
+        toast(
+          "トークンの発行に失敗しました。: " +
+            (err.response?.data || err.message),
+          {
+            type: "error",
+          },
+        );
       });
   };
 
   return (
     <div className="page-wrapper">
       <div className="center-top-container">
-        <div className="w-full max-w-[400px] mx-auto px-4 sm:px-3">
+        <div className="w-full max-w-[450px] mx-auto px-4 sm:px-3">
           <div className="rounded-card">
             <div className="w-full">
               <div>
@@ -238,11 +257,12 @@ export function FindPassword() {
                     className="mr-1"
                   />
                   <span className="text-center text-xl font-bold">
-                    비밀번호 찾기
+                    {/*비밀번호 찾기*/}
                   </span>
                 </div>
                 <label htmlFor="loginId" className="block text-sm ml-1 mb-2">
-                  회원가입시 등록한 아이디를 입력해주세요.
+                  {/*회원가입시 등록한 아이디를 입력해주세요.*/}
+                  会員登録時に登録したログインIDを入力してください。
                 </label>
                 <input
                   type="text"
@@ -252,7 +272,7 @@ export function FindPassword() {
                     setLoginId(e.target.value);
                   }}
                   className="input input-bordered w-full"
-                  placeholder="아이디"
+                  placeholder="ログインID"
                   disabled={authCompleted}
                 />
                 <div className="flex justify-end items-center text-end mt-2 gap-2">
@@ -270,7 +290,8 @@ export function FindPassword() {
                     onClick={handleCheckLoginId}
                     className="btn btn-sm btn-neutral mb-2"
                   >
-                    확인
+                    {/*확인*/}
+                    確認
                   </button>
                 </div>
               </div>
@@ -278,7 +299,8 @@ export function FindPassword() {
                 <>
                   <div className="form-control mb-4 mt-4">
                     <label htmlFor="email" className="block text-sm ml-1 mb-2">
-                      회원가입시 등록한 이메일을 입력해주세요.s
+                      {/*회원가입시 등록한 이메일을 입력해주세요.*/}
+                      会員登録時に登録したメールアドレスを入力してください。
                     </label>
                     <input
                       type="text"
@@ -288,7 +310,7 @@ export function FindPassword() {
                         setEmail(e.target.value);
                       }}
                       className="input input-bordered w-full"
-                      placeholder="이메일"
+                      placeholder="メール"
                       disabled={authCompleted}
                     />
                     {isSubmitted && !emailValid && (
@@ -296,7 +318,8 @@ export function FindPassword() {
                         className="ml-1"
                         style={{ color: "red", fontSize: "0.875rem" }}
                       >
-                        유효한 이메일 형식이 아닙니다.
+                        {/*유효한 이메일 형식이 아닙니다.*/}
+                        有効なメールアドレスの形式ではありません。
                       </p>
                     )}
                     <div className="flex justify-end items-center text-end mt-2 gap-2">
@@ -305,7 +328,8 @@ export function FindPassword() {
                           className="text-muted"
                           style={{ fontSize: "0.875rem" }}
                         >
-                          인증번호 재전송까지 {remainTime}초 남음
+                          {/*인증번호 재전송까지 {remainTime}초 남음*/}
+                          再送信可能まで {remainTime}秒
                         </p>
                       )}
                       {authCompleted && (
@@ -313,7 +337,8 @@ export function FindPassword() {
                           className="text-muted"
                           style={{ fontSize: "0.875rem" }}
                         >
-                          이메일 인증이 완료되었습니다.
+                          {/*이메일 인증이 완료되었습니다.*/}
+                          メール認証が完了しました。
                         </p>
                       )}
                       <button
@@ -326,10 +351,12 @@ export function FindPassword() {
                         {isSending ? (
                           <>
                             <span className="loading loading-spinner loading-sm mr-2" />
-                            전송 중...
+                            {/*전송 중...*/}
+                            転送中···
                           </>
                         ) : (
-                          "인증번호 전송"
+                          // "인증번호 전송"
+                          "認証番号送信"
                         )}
                       </button>
                     </div>
@@ -343,13 +370,13 @@ export function FindPassword() {
                           htmlFor="authCode"
                           className="block text-sm font-semibold mb-2"
                         >
-                          인증번호
+                          認証番号
                         </label>
                         <input
                           type="text"
                           value={authCode}
                           id="authCode"
-                          placeholder="인증번호"
+                          placeholder="認証番号"
                           onChange={(e) => setAuthCode(e.target.value)}
                           className={`input input-bordered w-full ${
                             authFailed ? "border-red-500" : "border-gray-300"
@@ -360,7 +387,8 @@ export function FindPassword() {
                         <div className="flex justify-end items-center text-end mt-2 gap-2">
                           {authFailed && (
                             <p style={{ color: "red", fontSize: "0.875rem" }}>
-                              인증번호를 올바르게 입력하세요.
+                              {/*인증번호를 올바르게 입력하세요.*/}
+                              認証番号の正しい入力してください。
                             </p>
                           )}
                           <button
@@ -369,7 +397,8 @@ export function FindPassword() {
                             onClick={handleAuthCodeVerify}
                             disabled={authCompleted}
                           >
-                            인증번호 확인
+                            {/*인증번호 확인*/}
+                            認証番号確認
                           </button>
                         </div>
                       </div>
@@ -386,7 +415,8 @@ export function FindPassword() {
                         className="btn btn-sm btn-neutral mt-2 mr-2"
                         onClick={handleResetPasswordButton}
                       >
-                        비밀번호 재설정
+                        {/*비밀번호 재설정*/}
+                        再設定する
                       </button>
                     </div>
                     <div>
@@ -395,7 +425,8 @@ export function FindPassword() {
                         className="btn btn-sm btn-neutral mt-2 mr-2"
                         onClick={() => navigate("/")}
                       >
-                        돌아가기
+                        {/*돌아가기*/}
+                        戻る
                       </button>
                     </div>
                   </div>

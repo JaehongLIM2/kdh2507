@@ -147,7 +147,7 @@ export function FindLoginId() {
   return (
     <div className="page-wrapper">
       <div className="center-top-container">
-        <div className="w-full max-w-[400px] mx-auto px-4 sm:px-3">
+        <div className="w-full max-w-[450px] mx-auto px-4 sm:px-3">
           <div className="rounded-card">
             <div className="w-full">
               <div>
@@ -248,6 +248,7 @@ export function FindLoginId() {
                   <div className="flex justify-end items-center text-end mt-2 gap-2">
                     {authFailed && (
                       <p style={{ color: "red", fontSize: "0.875rem" }}>
+                        {/*인증번호를 올바르게 입력하세요.*/}
                         認証番号の正しい入力してください。
                       </p>
                     )}
@@ -257,6 +258,7 @@ export function FindLoginId() {
                       onClick={handleAuthCodeVerify}
                       disabled={authCompleted}
                     >
+                      {/*인증번호 확인*/}
                       認証番号確認
                     </button>
                   </div>
@@ -265,10 +267,10 @@ export function FindLoginId() {
               {authCompleted && foundLoginId && (
                 <>
                   <div className="mt-5">
-                    <p className="text-info fw-bold">
+                    <p className="text-neutral fw-bold">
                       {/*가입된 아이디는*/}
                       登録されているログインIDは
-                      <span className="text-dark"> {foundLoginId} </span>
+                      <span className="text-info"> {foundLoginId} </span>
                       です。
                       {/*입니다.*/}
                     </p>
@@ -296,6 +298,7 @@ export function FindLoginId() {
                         className="btn btn-neutral btn-sm mt-2 me-2"
                         onClick={() => navigate("/")}
                       >
+                        {/*돌아가기*/}
                         戻る
                       </button>
                     </div>
