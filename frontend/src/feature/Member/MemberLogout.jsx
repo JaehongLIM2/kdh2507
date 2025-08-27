@@ -14,8 +14,8 @@ export function MemberLogout() {
     // 비회원 기준으로 장바구니 새로고침.
     const guestCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
     setCartCount(guestCart.length);
-
-    toast("로그아웃 되었습니다.", { type: "success" });
+    // 로그아웃 되었습니다.
+    toast("ログアウトしました。", { type: "success" });
     navigate("/");
   }, []);
   return (
