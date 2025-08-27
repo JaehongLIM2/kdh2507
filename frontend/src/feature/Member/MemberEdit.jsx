@@ -182,7 +182,7 @@ export function MemberEdit() {
         setChangePasswordModalShow(false);
       })
       .catch(() => {
-        toast("비밀번호가 일치하지 않습니다.", { type: "error" });
+        toast("비밀번호가 일치하지 않습2니다.", { type: "error" });
       })
       .finally(() => {
         setIsPasswordProcessing(false);
