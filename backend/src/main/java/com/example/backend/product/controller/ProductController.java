@@ -253,9 +253,9 @@ public class ProductController {
     // 우측배너 주간판매량 10개이상 제품 중에서 랜덤으로 4개
     @GetMapping("/hot-random")
     public ResponseEntity<List<ProductMainSlideDto>> getRandomHotProducts() {
-        LocalDateTime oneWeekAgo = LocalDateTime.now().minusDays(7);
+//        LocalDateTime oneWeekAgo = LocalDateTime.now().minusDays(7);
         PageRequest pageable = PageRequest.of(0, 5);
-        List<ProductMainSlideDto> result = productRepository.findHotProductsRandomLimit(oneWeekAgo, pageable);
+        List<ProductMainSlideDto> result = productRepository.findHotProductsRandomLimit(pageable);
         return ResponseEntity.ok(result);
     }
 
