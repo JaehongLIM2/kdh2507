@@ -36,15 +36,21 @@ export function MemberList() {
         <div className="w-full max-w-[1200px] mx-auto px-4">
           <div className="rounded-card">
             <div className="w-full">
-              <h2 className="mb-6 text-center text-2xl font-bold">회원 목록</h2>
+              {/*회원 목록*/}
+              <h2 className="mb-6 text-center text-2xl font-bold">会員目録</h2>
               <table hover responsive className="table table-striped">
                 <thead className="thead-light">
                   <tr>
-                    <th>회원번호</th>
-                    <th>아이디</th>
-                    <th>이름</th>
-                    <th className="hidden md:table-cell">전화번호</th>
-                    <th className="hidden md:table-cell">이메일</th>
+                    {/*회원번호*/}
+                    <th>会員番号</th>
+                    {/*로그인 아이디*/}
+                    <th>ログインID</th>
+                    {/*이름*/}
+                    <th>氏名</th>
+                    {/*전화번호*/}
+                    <th className="hidden md:table-cell">電話番号</th>
+                    {/*이메일*/}
+                    <th className="hidden md:table-cell">メール</th>
                   </tr>
                 </thead>
                 <tbody>
