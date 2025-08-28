@@ -215,6 +215,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.list(page, keyword, sort, category));
     }
 
+    // 상품 등록
     @PostMapping(value = "/regist", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> regist(@RequestParam String productName,
                                     @RequestParam Integer price,

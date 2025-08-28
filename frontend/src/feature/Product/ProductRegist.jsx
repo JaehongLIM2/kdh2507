@@ -197,16 +197,33 @@ export function ProductRegist() {
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-
               <div className="product-regist-field">
                 <label className="product-regist-label">카테고리</label>
-                <input
+                <select
                   className="product-regist-input"
-                  type="text"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                />
+                >
+                  <option value="">-- 선택하세요 --</option>
+                  <option value="outer">아우터</option>
+                  <option value="top">상의</option>
+                  <option value="bottom">하의</option>
+                  <option value="hat">모자</option>
+                  <option value="bag">가방</option>
+                  <option value="shoes">신발</option>
+                  <option value="socks">양말</option>
+                  <option value="belt">벨트</option>
+                </select>
               </div>
+              {/*<div className="product-regist-field">*/}
+              {/*  <label className="product-regist-label">카테고리</label>*/}
+              {/*  <input*/}
+              {/*    className="product-regist-input"*/}
+              {/*    type="text"*/}
+              {/*    value={category}*/}
+              {/*    onChange={(e) => setCategory(e.target.value)}*/}
+              {/*  />*/}
+              {/*</div>*/}
 
               <div className="product-regist-field">
                 <label className="product-regist-label">상품 설명</label>
