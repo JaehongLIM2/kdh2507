@@ -38,7 +38,8 @@ function ProductCart() {
           setCartItems(res.data);
         })
         .catch((err) => {
-          toast("잠시 후 다시 시도해주십시오.", { type: "error" });
+          // 잠시 후 다시 시도해주십시오.
+          toast("しばらくしてからもう一度お試しください。", { type: "error" });
         });
     } else {
       // 비로그인 사용자 => localStorage 에서 guestCart 가져옴
@@ -115,7 +116,8 @@ function ProductCart() {
           setCartCount(res.data.length);
         })
         .catch((err) => {
-          toast("잠시 후 다시 시도해주십시오.", { type: "error" });
+          // 잠시 후 다시 시도해주십시오.
+          toast("しばらくしてからもう一度お試しください。", { type: "error" });
         });
     } else {
       // 비로그인 사용자 - localStorage 에서 삭제 처리
@@ -224,7 +226,8 @@ function ProductCart() {
 
   function handleOrderButton() {
     if (checkedIds.length === 0) {
-      alert("주문할 상품을 선택하세요.");
+      // 주문할 상품을 선택해주세요.
+      alert("ご注文の商品を選択してください。");
       return;
     }
     const selectedItems = cartItems.filter((_, idx) =>
@@ -254,15 +257,18 @@ function ProductCart() {
             >
               <div className="rounded-card">
                 <h2 className="text-center text-3xl font-bold mb-6">
-                  장바구니
+                  {/*장바구니*/}
+                  カート
                 </h2>
 
                 {cartItems.length === 0 ? (
                   <div className="text-center py-10">
                     <h4 className="text-lg font-semibold">
-                      장바구니가 비어있습니다.
+                      {/*장바구니가 비어있습니다.*/}
+                      カートは空です。
                     </h4>
-                    <p>원하는 상품을 장바구니에 담아보세요.</p>
+                    {/* 원하는 상품을 장바구니에 담아보세요. */}
+                    <p>お好きな商品をカートに入れてください。</p>
                   </div>
                 ) : (
                   <>
@@ -289,10 +295,14 @@ function ProductCart() {
                           )}
                         </button>
                       </div>
-                      <div className="col-span-5 text-center">상품 정보</div>
-                      <div className="col-span-2 text-center">수량</div>
-                      <div className="col-span-2 text-center">가격</div>
-                      <div className="col-span-2 text-center">총 금액</div>
+                      {/*상품 정보*/}
+                      <div className="col-span-5 text-center">商品情報</div>
+                      {/*수량*/}
+                      <div className="col-span-2 text-center">数量</div>
+                      {/*가격*/}
+                      <div className="col-span-2 text-center">価格</div>
+                      {/*총 금액*/}
+                      <div className="col-span-2 text-center">合計金額</div>
                     </div>
 
                     {/* 아이템들 */}
@@ -348,23 +358,26 @@ function ProductCart() {
 
                               <div className="mt-1 flex items-center justify-between">
                                 <div className="text-sm text-xs-375">
-                                  수량 {item.quantity}개
+                                  {/*수량*/}
+                                  数量 {item.quantity}個
                                 </div>
                                 <button
                                   onClick={() => handleEditOption(item)}
                                   className="btn btn-sm btn-outline"
                                 >
-                                  변경
+                                  {/*변경*/}
+                                  変更
                                 </button>
                               </div>
 
                               <div className="flex items-baseline justify-between gap-2 col-356">
                                 <div className="text-sm text-xs-375 text-gray-600 full-356">
-                                  <span className="label-356">가격</span>
+                                  {/*가격*/}
+                                  <span className="label-356">価格</span>
                                   <span className="tabular-nums">
                                     {item.price?.toLocaleString() || "-"}
                                   </span>
-                                  원
+                                  {/*원*/}円
                                 </div>
                                 <div className="font-semibold text-xs-375 mt-2 mt0-356 full-356">
                                   <span className="tabular-nums">
@@ -374,7 +387,7 @@ function ProductCart() {
                                         ).toLocaleString()
                                       : "-"}
                                   </span>
-                                  원
+                                  {/*원*/}円
                                 </div>
                               </div>
                             </div>
@@ -413,26 +426,29 @@ function ProductCart() {
                           </div>
 
                           <div className="col-span-2 text-center">
-                            {item.quantity}개
+                            {/*~개*/}
+                            {item.quantity}個
                             <div className="mt-2">
                               <button
                                 onClick={() => handleEditOption(item)}
                                 className="btn btn-sm btn-outline"
                               >
-                                옵션/수량 변경
+                                {/*옵션/수량 변경*/}
+                                オプション / 数量変更
                               </button>
                             </div>
                           </div>
 
                           <div className="col-span-2 text-center">
-                            {item.price?.toLocaleString() || "-"}원
+                            {/*원*/}
+                            {item.price?.toLocaleString() || "-"}円
                           </div>
 
                           <div className="col-span-2 text-center">
                             {item.price && item.quantity
                               ? (item.price * item.quantity).toLocaleString()
                               : "-"}
-                            원
+                            {/*원*/}円
                           </div>
                         </div>
                       </div>
@@ -444,11 +460,14 @@ function ProductCart() {
                         onClick={handleDeleteSelected}
                         className="btn btn-outline justify-self-start btn-375"
                       >
-                        선택 삭제
+                        {/*선택 삭제*/}
+                        選択削除
                       </button>
                       <div className="justify-self-end text-right text-sm text-xs-375 text-gray-500 leading-tight">
-                        <p>샘플 쇼핑몰 안내 문구</p>
-                        <p>이 내용은 실제와 다를 수 있습니다.</p>
+                        {/*샘플 쇼핑몰 안내 문구*/}
+                        <p>サンプルショッピングモール案内文</p>
+                        {/*이 내용은 실제와 다를 수 있습니다.*/}
+                        <p>本内容は実際と異なる場合があります。</p>
                       </div>
                     </div>
                   </>
@@ -480,7 +499,8 @@ function ProductCart() {
                         }}
                       >
                         <h5 className="font-semibold text-center mb-3">
-                          옵션 / 수량 변경
+                          {/*옵션 / 수량 변경*/}
+                          オプション / 数量変更
                         </h5>
                         {/* 상품 이미지 및 이름 */}
                         <div className="flex items-center gap-5 mb-3">
@@ -501,7 +521,8 @@ function ProductCart() {
                         {(selectedItem.options || []).length > 0 && (
                           <div className="flex items-center ">
                             <label className="block w-25 font-semibold me-4">
-                              옵션 선택
+                              {/*옵션 선택*/}
+                              オプション選択
                             </label>
                             <select
                               className=" select select-bordered w-full"
@@ -525,12 +546,13 @@ function ProductCart() {
                                 }
                               }}
                             >
-                              <option value="">옵션 선택</option>
+                              {/*옵션 선택*/}
+                              <option value="">オプション選択</option>
                               {selectedItem.options.map((opt) => (
                                 <option key={opt.id} value={String(opt.id)}>
                                   {opt.optionName} (+
                                   {opt.price?.toLocaleString()}
-                                  원)
+                                  円)
                                 </option>
                               ))}
                             </select>
@@ -540,7 +562,8 @@ function ProductCart() {
                         {/* 수량 설정 */}
                         <div className="flex mt-4 items-center">
                           <label className="block w-25 font-semibold mr-9">
-                            수량
+                            {/*수량*/}
+                            数量
                           </label>
                           <div className="join">
                             <button
@@ -562,7 +585,8 @@ function ProductCart() {
                                 const maxQty = selectedStock ?? Infinity;
                                 if (value > maxQty) {
                                   alert(
-                                    `재고 ${maxQty}개 이상 구매하실 수 없습니다.`,
+                                    // 재고 ${maxQty}개 이상 구매하실 수 없습니다.
+                                    `在庫は${maxQty}個までしか購入できません。`,
                                   );
                                   setSelectedQuantity(maxQty);
                                 } else {
@@ -578,7 +602,8 @@ function ProductCart() {
                                 const maxQty = selectedStock ?? Infinity;
                                 if (selectedQuantity + 1 > maxQty) {
                                   alert(
-                                    `재고 ${maxQty}개 이상 구매하실 수 없습니다.`,
+                                    // 재고 ${maxQty}개 이상 구매하실 수 없습니다.
+                                    `在庫は${maxQty}個までしか購入できません。`,
                                   );
                                   return;
                                 }
@@ -594,17 +619,19 @@ function ProductCart() {
                         <div className="mt-4 d-flex justify-content-end gap-2">
                           <button
                             type="button"
-                            className="btn btn-dark"
+                            className="btn btn-info"
                             onClick={handleUpdateCartItem}
                           >
-                            변경
+                            {/*변경*/}
+                            変更
                           </button>
                           <button
                             type="button"
                             onClick={() => setShowModal(false)}
-                            className="btn btn-secondary"
+                            className="btn btn-neutral"
                           >
-                            취소
+                            {/*취소*/}
+                            戻る
                           </button>
                         </div>
                       </div>
@@ -619,31 +646,36 @@ function ProductCart() {
               <div className="sticky top-28">
                 <div className="rounded-card p-6 bg-white shadow">
                   <h3 className="text-xl text-center font-semibold mb-4">
-                    주문 요약
+                    {/*주문 요약*/}
+                    ご注文内容
                   </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span>상품금액</span>
-                      <span>{totalItemPrice.toLocaleString()}원</span>
+                      {/*상품 금액*/}
+                      <span>商品金額</span>
+                      <span>{totalItemPrice.toLocaleString()}円</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>배송비</span>
+                      {/*배송료*/}
+                      <span>配送料</span>
                       <div>
                         {shippingFee === 0 && totalItemPrice > 0 && (
                           <span className="text-green-600 text-sm ml-2">
-                            (무료배송)
+                            {/*(무료배송)*/}
+                            （送料無料）
                           </span>
                         )}
                         <span className="ml-1">
                           {" "}
-                          {shippingFee.toLocaleString()}원
+                          {shippingFee.toLocaleString()}円
                         </span>
                       </div>
                     </div>
                     <div className="border-t pt-3 flex justify-between text-base font-bold">
-                      <span>총 주문금액</span>
+                      {/*총 주문금액*/}
+                      <span>合計金額</span>
                       <span>
-                        {(totalItemPrice + shippingFee).toLocaleString()}원
+                        {(totalItemPrice + shippingFee).toLocaleString()}円
                       </span>
                     </div>
                   </div>
@@ -651,13 +683,15 @@ function ProductCart() {
                     onClick={handleOrderButton}
                     className="btn btn-neutral w-full mt-5"
                   >
-                    {`주문하기${checkedIds?.length ? ` (${checkedIds.length}개)` : ""}`}
+                    {/*{`주문하기${checkedIds?.length ? ` (${checkedIds.length}개)` : ""}`}*/}
+                    {`注文する${checkedIds?.length ? `（${checkedIds.length}点）` : ""}`}
                   </button>
                   <button
                     onClick={() => navigate("/home")}
                     className="btn w-full mt-2"
                   >
-                    쇼핑 계속하기
+                    {/*쇼핑 계속하기*/}
+                    買い物を続ける
                   </button>
                 </div>
               </div>
@@ -670,32 +704,37 @@ function ProductCart() {
                 <div className="text-base">
                   <div className="text-sm text-gray-600">
                     <div>
-                      <span>상품금액</span>
+                      {/*상품금액*/}
+                      <span>商品金額</span>
                       <span className="ml-1">
                         {" "}
-                        {totalItemPrice.toLocaleString()}원
+                        {totalItemPrice.toLocaleString()}円
                       </span>
                     </div>
                     <div>
-                      <span>배송비</span>
+                      {/*배송료*/}
+                      <span>配送料</span>
                       <span className="ml-1">
                         {" "}
-                        {shippingFee.toLocaleString()}원
+                        {shippingFee.toLocaleString()}円
                       </span>
                       {shippingFee === 0 && totalItemPrice > 0 && (
                         <span className="text-green-600 text-sm ml-2">
-                          (무료배송)
+                          {/*(무료배송)*/}
+                          （送料無料）
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="text-gray-600 text-sm mt-2">총 주문금액</div>
+                  {/*총 주문금액*/}
+                  <div className="text-gray-600 text-sm mt-2">合計金額</div>
                   <div className="text-lg font-bold">
-                    {(totalItemPrice + shippingFee).toLocaleString()}원
+                    {(totalItemPrice + shippingFee).toLocaleString()}円
                   </div>
                 </div>
                 <button onClick={handleOrderButton} className="btn btn-primary">
-                  주문하기
+                  {/*주문하기*/}
+                  注文する
                 </button>
               </div>
             </div>
