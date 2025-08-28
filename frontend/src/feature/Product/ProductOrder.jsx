@@ -26,7 +26,6 @@ function Order() {
   const [shippingFee, setShippingFee] = useState(0);
   const [loadingMember, setLoadingMember] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [emailValid, setEmailValid] = useState(true);
   const { state } = useLocation();
   const { setCartCount } = useCart();
   const isMember = !!localStorage.getItem("token");
@@ -98,7 +97,7 @@ function Order() {
     const handlePopupMessage = (event) => {
       switch (event.data.type) {
         case "POPUP_READY":
-          console.log("팝업 준비 완료!");
+          // console.log("팝업 준비 완료!");
           // 팝업이 준비되면 데이터 전송
           sendDataToPopup();
           break;
