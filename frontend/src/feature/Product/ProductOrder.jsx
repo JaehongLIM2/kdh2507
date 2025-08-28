@@ -4,6 +4,7 @@ import axios from "axios";
 import { useCart } from "./CartContext.jsx";
 import { useAlertWebSocket } from "../alert/alertContext.jsx";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
+import { toast } from "sonner";
 
 function Order() {
   useEffect(() => {
@@ -111,7 +112,7 @@ function Order() {
 
         case "PAY_FAIL":
           // 결제 실패 처리
-          alert("결제에 실패하였습니다 다시 시도해 주세요");
+          toast.error("결제에 실패하였습니다 다시 시도해 주세요");
           setIsProcessing(false);
           break;
 
@@ -148,7 +149,7 @@ function Order() {
 
       // 팝업 창 확인
       if (!checkoutWindow.current) {
-        alert("팝업이 차단되었습니다. 팝업 차단을 해제해 주세요.");
+        toast.warning("팝업이 차단되었습니다. 팝업 차단을 해제해 주세요.");
         setIsProcessing(false);
         return;
       }
@@ -170,7 +171,7 @@ function Order() {
           checkoutWindow.current.close(); // 팝업 강제 종료!
           checkoutWindow.current = null;
           // 사용자에게 알림
-          alert("결제 시간이 초과되었습니다. 다시 시도해 주세요.");
+          toast.error("결제 시간이 초과되었습니다. 다시 시도해 주세요.");
         }
 
         // 상태 정리
@@ -220,7 +221,7 @@ function Order() {
   }
 
   function handleCancelButton() {
-    alert("주문이 취소되었습니다.");
+    toast.error("주문이 취소되었습니다.");
     navigate(-1);
   }
 
@@ -230,13 +231,15 @@ function Order() {
       !ordererPhone.trim() ||
       (isMember && !ordererAddress.trim())
     ) {
-      alert("주문자 정보를 모두 입력해 주세요.");
+      toast.error("주문자 정보를 모두 입력해 주세요.");
       return false;
     }
 
-    if (!emailRegEx.test(ordererEmail.trim())) {
-      alert("유효한 이메일 형식이 아닙니다.");
-      return;
+    if (!isMember) {
+      if (!emailRegEx.test(ordererEmail.trim())) {
+        toast.error("유효한 이메일 형식이 아닙니다.");
+        return false;
+      }
     }
 
     const currentData = formDataRef.current;
@@ -248,7 +251,7 @@ function Order() {
       !currentData.receiverAddress.trim() ||
       !currentData.receiverAddressDetail.trim()
     ) {
-      alert("배송지 정보를 모두 입력해 주세요.");
+      toast.error("배송지 정보를 모두 입력해 주세요.");
 
       return false;
     }
@@ -329,7 +332,7 @@ function Order() {
             `${items[0].productName} ${items.length <= 1 ? "의" : `외 ${items.length - 1}개의`} 주문이 완료되었습니다`,
             `/order/detail/${orderToken}`,
           );
-          alert("주문이 완료되었습니다.");
+          toast.success("주문이 완료되었습니다.");
           navigate("/product/order/complete", {
             state: {
               items,
@@ -354,7 +357,7 @@ function Order() {
           });
         })
         .catch((err) => {
-          alert("주문 실패");
+          toast.error("주문 실패");
         });
     } else {
       // 비회원
@@ -380,7 +383,7 @@ function Order() {
       }));
       axios.post("/api/product/order/guest", payloadList).then((res) => {
         const token = res.data.guestOrderToken;
-        alert("주문이 완료되었습니다.");
+        toast.success("주문이 완료되었습니다.");
         const guestCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
 
         const updatedCart = guestCart.filter(
