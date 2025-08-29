@@ -24,32 +24,32 @@ export function NavUserMenu({ user, logout, isAdmin }) {
           <>
             <li className="px-3 py-1 font-semibold">{user.name} 님</li>
             <li>
-              <Link to={`/member?id=${user.id}`}>회원 정보</Link>
+              <Link to={`/member?id=${user.id}`}>会員情報</Link>
             </li>
             {isAdmin && (
               <li>
-                <Link to="/member/list">회원 목록</Link>
+                <Link to="/member/list">会員一覧</Link>
               </li>
             )}
             {!isAdmin && (
               <li>
-                <Link to="/order/list">주문 내역</Link>
+                <Link to="/order/list">注文履歴</Link>
               </li>
             )}
             <li>
-              <Link to="/logout">로그아웃</Link>
+              <Link to="/logout">ログアウト</Link>
             </li>
           </>
         ) : (
           <>
             <li>
-              <Link to="/login">로그인</Link>
+              <Link to="/login">ログイン</Link>
             </li>
             <li>
-              <Link to="/signup">회원가입</Link>
+              <Link to="/signup">新規会員登録</Link>
             </li>
             <li>
-              <Link to="/order/guest-order">비회원 주문조회</Link>
+              <Link to="/order/guest-order">非会員注文照会</Link>
             </li>
           </>
         )}

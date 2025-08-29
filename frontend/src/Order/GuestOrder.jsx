@@ -48,7 +48,7 @@ export function GuestOrder() {
               </Link>
               <h3 className="text-center text-xl font-bold mb-6">
                 {/*비회원 주문 조회*/}
-                ゲスト注文照会
+                非会員注文照会
               </h3>
               <form onSubmit={handleSearchOrderButtonClick} className="mb-4">
                 <div className="form-control mb-2">
