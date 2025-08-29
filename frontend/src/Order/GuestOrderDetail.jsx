@@ -56,7 +56,7 @@ export function GuestOrderDetail() {
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
                       {/*주문번호*/}
-                      ご注文日
+                      ご注文番号
                     </div>
                     <div className="flex-1 min-w-0 text-sm break-words">
                       {order.guestOrderToken}

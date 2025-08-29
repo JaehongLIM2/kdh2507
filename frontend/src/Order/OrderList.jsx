@@ -19,7 +19,8 @@ export function OrderList() {
         setTotalPages(res.data.totalPages);
       })
       .catch((err) => {
-        toast("❌ 주문 목록 불러오기 실패", { type: "error" });
+        // 주문 목록 불러오기 실패
+        toast("❌ 注文一覧の読み込みに失敗しました。", { type: "error" });
       })
       .finally(() => {
         setIsProcessing(false);
@@ -32,12 +33,14 @@ export function OrderList() {
         <div className="w-full max-w-[700px] mx-auto px-4">
           <div className="rounded-card">
             <div className="mb-8">
-              <h2 className="mb-6 text-center text-3xl font-bold">주문 목록</h2>
+              {/*주문 목록*/}
+              <h2 className="mb-6 text-center text-3xl font-bold">注文一覧</h2>
               <br />
             </div>
             {!isProcessing && orderList.length === 0 ? (
               <div className="border border-gray-300 rounded-xl p-6 text-center text-gray-500">
-                주문내역이 없습니다.
+                {/*주문내역이 없습니다.*/}
+                ご注文履歴はありません。
               </div>
             ) : (
               orderList.map((order) => (
@@ -54,11 +57,13 @@ export function OrderList() {
                             navigate(`/order/detail/${order.orderToken}`)
                           }
                         >
-                          주문상세
+                          {/*주문상세*/}
+                          ご注文詳細
                         </div>
                       </div>
                       <div className="text-sm text-gray-700">
-                        주문번호 : {order.orderToken}
+                        {/*주문번호*/}
+                        ご注文番号 : {order.orderToken}
                       </div>
                     </div>
                     {order.orderItems.map((item, index) => (
@@ -77,15 +82,16 @@ export function OrderList() {
                           />
                         </div>
                         <div>
-                          <div className="mb-1">상품명: {item.productName}</div>
-                          <div className="text-sm mb-1">
-                            <div>커밋</div>
-                            {/* 커밋용 주석
-                             */}
-                            옵션: {item.productOption || "기본"} /{" "}
-                            {item.quantity}개
+                          {/*상품명*/}
+                          <div className="mb-1">
+                            商品名 : {item.productName}
                           </div>
-                          <div>{item.price.toLocaleString()} 원</div>
+                          <div className="text-sm mb-1">
+                            {/*옵션 / 기본*/}
+                            オプション : {item.productOption || "基本"} /{" "}
+                            {item.quantity} 点
+                          </div>
+                          <div>{item.price.toLocaleString()} 円</div>
                         </div>
                         <br />
                       </div>
@@ -94,11 +100,16 @@ export function OrderList() {
                     {order.totalPrice != null && (
                       <div className="text-right">
                         <div>
-                          상품 금액: {order.itemsSubtotal.toLocaleString()}
+                          {/*상품금액*/}
+                          商品金額: {order.itemsSubtotal.toLocaleString()} 円
                         </div>
-                        <div>배송료 : {order.shippingFee.toLocaleString()}</div>
+                        {/*배송료*/}
+                        <div>
+                          配送料 : {order.shippingFee.toLocaleString()} 円
+                        </div>
+                        {/*총 주문 금액*/}
                         <div className="font-semibold mt-1">
-                          총 결제금액: {order.totalPrice.toLocaleString()}원
+                          合計 : {order.totalPrice.toLocaleString()} 円（税込）
                         </div>
                       </div>
                     )}
