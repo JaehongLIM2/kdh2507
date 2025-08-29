@@ -92,20 +92,19 @@
 }
 
 .productList {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4열 고정 */
+    gap: 16px;
     list-style: none;
     padding: 0;
     margin: 0;
-    justify-content: space-evenly;
 }
 
 .productList li {
-    width: 220px;
-    margin: 10px 10px 10px;
+    width: auto; /* grid에서는 고정폭 불필요 */
+    margin: 0;
     padding: 8px 12px;
 }
-
 
 .new-badge, .hot-badge, .sold-out-badge, .low-stock-badge {
     font-size: 0.75rem;
@@ -242,8 +241,14 @@
 }
 
 /* ===== 1024px ===== */
-@media (min-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(4, 1fr);
+@media (max-width: 1024px) {
+    .productList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .productList {
+        grid-template-columns: 1fr;
     }
 }
