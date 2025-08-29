@@ -170,7 +170,8 @@ export function ProductOrderComplete() {
                   <div>
                     {shippingFee === 0 && totalItemPrice > 0 && (
                       <span className="text-green-600 text-sm ml-2">
-                        (무료배송)
+                        {/*(무료배송)*/}
+                        （送料無料）
                       </span>
                     )}
                     <span className="ml-1">
