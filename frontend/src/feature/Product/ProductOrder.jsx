@@ -513,7 +513,7 @@ function Order() {
 
               {/* 주문 상품 + 주문 요약 카드 */}
               <div className="order-box rounded">
-                {/*주문 상품 점ㅇ보*/}
+                {/*주문 상품 정보*/}
                 <h4 className="mb-1 font-semibold text-lg">ご注文商品情報</h4>
 
                 {/* 상품 리스트 */}
@@ -697,7 +697,7 @@ function Order() {
 
                 <div className="flex gap-2 mt-2">
                   <input
-                    placeholder="郵便番号" // 운편번호
+                    placeholder="郵便番号" // 우편번호
                     className="input input-bordered flex-1 min-w-0"
                     readOnly
                     value={receiverZipcode}
@@ -751,9 +751,9 @@ function Order() {
                     管理人室にお預けください。
                   </option>
                   {/*직접 작성*/}
-                  <option value="その他（自由記入">その他（自由記入）</option>
+                  <option value="その他（自由記入)">その他（自由記入）</option>
                 </select>
-                {memo === "その他（自由記入" && (
+                {memo === "その他（自由記入)" && (
                   <input
                     type="text"
                     className="input input-bordered w-full mt-2"
