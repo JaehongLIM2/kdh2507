@@ -45,7 +45,8 @@ export default function ProductDetailToggle({ detailImagePaths }) {
             className="detail-toggle-btn-out"
             onClick={() => setIsDetailOpen(true)}
           >
-            상세정보 펼쳐보기
+            {/*상세정보 펼쳐보기*/}
+            詳細を見る
           </button>
         </div>
       )}
@@ -57,7 +58,8 @@ export default function ProductDetailToggle({ detailImagePaths }) {
             className="detail-toggle-btn-out"
             onClick={() => setIsDetailOpen(false)}
           >
-            상세정보 접기
+            {/*상세정보 접기*/}
+            詳細情報を閉じる
           </button>
         </div>
       )}

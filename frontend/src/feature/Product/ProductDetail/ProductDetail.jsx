@@ -2,7 +2,7 @@ import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import NoticeSection from "./util/NoticeSection.jsx";
 import ProductComment from "./ProductComment.jsx";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BuyButton from "./util/BuyButton.jsx";
 import CartAdded from "./util/CartAdded.jsx";
 import { useCart } from "../CartContext.jsx";
@@ -21,6 +21,7 @@ import LikeButton from "./util/LikeButton.jsx";
 import { AuthenticationContext } from "../../common/AuthenticationContextProvider.jsx";
 import ProductDetailToggle from "./util/ProductDetailToggle.jsx";
 import RecommendedProduct from "./util/RecommendedProduct.jsx";
+import { toast } from "sonner";
 
 export function ProductDetail() {
   useEffect(() => {
@@ -56,7 +57,11 @@ export function ProductDetail() {
           headers: { Authorization: `Bearer ${token}` },
         })
         .catch((err) => {
-          console.error("최근 본 상품 서버 저장 실패", err);
+          // 최근 본 상품 서버 저장 실패
+          console.error(
+            "最近チェックした商品をサーバーに保存できませんでした。",
+            err,
+          );
         });
     } else {
       // 비로그인 상태 → localStorage 저장
@@ -113,15 +118,18 @@ export function ProductDetail() {
   }
 
   function handleDeleteButton() {
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+    // 정말 삭제하시겠습니까?
+    if (!window.confirm("本当に削除しますか？")) return;
     axios
       .delete(`/api/product/delete?id=${id}`)
-      .then((res) => {
-        alert("삭제되었습니다.");
+      .then(() => {
+        // 삭제되었습니다.
+        toast.success("削除されました。");
         navigate("/product/list");
       })
-      .catch((err) => {
-        alert("삭제 실패");
+      .catch(() => {
+        // 삭제 실패했습니다.
+        toast.error("削除に失敗しました。");
       })
       .finally(() => {});
   }
@@ -184,7 +192,7 @@ export function ProductDetail() {
                 )}
                 {product.quantity > 0 && product.quantity < 5 && (
                   <span className="low-stock-badge">
-                    🔥 {product.quantity}개 남음
+                    🔥 残り{product.quantity} 個
                   </span>
                 )}
               </div>
@@ -199,7 +207,7 @@ export function ProductDetail() {
             </div>
 
             <p className="product-price-detail">
-              {product.price.toLocaleString()}원
+              {product.price.toLocaleString()} 円
             </p>
 
             <hr className="divider" />
@@ -215,7 +223,8 @@ export function ProductDetail() {
               <>
                 {product.options?.length > 0 && (
                   <div className="option-select-box">
-                    <label>선택:</label>
+                    {/*선택*/}
+                    <label>選択 :</label>
                     <select
                       onChange={(e) => {
                         const selected = product.options?.find(
@@ -224,10 +233,11 @@ export function ProductDetail() {
                         setSelectedOption(selected);
                       }}
                     >
-                      <option value="">옵션을 선택하세요</option>
+                      {/*옵션을 선택하세요.*/}
+                      <option value="">オプションを選択してください。</option>
                       {product.options?.map((opt, idx) => (
                         <option key={idx} value={opt.optionName}>
-                          {opt.optionName} - {opt.price.toLocaleString()}원
+                          {opt.optionName} - {opt.price.toLocaleString()} 円
                         </option>
                       ))}
                     </select>
@@ -235,7 +245,8 @@ export function ProductDetail() {
                 )}
 
                 <div className="quantity-control-box">
-                  <span className="quantity-label">수량</span>
+                  {/*수량*/}
+                  <span className="quantity-label">数量</span>
                   <button
                     type="button"
                     onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
@@ -249,8 +260,9 @@ export function ProductDetail() {
                       const val = parseInt(e.target.value, 10);
                       if (!isNaN(val)) {
                         if (val > product.quantity) {
-                          alert(
-                            `현재 재고 부족으로 ${product.quantity}개 이상 구매할 수 없습니다.`,
+                          toast.error(
+                            // 현재 재고 부족으로 ~ 개 이상 구매할 수 없습니다.
+                            `在庫不足のため ${product.quantity}点以上は購入できません。`,
                           );
                         }
                         setQuantity(
@@ -274,12 +286,13 @@ export function ProductDetail() {
                 </div>
 
                 <div className="total-price">
-                  총 가격:{" "}
+                  {/*총 가격*/}
+                  合計 :{" "}
                   {(
                     quantity *
                     (selectedOption ? selectedOption.price : product.price)
                   ).toLocaleString()}
-                  원
+                  円（税込）
                 </div>
               </>
             )}
@@ -287,11 +300,12 @@ export function ProductDetail() {
             <div className="button-group-wrapper">
               {product.quantity === 0 ? (
                 <button disabled className="sold-out-button">
-                  품절된 상품입니다
+                  {/*품절된 상품입니다*/}
+                  在庫切れの商品です。
                 </button>
               ) : (
                 <div className="action-buttons-group">
-                  <Button
+                  <button
                     onClick={() =>
                       handleBuyButton({
                         product,
@@ -303,11 +317,12 @@ export function ProductDetail() {
                         setCartItems,
                       })
                     }
-                    className="buy-button"
+                    className="btn buy-button"
                   >
-                    구매하기
-                  </Button>
-                  <Button
+                    {/*구매하기*/}
+                    購入する
+                  </button>
+                  <button
                     onClick={() =>
                       handleCartButton({
                         product,
@@ -318,34 +333,43 @@ export function ProductDetail() {
                         setCartCount,
                       })
                     }
-                    className="cart-button"
+                    className="btn cart-button"
                   >
-                    장바구니
-                  </Button>
+                    {/*장바구니*/}
+                    カート
+                  </button>
                 </div>
               )}
               {user !== null && isAdmin && (
                 <>
-                  <div className="admin-buttons">
-                    <Button
-                      className="btn-secondary"
+                  <div className="flex justify-end admin-buttons">
+                    <button
+                      className="btn btn-info w-25"
                       onClick={handleEditButton}
                     >
-                      수정
-                    </Button>
-                    <Button className="btn-danger" onClick={handleDeleteButton}>
-                      삭제
-                    </Button>
+                      {/*수정*/}
+                      修正
+                    </button>
+                    <button
+                      className="btn btn-error w-25"
+                      onClick={handleDeleteButton}
+                    >
+                      {/*삭제*/}
+                      削除
+                    </button>
                   </div>
                 </>
               )}
-              <Button
-                className="btn-primary mt-3"
-                onClick={handleQuestionButton}
-                disabled={isProcessing}
-              >
-                문의하기
-              </Button>
+              <div className="flex justify-end me-5">
+                <button
+                  className="btn btn-info mt-3"
+                  onClick={handleQuestionButton}
+                  disabled={isProcessing}
+                >
+                  {/*문의하기*/}
+                  お問い合わせ
+                </button>
+              </div>
               {/*
     todo : faq 페이지, 추천해주는 질문 몇개를 골라서 3개 이상 답하도록
 
@@ -403,7 +427,8 @@ export function ProductDetail() {
               }
             }}
           >
-            상세정보
+            {/*상세정보*/}
+            詳細情報
           </button>
 
           <button
@@ -415,7 +440,8 @@ export function ProductDetail() {
               }
             }}
           >
-            구매평({reviewCount})
+            {/*리뷰*/}
+            商品レビュー({reviewCount})
           </button>
         </div>
         <hr />
