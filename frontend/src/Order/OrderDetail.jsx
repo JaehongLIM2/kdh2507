@@ -216,7 +216,7 @@ export function OrderDetail() {
                   {/*배송비*/}
                   <div>配送料 : {order.shippingFee.toLocaleString()} 円</div>
                   {/*총 결제금액*/}
-                  <div className="mt-2">
+                  <div className="font-semibold mt-2">
                     合計 : {order.totalPrice.toLocaleString()} 円（税込）
                   </div>
                 </div>

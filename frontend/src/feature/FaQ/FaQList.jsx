@@ -16,7 +16,6 @@ import {
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-// import { toast } from "react-toastify";
 import { toast } from "sonner";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 import { useAlertWebSocket } from "../alert/alertContext.jsx";
