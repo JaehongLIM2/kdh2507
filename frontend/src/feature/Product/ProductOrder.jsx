@@ -112,7 +112,8 @@ function Order() {
 
         case "PAY_FAIL":
           // 결제 실패 처리
-          toast.error("결제에 실패하였습니다 다시 시도해 주세요");
+          // 결제에 실패하였습니다. 다시 시도해주세요.
+          toast.error("決済に失敗しました。もう一度お試しください。");
           setIsProcessing(false);
           break;
 
@@ -149,7 +150,10 @@ function Order() {
 
       // 팝업 창 확인
       if (!checkoutWindow.current) {
-        toast.warning("팝업이 차단되었습니다. 팝업 차단을 해제해 주세요.");
+        toast.warning(
+          // 팝업이 차단되었습니다. 팝업 차단을 해제해주세요.
+          "ポップアップがブロックされました。解除してから再度お試しください。",
+        );
         setIsProcessing(false);
         return;
       }
@@ -171,7 +175,8 @@ function Order() {
           checkoutWindow.current.close(); // 팝업 강제 종료!
           checkoutWindow.current = null;
           // 사용자에게 알림
-          toast.error("결제 시간이 초과되었습니다. 다시 시도해 주세요.");
+          // 결제 시간이 초과되었습니다. 다시 시도해주세요.
+          toast.error("決済時間がタイムアウトしました。再度お試しください。");
         }
 
         // 상태 정리
@@ -221,7 +226,8 @@ function Order() {
   }
 
   function handleCancelButton() {
-    toast.error("주문이 취소되었습니다.");
+    // 주문이 취소되었습니다.
+    toast.error("ご注文はキャンセルされました。");
     navigate(-1);
   }
 
@@ -231,13 +237,15 @@ function Order() {
       !ordererPhone.trim() ||
       (isMember && !ordererAddress.trim())
     ) {
-      toast.error("주문자 정보를 모두 입력해 주세요.");
+      // 주문자 정보를 모두 입력해주세요.
+      toast.error("ご注文者情報をすべて入力してください。");
       return false;
     }
 
     if (!isMember) {
       if (!emailRegEx.test(ordererEmail.trim())) {
-        toast.error("유효한 이메일 형식이 아닙니다.");
+        // 유효한 이메일 형식이 아닙니다.
+        toast.error("有効なメールアドレス形式ではありません。");
         return false;
       }
     }
@@ -251,7 +259,8 @@ function Order() {
       !currentData.receiverAddress.trim() ||
       !currentData.receiverAddressDetail.trim()
     ) {
-      toast.error("배송지 정보를 모두 입력해 주세요.");
+      // 배송지 정보를 모두 입력해주세요.
+      toast.error("お届け先情報をすべて入力してください。");
 
       return false;
     }
@@ -286,7 +295,8 @@ function Order() {
       receiverAddressDetail: currentData.receiverAddressDetail,
 
       memo:
-        currentData.memo === "직접 작성"
+        // 직접 작성
+        currentData.memo === "その他（自由記入）"
           ? currentData.customMemo
           : currentData.memo,
       totalPrice: item.price * item.quantity,
@@ -332,7 +342,8 @@ function Order() {
             `${items[0].productName} ${items.length <= 1 ? "의" : `외 ${items.length - 1}개의`} 주문이 완료되었습니다`,
             `/order/detail/${orderToken}`,
           );
-          toast.success("주문이 완료되었습니다.");
+          // 주문이 완료되었습니다.
+          toast.success("ご注文が完了しました。ありがとうございます。");
           navigate("/product/order/complete", {
             state: {
               items,
@@ -350,14 +361,16 @@ function Order() {
                 addressDetail: currentData.receiverAddressDetail,
               },
               memo:
-                currentData.memo === "직접 작성"
+                // 직접 작성
+                currentData.memo === "その他（自由記入）"
                   ? currentData.customMemo
                   : currentData.memo,
             },
           });
         })
         .catch((err) => {
-          toast.error("주문 실패");
+          // 주문 실패
+          toast.error("ご注文に失敗しました。");
         });
     } else {
       // 비회원
@@ -369,7 +382,8 @@ function Order() {
         quantity: item.quantity,
         price: item.price,
         memo:
-          currentData.memo === "직접 작성"
+          // 직접 작성
+          currentData.memo === "その他（自由記入）"
             ? currentData.customMemo
             : currentData.memo,
         totalPrice: item.price * item.quantity,
@@ -383,7 +397,8 @@ function Order() {
       }));
       axios.post("/api/product/order/guest", payloadList).then((res) => {
         const token = res.data.guestOrderToken;
-        toast.success("주문이 완료되었습니다.");
+        // 주문이 완료되었습니다.
+        toast.success("ご注文が完了しました。ありがとうございます。");
         const guestCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
 
         const updatedCart = guestCart.filter(
@@ -413,7 +428,8 @@ function Order() {
               addressDetail: currentData.receiverAddressDetail,
             },
             memo:
-              currentData.memo === "직접 작성"
+              // 직접 작성
+              currentData.memo === "その他（自由記入）"
                 ? currentData.customMemo
                 : currentData.memo,
           },
@@ -490,11 +506,15 @@ function Order() {
             <div
               className={`rounded-card ${items?.length ? "pb-28 md:pb-0" : ""}`}
             >
-              <h2 className="text-center text-3xl font-bold mb-6">결제하기</h2>
+              {/* 결제하기 */}
+              <h2 className="text-center text-3xl font-bold mb-6">
+                購入手続きへ
+              </h2>
 
               {/* 주문 상품 + 주문 요약 카드 */}
               <div className="order-box rounded">
-                <h4 className="mb-1 font-semibold text-lg">주문 상품 정보</h4>
+                {/*주문 상품 점ㅇ보*/}
+                <h4 className="mb-1 font-semibold text-lg">ご注文商品情報</h4>
 
                 {/* 상품 리스트 */}
                 {items.map((item, idx) => (
@@ -519,11 +539,11 @@ function Order() {
                       </div>
                       <div className="text-sm text-gray-500">
                         {(item.optionName ?? item.option)
-                          ? `${item.optionName ?? item.option} / ${item.quantity}개`
-                          : `${item.quantity}개`}
+                          ? `${item.optionName ?? item.option} / ${item.quantity} 点`
+                          : `${item.quantity} 点`}
                       </div>
                       <div className="mt-1 font-bold">
-                        {(item.price * item.quantity).toLocaleString()}원
+                        {(item.price * item.quantity).toLocaleString()} 円
                       </div>
                     </div>
                   </div>
@@ -533,31 +553,37 @@ function Order() {
                 <div className="hidden md:block mt-3">
                   <div className="rounded p-4 bg-gray-50 border border-gray-200">
                     <h5 className="block text-lg text-center font-semibold mb-3">
-                      주문 요약
+                      {/*주문 요약*/}
+                      ご注文内容
                     </h5>
                     <div className="flex justify-between">
-                      <span>상품가격</span>
-                      <span>{totalItemPrice.toLocaleString()}원</span>
+                      {/*상품 가격*/}
+                      <span>商品金額</span>
+                      <span>{totalItemPrice.toLocaleString()} 円</span>
                     </div>
                     <div className="flex justify-between mt-2">
-                      <span>배송비</span>
+                      {/*배송비*/}
+                      <span>配送料</span>
                       <div>
                         {shippingFee === 0 && totalItemPrice > 0 && (
                           <span className="text-green-600 text-sm ml-2">
-                            (무료배송)
+                            {/*(무료배송)*/}
+                            （送料無料）
                           </span>
                         )}
                         <span className="ml-1">
                           {" "}
-                          {shippingFee.toLocaleString()}원
+                          {shippingFee.toLocaleString()} 円
                         </span>
                       </div>
                     </div>
                     <hr className="border-t border-gray-300 my-2" />
                     <div className="flex justify-between font-bold">
-                      <span>총 주문금액</span>
+                      {/*총 주문금액*/}
+                      <span>合計</span>
                       <span>
-                        {(totalItemPrice + shippingFee).toLocaleString()}원
+                        {(totalItemPrice + shippingFee).toLocaleString()}
+                        円（税込）
                       </span>
                     </div>
                   </div>
@@ -566,21 +592,22 @@ function Order() {
 
               {/* 주문자 정보 */}
               <div className="order-box rounded">
-                <h4 className="mb-1 font-semibold text-lg">주문자 정보</h4>
+                {/*주문자 정보*/}
+                <h4 className="mb-1 font-semibold text-lg">ご注文者情報</h4>
 
                 <div className="grid sm:grid-cols-2 gap-2">
                   <input
                     type="text"
                     value={ordererName}
                     onChange={(e) => setOrdererName(e.target.value)}
-                    placeholder="이름"
+                    placeholder="お名前" // 이름
                     className="input input-bordered w-full"
                   />
                   <input
                     type="text"
                     value={ordererPhone}
                     onChange={(e) => setOrdererPhone(e.target.value)}
-                    placeholder="연락처"
+                    placeholder="お電話番号" // 전화번호
                     className="input input-bordered w-full"
                   />
                 </div>
@@ -589,13 +616,15 @@ function Order() {
                   <>
                     <input
                       type="email"
-                      placeholder="이메일"
+                      placeholder="メール" // 이메일
                       className="input input-bordered w-full mt-2"
                       value={ordererEmail ?? ""}
                       onChange={(e) => setOrdererEmail(e.target.value)}
                     />
                     <p className="text-sm text-gray-400 text-muted mt-1 ml-1">
-                      example@domain.com 형식의 이메일을 입력하세요.
+                      {/*example@domain.com 형식의 이메일을 입력하세요.*/}
+                      メールアドレスは example@domain.com
+                      の形式で入力してください。
                     </p>
                   </>
                 )}
@@ -604,7 +633,7 @@ function Order() {
                   <>
                     <div className="flex gap-2 mt-2">
                       <input
-                        placeholder="우편번호"
+                        placeholder="郵便番号" // 우편번호
                         className="input input-bordered flex-1 min-w-0"
                         readOnly
                         value={ordererZipcode}
@@ -615,18 +644,19 @@ function Order() {
                         onClick={handleSearchOrdererAddress}
                         className="btn btn-outline shrink-0"
                       >
-                        주소 검색
+                        {/*주소 검색*/}
+                        住所検索
                       </button>
                     </div>
                     <input
-                      placeholder="주소"
+                      placeholder="ご住所" // 주소
                       className="input input-bordered w-full mt-2"
                       readOnly
                       value={ordererAddress}
                       onChange={(e) => setOrdererAddress(e.target.value)}
                     />
                     <input
-                      placeholder="상세주소"
+                      placeholder="建物名・部屋番号" // 상세주소
                       className="input input-bordered w-full mt-2"
                       value={ordererAddressDetail}
                       onChange={(e) => setOrdererAddressDetail(e.target.value)}
@@ -637,7 +667,8 @@ function Order() {
 
               {/* 배송 정보 */}
               <div className="order-box rounded">
-                <h4 className="mb-1 font-semibold text-lg">배송 정보</h4>
+                {/*배송 정보*/}
+                <h4 className="mb-1 font-semibold text-lg">お届け先情報</h4>
 
                 <label className="flex items-center gap-2 mb-3">
                   <input
@@ -645,18 +676,19 @@ function Order() {
                     checked={sameAsOrderer}
                     onChange={handleSameAsOrdererChange}
                   />
-                  주문자 정보와 동일
+                  {/*주문자 정보와 동일*/}
+                  ご注文者情報と同じ
                 </label>
 
                 <div className="grid sm:grid-cols-2 gap-2">
                   <input
-                    placeholder="수령인"
+                    placeholder="お受取人" // 수령인
                     className="input input-bordered w-full"
                     value={receiverName}
                     onChange={(e) => setReceiverName(e.target.value)}
                   />
                   <input
-                    placeholder="연락처"
+                    placeholder="お電話番号" // 연락처
                     className="input input-bordered w-full"
                     value={receiverPhone}
                     onChange={(e) => setReceiverPhone(e.target.value)}
@@ -665,7 +697,7 @@ function Order() {
 
                 <div className="flex gap-2 mt-2">
                   <input
-                    placeholder="우편번호"
+                    placeholder="郵便番号" // 운편번호
                     className="input input-bordered flex-1 min-w-0"
                     readOnly
                     value={receiverZipcode}
@@ -676,18 +708,19 @@ function Order() {
                     onClick={handleSearchReceiverAddress}
                     className="btn btn-outline shrink-0"
                   >
-                    주소 검색
+                    {/*주소 검색*/}
+                    住所検索
                   </button>
                 </div>
                 <input
-                  placeholder="주소"
+                  placeholder="ご住所" // 주소
                   className="input input-bordered w-full mt-2"
                   readOnly
                   value={receiverAddress}
                   onChange={(e) => setReceiverAddress(e.target.value)}
                 />
                 <input
-                  placeholder="상세주소"
+                  placeholder="建物名・部屋番号" // 상세주소
                   className="input input-bordered w-full mt-2"
                   value={receiverAddressDetail}
                   onChange={(e) => setReceiverAddressDetail(e.target.value)}
@@ -696,27 +729,35 @@ function Order() {
 
               {/* 배송 메모 */}
               <div className="order-box rounded">
-                <h4 className="mb-1 font-semibold">배송 메모</h4>
+                {/*배송 메모*/}
+                <h4 className="mb-1 font-semibold">配送メモ</h4>
                 <select
                   className="select select-bordered w-full"
                   value={memo}
                   onChange={(e) => setMemo(e.target.value)}
                 >
-                  <option value="">배송메모를 선택해 주세요.</option>
-                  <option value="문 앞에 두고 가주세요">
-                    문 앞에 두고 가주세요
+                  {/*배송메모를 선택해주세요.*/}
+                  <option value="">配送メモを選択してください</option>
+                  {/*문 앞에 두고 가주세요.*/}
+                  <option value="玄関前に置いてください。">
+                    玄関前に置いてください。
                   </option>
-                  <option value="부재 시 전화주세요">부재 시 전화주세요</option>
-                  <option value="경비실에 맡겨주세요">
-                    경비실에 맡겨주세요
+                  {/*부재 시 전화주세요.*/}
+                  <option value="不在時はお電話ください。">
+                    不在時はお電話ください。
                   </option>
-                  <option value="직접 작성">직접 작성</option>
+                  {/*경비실에 맡겨주세요.*/}
+                  <option value="管理人室にお預けください。">
+                    管理人室にお預けください。
+                  </option>
+                  {/*직접 작성*/}
+                  <option value="その他（自由記入">その他（自由記入）</option>
                 </select>
-                {memo === "직접 작성" && (
+                {memo === "その他（自由記入" && (
                   <input
                     type="text"
                     className="input input-bordered w-full mt-2"
-                    placeholder="배송 메모를 직접 입력하세요"
+                    placeholder="配送メモをご入力ください。" // 배송메모를 직접 입력하세요.
                     value={customMemo}
                     onChange={(e) => setCustomMemo(e.target.value)}
                   />
@@ -736,14 +777,16 @@ function Order() {
                       validateForm() && handlePaymentConnection();
                     }}
                   >
-                    결제하기
+                    {/*결제하기*/}
+                    購入手続きへ
                   </button>
                 )}
                 <button
                   onClick={handleCancelButton}
                   className="cancel btn btn-lg btn-outline"
                 >
-                  취소
+                  {/*취소*/}
+                  戻る
                 </button>
               </div>
             </div>
@@ -756,25 +799,29 @@ function Order() {
                 <div className="text-base">
                   <div className="text-sm text-gray-600">
                     <div className="flex justify-between gap-4">
-                      <span>상품가격</span>
-                      <span>{totalItemPrice.toLocaleString()}원</span>
+                      {/*상품금액*/}
+                      <span>商品金額</span>
+                      <span>{totalItemPrice.toLocaleString()} 円</span>
                     </div>
                     <div>
-                      <span>배송비</span>
+                      {/*배송료*/}
+                      <span>配送料</span>
                       <span className="ml-1">
                         {" "}
-                        {shippingFee.toLocaleString()}원
+                        {shippingFee.toLocaleString()} 円
                       </span>
                       {shippingFee === 0 && totalItemPrice > 0 && (
                         <span className="text-green-600 text-sm ml-2">
-                          (무료배송)
+                          {/*(무료배송)*/}
+                          （送料無料）
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="text-gray-600 text-sm mt-2">총 주문금액</div>
+                  {/*총 주문금액*/}
+                  <div className="text-gray-600 text-sm mt-2">合計</div>
                   <div className="text-lg font-bold">
-                    {(totalItemPrice + shippingFee).toLocaleString()}원
+                    {(totalItemPrice + shippingFee).toLocaleString()} 円（税込）
                   </div>
                 </div>
 
@@ -790,14 +837,16 @@ function Order() {
                         validateForm() && handlePaymentConnection();
                       }}
                     >
-                      결제하기
+                      {/*결제하기*/}
+                      購入手続きへ
                     </button>
                   )}
                   <button
                     onClick={handleCancelButton}
                     className="btn btn-outline"
                   >
-                    취소
+                    {/*취소*/}
+                    戻る
                   </button>
                 </div>
               </div>
