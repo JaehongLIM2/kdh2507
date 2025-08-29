@@ -13,7 +13,8 @@ export function GuestOrderDetail() {
         setOrder(res.data);
       })
       .catch((err) => {
-        toast("조회 권한이 없습니다.", { type: "error" });
+        // 조회 권한이 없습니다.
+        toast("照会権限がありません。", { type: "error" });
         navigate("/home");
       });
   }, []);
@@ -24,7 +25,8 @@ export function GuestOrderDetail() {
         <div>
           <span className="loading loading-spinner loading-sm mr-2" />
         </div>
-        주문 정보를 불러오는 중 . . .{" "}
+        {/*주문 정보를 불러오는 중*/}
+        ご注文情報を読み込み中 …{" "}
       </div>
     );
   }
@@ -35,13 +37,17 @@ export function GuestOrderDetail() {
         <div className="w-full max-w-[600px] mx-auto px-4">
           <div className="rounded-card">
             <div className="mb-8">
-              <h2 className="mb-6 text-center text-2xl font-bold">주문 상세</h2>
+              {/*주문 상세*/}
+              <h2 className="mb-6 text-center text-2xl font-bold">
+                ご注文詳細
+              </h2>
               <br />
               <div className="border border-gray-100 rounded px-3 py-2 mb-2">
                 <div className="space-y-2">
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      주문일자
+                      {/*주문일자*/}
+                      ご注文日
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {new Date(order.orderDate).toLocaleDateString()}
@@ -49,7 +55,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      주문번호
+                      {/*주문번호*/}
+                      ご注文日
                     </div>
                     <div className="flex-1 min-w-0 text-sm break-words">
                       {order.guestOrderToken}
@@ -58,11 +65,13 @@ export function GuestOrderDetail() {
                 </div>
               </div>
               <div className="border border-gray-100 rounded px-3 py-2 mb-2">
-                <h4 className="font-semibold mb-2">주문 정보</h4>
+                {/*주문 정보*/}
+                <h4 className="font-semibold mb-2">ご注文者情報</h4>
                 <div className="space-y-2">
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      이름
+                      {/*이름*/}
+                      お名前
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {order.guestName}
@@ -70,7 +79,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      연락처
+                      {/*연락처*/}
+                      お電話番号
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {order.guestPhone}
@@ -80,12 +90,14 @@ export function GuestOrderDetail() {
               </div>
 
               <div className="border border-gray-100 rounded px-3 py-2 mb-2">
-                <h4 className="font-semibold mb-2">배송지 정보</h4>
+                {/*배송지 정보*/}
+                <h4 className="font-semibold mb-2">お届け先情報</h4>
                 <div className="space-y-2">
                   {/* 받는 사람 */}
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      받는 사람
+                      {/*받는 사람*/}
+                      お受取人
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {order.receiverName}
@@ -93,7 +105,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      연락처
+                      {/*연락처*/}
+                      お電話番号
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {order.receiverPhone}
@@ -101,7 +114,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      우편번호
+                      {/*우편번호*/}
+                      郵便番号
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {order.receiverZipcode}
@@ -109,7 +123,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      주소
+                      {/*주소*/}
+                      ご住所
                     </div>
                     <div className="flex-1 min-w-0 break-words whitespace-pre-line">
                       {order.receiverAddress}
@@ -117,7 +132,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      상세주소
+                      {/*상세주소*/}
+                      建物名・部屋番号
                     </div>
                     <div className="flex-1 min-w-0 break-words">
                       {order.receiverAddressDetail}
@@ -125,7 +141,8 @@ export function GuestOrderDetail() {
                   </div>
                   <div className="flex items-start gap-3 flex-nowrap">
                     <div className="w-20 sm:w-40 shrink-0 font-medium">
-                      배송메세지
+                      {/*배송메세지*/}
+                      配送メモ
                     </div>
                     <div className="flex-1 min-w-0 break-words whitespace-pre-line">
                       {order.memo || "-"}
@@ -135,7 +152,8 @@ export function GuestOrderDetail() {
               </div>
 
               <div className="border border-gray-100 rounded px-3 py-2 mb-2">
-                <h4 className="font-semibold mb-2">주문 상품</h4>
+                {/*주문 상품 정보*/}
+                <h4 className="font-semibold mb-2">ご注文商品情報</h4>
 
                 <div className="divide-y divide-gray-300">
                   {order.orderItems.map((item, idx) => (
@@ -149,7 +167,8 @@ export function GuestOrderDetail() {
                         <div className="flex-1 min-w-0 w-full space-y-1">
                           <div className="flex items-start gap-2 flex-nowrap">
                             <div className="w-22 sm:w-28 shrink-0 font-medium">
-                              상품명
+                              {/*상품명*/}
+                              商品名
                             </div>
                             <div className="flex-1 min-w-0 break-words">
                               {item.productName}
@@ -157,7 +176,8 @@ export function GuestOrderDetail() {
                           </div>
                           <div className="flex items-start gap-2 flex-nowrap">
                             <div className="w-22 sm:w-28 shrink-0 font-medium">
-                              옵션
+                              {/*옵션*/}
+                              オプション
                             </div>
                             <div className="flex-1 min-w-0 break-words">
                               {item.productOption || "-"}
@@ -165,7 +185,8 @@ export function GuestOrderDetail() {
                           </div>
                           <div className="flex items-start gap-2 flex-nowrap">
                             <div className="w-22 sm:w-28 shrink-0 font-medium">
-                              수량
+                              {/*수량*/}
+                              数量
                             </div>
                             <div className="flex-1 min-w-0">
                               {item.quantity}
@@ -173,10 +194,11 @@ export function GuestOrderDetail() {
                           </div>
                           <div className="flex items-start gap-2 flex-nowrap">
                             <div className="w-22 sm:w-28 shrink-0 font-medium">
-                              가격
+                              {/*가격*/}
+                              価格
                             </div>
                             <div className="flex-1 min-w-0">
-                              {item.price.toLocaleString()}원
+                              {item.price.toLocaleString()} 円
                             </div>
                           </div>
                         </div>
@@ -188,10 +210,13 @@ export function GuestOrderDetail() {
 
               <div className="border border-white px-3 py-1">
                 <div className="text-right py-2">
-                  <div>상품금액 : {order.itemSubtotal.toLocaleString()}원</div>
-                  <div>배송비 : {order.shippingFee.toLocaleString()}원</div>
+                  {/*상품 금액*/}
+                  <div>商品金額 : {order.itemSubtotal.toLocaleString()} 円</div>
+                  {/*배송비*/}
+                  <div>配送料 : {order.shippingFee.toLocaleString()} 円</div>
+                  {/*총 결제금액*/}
                   <div className="mt-2">
-                    총 결제금액 : {order.totalPrice.toLocaleString()}원
+                    合計 : {order.totalPrice.toLocaleString()} 円（税込）
                   </div>
                 </div>
               </div>
@@ -202,7 +227,8 @@ export function GuestOrderDetail() {
                     navigate("/home");
                   }}
                 >
-                  홈으로
+                  {/*홈으로*/}
+                  ホームへ
                 </button>
               </div>
             </div>
