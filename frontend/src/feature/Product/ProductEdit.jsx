@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 export function ProductEdit() {
   useEffect(() => {
@@ -56,29 +57,35 @@ export function ProductEdit() {
 
   function handleSave() {
     if (!form.productName.trim()) {
-      alert("상품명을 입력해주세요.");
+      // 상품명을 입력해주세요.
+      toast.warning("商品名を入力してください。");
       return;
     }
     if (!form.price || isNaN(form.price)) {
-      alert("가격을 입력해주세요.");
+      // 가격을 입력해주세요.
+      toast.warning("価格を入力してください。");
       return;
     }
     if (!form.quantity || isNaN(form.quantity)) {
-      alert("수량을 입력해주세요.");
+      // 수량을 입력해주세요.
+      toast.warning("数量を入力してください");
       return;
     }
     if (!form.category.trim()) {
-      alert("카테고리를 입력해주세요.");
+      // 카테고리를 입력해주세요.
+      toast.warning("カテゴリーを入力してください。");
       return;
     }
     if (!form.info.trim()) {
-      alert("상세설명을 입력해주세요.");
+      // 상세설명을 입력해주세요.
+      toast.warning("詳細説明を入力してください。");
       return;
     }
     const totalThumbnailCount =
       (thumbnailPaths?.length || 0) + (newThumbnails?.length || 0);
     if (totalThumbnailCount === 0) {
-      alert("썸네일이미지를 한 장 이상 등록해주세요.");
+      // 썸네일 이미지를 한 장 이상 추가해주세요.
+      toast.warning("サムネイル画像を1枚以上追加してください。");
       return;
     }
     // if (detailImagePaths.length === 0) {
@@ -119,7 +126,8 @@ export function ProductEdit() {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
-        alert("수정 완료");
+        // 수정 완료
+        toast.success("修正完了");
         navigate(`/product/view?id=${id}`);
       });
   }
@@ -143,12 +151,14 @@ export function ProductEdit() {
             >
               <div className="product-edit-field">
                 <h2 className="text-center text-3xl font-bold mb-6">
-                  상품 정보수정
+                  {/*상품 정보수정*/}
+                  商品情報の編集
                 </h2>
               </div>
 
               <div className="product-edit-field">
-                <label className="product-edit-label">상품명</label>
+                {/*상품명*/}
+                <label className="product-edit-label">商品名</label>
                 <input
                   className="product-edit-input"
                   type="text"
@@ -159,7 +169,8 @@ export function ProductEdit() {
               </div>
 
               <div className="product-edit-field">
-                <label className="product-edit-label">가격</label>
+                {/*가격*/}
+                <label className="product-edit-label">価格</label>
                 <input
                   className="product-edit-input"
                   type="text"
@@ -170,7 +181,8 @@ export function ProductEdit() {
               </div>
 
               <div className="product-edit-field">
-                <label className="product-edit-label">수량</label>
+                {/*수량*/}
+                <label className="product-edit-label">数量</label>
                 <input
                   className="product-edit-input"
                   type="text"
@@ -181,7 +193,8 @@ export function ProductEdit() {
               </div>
 
               <div className="product-edit-field">
-                <label className="product-edit-label">카테고리</label>
+                {/*카테고리*/}
+                <label className="product-edit-label">カテゴリー</label>
                 <input
                   className="product-edit-input"
                   type="text"
@@ -192,7 +205,8 @@ export function ProductEdit() {
               </div>
 
               <div className="product-edit-field">
-                <label className="product-edit-label">상품 설명</label>
+                {/*상품 설명*/}
+                <label className="product-edit-label">商品説明</label>
                 <textarea
                   rows={5}
                   className="product-edit-textarea"
@@ -202,12 +216,13 @@ export function ProductEdit() {
                 />
               </div>
               <div className="product-regist-options">
-                <label className="product-regist-label">옵션 목록</label>
+                {/*옵션 목록*/}
+                <label className="product-regist-label">オプション一覧</label>
                 {options.map((opt, index) => (
                   <div className="product-regist-option-row" key={index}>
                     <input
                       type="text"
-                      placeholder="메뉴이름"
+                      placeholder="オプション名" // 옵션명
                       className="product-regist-input"
                       value={opt.optionName}
                       onChange={(e) => {
@@ -218,7 +233,7 @@ export function ProductEdit() {
                     />
                     <input
                       type="text"
-                      placeholder="가격"
+                      placeholder="価格" // 가격
                       className="product-regist-input"
                       value={opt.price}
                       onChange={(e) => {
@@ -247,12 +262,16 @@ export function ProductEdit() {
                     setOptions([...options, { optionName: "", price: "" }])
                   }
                 >
-                  옵션 추가
+                  {/*옵션 추가*/}
+                  オプションを追加
                 </button>
               </div>
               {/* 썸네일 이미지 변경 + 업로드 묶음 */}
               <div className="product-edit-field">
-                <label className="product-edit-label">썸네일 이미지 변경</label>
+                {/*썸네일 이미지 변경*/}
+                <label className="product-edit-label">
+                  サムネイル画像の変更
+                </label>
 
                 {/* 기존 썸네일 / 새 미리보기 */}
                 <div className="product-edit-image-box">
@@ -308,7 +327,8 @@ export function ProductEdit() {
                     htmlFor="thumbnailInput"
                     className="product-edit-file-label"
                   >
-                    이미지 추가
+                    {/*이미지 추가*/}
+                    画像を追加
                   </label>
                   <input
                     id="thumbnailInput"
@@ -330,7 +350,7 @@ export function ProductEdit() {
 
               {/* 본문 이미지 변경 */}
               <div className="product-edit-field">
-                <label className="product-edit-label">본문 이미지 변경</label>
+                <label className="product-edit-label">本文画像の変更</label>
                 <div className="product-edit-image-box">
                   {detailImagePaths.map((path, idx) => (
                     <div key={idx} className="product-edit-image-wrapper">
@@ -389,7 +409,8 @@ export function ProductEdit() {
                     htmlFor="bodyImageInput"
                     className="product-edit-file-label"
                   >
-                    이미지 추가
+                    {/*이미지 추가*/}
+                    画像を追加
                   </label>
 
                   <input
@@ -412,14 +433,16 @@ export function ProductEdit() {
 
               <div className="product-edit-submit-btns">
                 <button type="submit" className="product-edit-btn confirm">
-                  저장
+                  {/*저장*/}
+                  保存
                 </button>
                 <button
                   type="button"
                   className="product-edit-btn cancel"
                   onClick={() => navigate(-1)}
                 >
-                  취소
+                  {/*취소*/}
+                  戻る
                 </button>
               </div>
             </form>
