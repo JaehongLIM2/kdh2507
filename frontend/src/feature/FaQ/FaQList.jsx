@@ -51,14 +51,22 @@ export function FaQList() {
     { name: "자주 묻는 질문", value: "3", path: "/faq/list" },
   ];
   const catlist = [
-    { name: "전체", value: 0 },
-    { name: "주문/결제", value: 1 },
-    { name: "배송관련", value: 2 },
-    { name: "취소/환불", value: 3 },
-    { name: "반품/교환", value: 4 },
-    { name: "증빙서류발급", value: 5 },
-    { name: "로그인/회원정보", value: 6 },
-    { name: "서비스/기타", value: 7 },
+    // { name: "전체", value: 0 },
+    // { name: "주문/결제", value: 1 },
+    // { name: "배송관련", value: 2 },
+    // { name: "취소/환불", value: 3 },
+    // { name: "반품/교환", value: 4 },
+    // { name: "증빙서류발급", value: 5 },
+    // { name: "로그인/회원정보", value: 6 },
+    // { name: "서비스/기타", value: 7 },
+    { name: "全体", value: 0 },
+    { name: "注文／決済", value: 1 },
+    { name: "配送関連", value: 2 },
+    { name: "キャンセル／返金", value: 3 },
+    { name: "返品／交換", value: 4 },
+    { name: "領収書・請求書発行", value: 5 },
+    { name: "ログイン／会員情報", value: 6 },
+    { name: "サービス／その他", value: 7 },
   ];
 
   useEffect(() => {
@@ -141,7 +149,8 @@ export function FaQList() {
               <div className="lg:flex">
                 <div className="mb-8 lg:w-1/2 w-full">
                   <h2 className="text-2xl font-bold my-4">
-                    무엇을 도와드릴까요?
+                    {/*무엇을 도와드릴까요?*/}
+                    何をお探しですか？
                   </h2>
                   <ul>
                     <li className="mb-2 py-1">
@@ -152,7 +161,8 @@ export function FaQList() {
                         <span className="bg-blue-100 text-[#1B64DA] rounded-full w-5 h-5 flex items-center justify-center mr-2 sm:text-xs text-[2vw] font-bold">
                           Q
                         </span>
-                        배송은 얼마나 걸리나요?
+                        {/*배송은 얼마나 걸리나요?*/}
+                        配送にはどのくらい時間がかかりますか？
                       </a>
                     </li>
                     <li className="mb-2 py-1">
@@ -163,7 +173,8 @@ export function FaQList() {
                         <span className="bg-blue-100 text-[#1B64DA] rounded-full w-5 h-5 flex items-center justify-center mr-2 sm:text-xs text-[2vw] font-bold">
                           Q
                         </span>
-                        주문 취소는 어떻게 하나요?
+                        {/*주문 취소는 어떻게 하나요?*/}
+                        注文をキャンセルするにはどうすればよいですか？
                       </a>
                     </li>
                     <li className="mb-2 py-1">
@@ -174,7 +185,8 @@ export function FaQList() {
                         <span className="bg-blue-100 text-[#1B64DA] rounded-full w-5 h-5 flex items-center justify-center mr-2 sm:text-xs text-[2vw] font-bold">
                           Q
                         </span>
-                        제품의 자세한 정보를 알고 싶어요.
+                        {/*제품의 자세한 정보를 알고 싶어요.*/}
+                        商品の詳細情報はどのように確認できますか？
                       </a>
                     </li>
                     <li className="mb-2 py-1">
@@ -185,7 +197,8 @@ export function FaQList() {
                         <span className="bg-blue-100 text-blue-600 rounded-full w-5 h-5 flex items-center justify-center mr-2 sm:text-xs text-[2vw] font-bold">
                           Q
                         </span>
-                        제품의 교환 또는 반품을 할 수 있나요?
+                        {/*제품의 교환 또는 반품을 할 수 있나요?*/}
+                        商品の交換や返品はできますか？
                       </a>
                     </li>
                     <li className="mb-2 py-1">
@@ -196,7 +209,8 @@ export function FaQList() {
                         <span className="bg-blue-100 text-blue-600 rounded-full w-5 h-5 flex items-center justify-center mr-2 sm:text-xs text-[2vw] font-bold">
                           Q
                         </span>
-                        비밀번호 변경은 어떻게 하나요?
+                        {/*비밀번호 변경은 어떻게 하나요?*/}
+                        パスワードの変更はどうすればよいですか？
                       </a>
                     </li>
                   </ul>
@@ -212,11 +226,17 @@ export function FaQList() {
                     이메일 주소 복사하기
                   </button>*/}
                   <div className="p-4 bg-gray-100 rounded-2xl mx-auto">
-                    <h2 className="text-xl font-bold mb-2.5">고객센터</h2>
+                    {/*고객센터*/}
+                    <h2 className="text-xl font-bold mb-2.5">
+                      カスタマーセンター
+                    </h2>
                     <ol className="list-disc  list-outside pl-5 space-y-2 text-gray-700">
-                      <li>평일: 전체 문의 상담</li>
-                      <li>토요일, 공휴일: 오늘의집 직접배송 주문건 상담</li>
-                      <li>일요일: 휴무</li>
+                      {/*<li>평일: 전체 문의 상담</li>*/}
+                      {/*<li>토요일, 공휴일: 오늘의집 직접배송 주문건 상담</li>*/}
+                      {/*<li>일요일: 휴무</li>*/}
+                      <li>平日：全般のお問い合わせ対応</li>
+                      <li>土曜日：注文キャンセルに関するお問い合わせ対応</li>
+                      <li>日曜・祝日：カスタマーセンター休業</li>
                     </ol>
                     <ButtonGroup className="mt-10 flex-wrap flex justify-between">
                       {radios.map((radio, idx) => (
@@ -228,7 +248,8 @@ export function FaQList() {
                           {...(!user && {
                             onClick: (e) => {
                               e.preventDefault(); // 네비게이션 막기
-                              toast("로그인 후 이용해 주세요");
+                              // 로그인 후 이용해주세요.
+                              toast.warning("ログイン後にご利用ください。");
                             },
                           })}
                           {...(user &&
@@ -298,7 +319,8 @@ export function FaQList() {
                 ))}
               </div>
             ) : (
-              <p>faq를 정상적으로 불러오지 못했습니다</p>
+              // faq를 정상적을 불러오지 못했습니다.
+              <p>FAQを正常に読み込めませんでした。</p>
             )}
             <br />
             <div>
@@ -314,7 +336,8 @@ export function FaQList() {
                   // }
                   onClick={setModalShow}
                 >
-                  등록하기
+                  {/*등록하기*/}
+                  登録する
                 </button>
               )}
             </div>
@@ -323,17 +346,20 @@ export function FaQList() {
         {modalShow && (
           <div id="my_modal_1" className="modal modal-open">
             <div className="modal-box">
-              <h3 className="font-bold text-lg">FaQ 등록</h3>
+              {/*faq 등록*/}
+              <h3 className="font-bold text-lg">FAQ登録</h3>
               <br />
               <fieldset className="fieldset">
-                <legend className="fieldset-legend">카테고리</legend>
+                {/*카테고리*/}
+                <legend className="fieldset-legend">カテゴリー</legend>
                 <select
                   className="select"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   <option hidden disabled value="">
-                    카테고리를 선택해주세요
+                    {/*카테고리를 선택해주세요*/}
+                    カテゴリーを選択してください。
                   </option>
                   {catlist.map((cat, idx) => (
                     <option key={idx} value={cat.value}>
@@ -343,20 +369,22 @@ export function FaQList() {
                 </select>
               </fieldset>
               <fieldset className="fieldset">
-                <legend className="fieldset-legend">faq 질문</legend>
+                {/*faq 질문*/}
+                <legend className="fieldset-legend">FAQ質問</legend>
                 <input
                   type="text"
                   className="input w-full"
-                  placeholder="질문을 입력해주세요"
+                  placeholder="質問を入力してください。" // 질문을 입력해주세요
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 ></input>
               </fieldset>
               <fieldset className="fieldset">
-                <legend className="fieldset-legend">faq 답변</legend>
+                {/*faq 답변*/}
+                <legend className="fieldset-legend">FAQ回答</legend>
                 <textarea
                   className="textarea h-24 w-full"
-                  placeholder="답변을 입력해주세요"
+                  placeholder="回答を入力してください。" // 답변을 입력해주세요.
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                 ></textarea>
@@ -366,14 +394,16 @@ export function FaQList() {
                   className="btn mx-1 btn-accent"
                   onClick={handleSaveButtonClick}
                 >
-                  등록
+                  {/*등록*/}
+                  登録する
                 </button>
                 <form method="dialog">
                   <button
                     className="btn mx-1 btn-default"
                     onClick={() => setModalShow(false)}
                   >
-                    취소
+                    {/*취소*/}
+                    戻る
                   </button>
                 </form>
                 <button
