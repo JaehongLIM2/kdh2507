@@ -71,8 +71,8 @@ export function QnaView() {
     <Row className="justify-content-center">
       <Col md={8} lg={6} className="mt-5">
         <div className="container">
-          <h2 className="mb-4 text-center font-bold text-2xl">
-            {/*문의 내역 상세*/}
+          {/*문의 내역 상세*/}
+          <h2 className="mb-4 !text-center !font-bold !text-2xl">
             お問い合わせ詳細
           </h2>
           <div className="row">

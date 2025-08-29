@@ -77,13 +77,17 @@ export function AnsAdd() {
       <Col md={8} lg={6} className="mt-5">
         <div className="container">
           {/*문의 내역 상세*/}
-          <h2 className="mb-4">お問い合わせ詳細</h2>
+          <h2 className="mb-4 text-center font-bold text-2xl">
+            お問い合わせ詳細
+          </h2>
           <div className="row">
             <div>
               <div className="form-control w-full mb-3">
                 <label className="label">
                   {/*상담 유형*/}
-                  <span className="label-text">お問い合わせ種別</span>
+                  <span className="font-semibold label-text">
+                    お問い合わせ種別
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -99,7 +103,9 @@ export function AnsAdd() {
               <div className="form-control w-full mb-4">
                 <label className="label">
                   {/*문의하실 상품*/}
-                  <span className="label-text">お問い合わせ対象商品</span>
+                  <span className="font-semibold label-text">
+                    お問い合わせ対象商品
+                  </span>
                 </label>
                 <div>
                   {/* 상품 이미지 */}
@@ -111,7 +117,7 @@ export function AnsAdd() {
                   {/* 상품명(읽기 전용) */}
                   <input
                     type="text"
-                    className="input input-bordered w-full mb-2"
+                    className="font-semibold input input-bordered w-full mb-2"
                     value={question.product}
                     placeholder="商品名" // 상품명
                     disabled
@@ -130,7 +136,7 @@ export function AnsAdd() {
               <div className="form-control w-full mb-4">
                 <label className="label">
                   {/*제목*/}
-                  <span className="label-text">件名</span>
+                  <span className="font-semibold label-text">件名</span>
                 </label>
                 <input
                   type="text"
@@ -147,7 +153,9 @@ export function AnsAdd() {
               <div className="form-control w-full mb-3">
                 <label className="label">
                   {/*문의 내용*/}
-                  <span className="label-text">お問い合わせ内容</span>
+                  <span className="font-semibold mb-2 label-text">
+                    お問い合わせ内容
+                  </span>
                 </label>
                 <textarea
                   className="textarea textarea-bordered w-full"
@@ -161,7 +169,9 @@ export function AnsAdd() {
               <div className="form-control w-full mb-3">
                 <label className="label">
                   {/*답변 내용*/}
-                  <span className="label-text">回答内容</span>
+                  <span className="font-semibold mb-2 label-text">
+                    回答内容
+                  </span>
                 </label>
                 <textarea
                   className="textarea textarea-bordered w-full"
@@ -171,7 +181,7 @@ export function AnsAdd() {
               </div>
             </div>
             <br />
-            <div className="mb-3">
+            <div className="text-end mb-3">
               <button
                 type="button"
                 className="btn btn-primary ml-2"
@@ -198,18 +208,18 @@ export function AnsAdd() {
             </p>
             <div className="modal-action">
               <button
-                className="btn btn-outline btn-neutral"
-                onClick={() => setModalShow(false)}
-              >
-                {/*취소*/}
-                戻る
-              </button>
-              <button
                 className="btn btn-primary"
                 onClick={handleAnswerButtonClick}
               >
                 {/*답변완료*/}
                 回答完了
+              </button>
+              <button
+                className="btn btn-outline btn-neutral"
+                onClick={() => setModalShow(false)}
+              >
+                {/*취소*/}
+                戻る
               </button>
             </div>
             <button

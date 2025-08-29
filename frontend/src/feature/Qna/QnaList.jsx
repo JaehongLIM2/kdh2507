@@ -1,17 +1,9 @@
-import {
-  Badge,
-  ButtonGroup,
-  Col,
-  Pagination,
-  Row,
-  Spinner,
-  Table,
-  ToggleButton,
-} from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
+import { ButtonGroup, Col, Row, Table } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router";
 import { FaRegComments, FaRegImages } from "react-icons/fa";
+import { toast } from "sonner";
 
 export function QnaList() {
   useEffect(() => {
@@ -22,14 +14,19 @@ export function QnaList() {
   const [searchParams, setSearchParams] = useSearchParams("1");
   const navigate = useNavigate();
   const STATUS_TEXT = {
-    open: "대기중",
-    answered: "답변완료",
-    closed: "종료",
+    // open: "대기중",
+    // answered: "답변완료",
+    // closed: "종료",
+    open: "対応待ち",
+    answered: "回答完了",
+    closed: "終了",
   };
 
   const radios = [
-    { name: "문의내역", value: "2", fnc: handleQnaListButtonClick },
-    { name: "자주 묻는 질문", value: "3", fnc: handleFaQListButtonClick },
+    // { name: "문의내역", value: "2", fnc: handleQnaListButtonClick },
+    // { name: "자주 묻는 질문", value: "3", fnc: handleFaQListButtonClick },
+    { name: "お問い合わせ履歴", value: "2", fnc: handleQnaListButtonClick },
+    { name: "よくあるご質問", value: "3", fnc: handleFaQListButtonClick },
   ];
 
   useEffect(() => {
@@ -41,7 +38,8 @@ export function QnaList() {
       })
       .catch((err) => {
         if (err.response && err.response.status === 401) {
-          alert("로그인 후 이용해주세요.");
+          // 로그인 후 이용해주세요.
+          toast.warning("ログイン後にご利用ください。");
           window.location.href = "/login";
         } else {
           // console.log("잘 안될 때 코드");
@@ -92,7 +90,8 @@ export function QnaList() {
       <Row className="justify-content-center">
         <Col md={8} lg={9} className="mt-5">
           <div className="container">
-            <h2 className="text-2xl font-bold my-4">문의 내역</h2>
+            {/*문의 내역*/}
+            <h2 className="text-2xl font-bold my-4">お問い合わせ内容</h2>
             <div>
               <ButtonGroup>
                 {radios.map((radio, idx) => (
@@ -116,11 +115,16 @@ export function QnaList() {
                 <thead>
                   <tr>
                     <th className="num">#</th>
-                    <th className="ansCheck">답변여부</th>
-                    <th className="title">제목</th>
-                    <th className="d-none d-md-table-cell writer">작성자</th>
-                    <th className="d-none d-lg-table-cell wdate">작성일시</th>
-                    <th className="d-none d-lg-table-cell edate">수정일시</th>
+                    {/*답변 여부*/}
+                    <th className="ansCheck">回答状況</th>
+                    {/*제목*/}
+                    <th className="title">件名</th>
+                    {/*작성자*/}
+                    <th className="d-none d-md-table-cell writer">投稿者</th>
+                    {/*작성일시*/}
+                    <th className="d-none d-lg-table-cell wdate">作成日時</th>
+                    {/*수정일시*/}
+                    <th className="d-none d-lg-table-cell edate">更新日時</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -152,7 +156,9 @@ export function QnaList() {
               </Table>
             ) : (
               <p>
-                작성된 글이 없습니다. <br />새 글을 작성해 보세요.
+                {/*작성된 글이 없습니다. <br />새 글을 작성해 보세요.*/}
+                投稿はありません。 <br />
+                新しい投稿を作成してください。
               </p>
             )}
           </div>
