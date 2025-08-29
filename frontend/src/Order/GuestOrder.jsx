@@ -23,7 +23,7 @@ export function GuestOrder() {
         navigate("/order/guest-order/detail");
       })
       .catch((err) => {
-        toast(err.response?.data || "조회 실패", { type: "error" });
+        toast(err.response?.data || "照会に失敗しました。", { type: "error" });
       });
   }
 
@@ -43,10 +43,12 @@ export function GuestOrder() {
                   style={{ width: "80px" }}
                   className="mr-2"
                 />
-                <span className="text-4xl font-bold">코데헌</span>
+                {/*코데헌*/}
+                <span className="text-4xl font-bold">コーデハン</span>
               </Link>
               <h3 className="text-center text-xl font-bold mb-6">
-                비회원 주문 조회
+                {/*비회원 주문 조회*/}
+                ゲスト注文照会
               </h3>
               <form onSubmit={handleSearchOrderButtonClick} className="mb-4">
                 <div className="form-control mb-2">
@@ -54,7 +56,8 @@ export function GuestOrder() {
                     htmlFor="orderToken"
                     className="block text-sm font-semibold mb-2"
                   >
-                    주문번호
+                    {/*주문번호*/}
+                    ご注文番号
                   </label>
                   <input
                     id="orderToken"
@@ -68,7 +71,8 @@ export function GuestOrder() {
                     htmlFor="name"
                     className="block text-sm font-semibold mb-2"
                   >
-                    주문자명
+                    {/*주문자명*/}
+                    ご注文者名
                   </label>
                   <input
                     id="name"
@@ -82,7 +86,8 @@ export function GuestOrder() {
                     htmlFor="phone"
                     className="block text-sm font-semibold mb-2"
                   >
-                    전화번호
+                    {/*전화번호*/}
+                    お電話番号
                   </label>
                   <input
                     id="phone"
@@ -96,13 +101,15 @@ export function GuestOrder() {
                     type="submit"
                     className="btn btn-neutral w-full font-bold"
                   >
-                    주문조회
+                    {/*주문조회*/}
+                    ご注文の確認
                   </button>
                 </div>
               </form>
               <div className="text-right mt-2 text-sm">
                 <Link to="/login" className="link link-hover text-gray-700">
-                  돌아가기
+                  {/*돌아가기*/}
+                  戻る
                 </Link>
               </div>
             </div>
