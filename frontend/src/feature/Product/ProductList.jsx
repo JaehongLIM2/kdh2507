@@ -72,26 +72,33 @@ export function ProductList() {
     <div className="container" id="product-list-container">
       {/* PC와 모바일을 위한 별도의 헤더를 하나로 통합 */}
       <div className="product-list-header">
-        <h2 className="title">상품 목록</h2>
+        {/*상품 목록*/}
+        <h2 className="title">商品一覧</h2>
         <select
           className="sort-select"
           value={sort}
           onChange={handleSortChange}
         >
-          <option value="recent">기본순</option>
-          <option value="popular">인기순</option>
-          <option value="price_asc">가격 낮은순</option>
-          <option value="price_desc">가격 높은순</option>
+          {/*<option value="recent">기본순</option>*/}
+          {/*<option value="popular">인기순</option>*/}
+          {/*<option value="price_asc">가격 낮은순</option>*/}
+          {/*<option value="price_desc">가격 높은순</option>*/}
+          <option value="recent">おすすめ順</option>
+          <option value="popular">人気順</option>
+          <option value="price_asc">価格が安い順</option>
+          <option value="price_desc">価格が高い順</option>
         </select>
       </div>
 
       {loading ? (
         <div className="loading-state">
           <span className="loading-spinner" />
-          페이지 로딩 중...
+          {/*페이지 로딩 중...*/}
+          ページを読み込み中…
         </div>
       ) : products.length === 0 ? (
-        <div className="empty-state">검색 결과가 없습니다.</div>
+        // 검색 결과가 없습니다.
+        <div className="empty-state">検索結果がありません。</div>
       ) : (
         // <div className="product-grid">
         <ul className="productList">
@@ -114,7 +121,7 @@ export function ProductList() {
                 <div className="product-info-wrapper">
                   <div className="product-name">{product.productName}</div>
                   <div className="product-price">
-                    {product.price.toLocaleString()}원
+                    {product.price.toLocaleString()} 円
                   </div>
                   <div className="product-badges">
                     {isNewProduct(product.insertedAt) && (
@@ -126,7 +133,7 @@ export function ProductList() {
                     )}
                     {product.quantity > 0 && product.quantity < 5 && (
                       <span className="low-stock-badge">
-                        🔥 {product.quantity}개 남음
+                        🔥 残り{product.quantity} 点
                       </span>
                     )}
                   </div>
