@@ -119,7 +119,7 @@ export function QnaView() {
                   />
                   {/* 가격 (오른쪽 정렬, 굵은 빨간색) */}
                   <h5 className="text-right font-bold text-red-600">
-                    {question.price.toLocaleString()} 원
+                    {question.price.toLocaleString()} 円
                     {/* toLocaleString(): 세 자리마다 콤마 표시 */}
                   </h5>
                 </div>
