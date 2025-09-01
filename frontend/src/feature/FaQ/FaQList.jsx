@@ -40,15 +40,18 @@ export function FaQList() {
   const uuid = uuidv4();
   const radios = [
     {
-      name: "1:1 채팅 문의",
+      // 1:1 채팅 문의
+      name: "チャットで相談",
       value: "1",
       path: `/chat/chatting?rid=${uuid}`,
       fnc: () => {
         sendChatAlert(`/chat/chatting?rid=${uuid}`);
       },
     },
-    { name: "문의내역", value: "2", path: "/qna/list" },
-    { name: "자주 묻는 질문", value: "3", path: "/faq/list" },
+    // 문의내역
+    { name: "お問い合わせ履歴", value: "2", path: "/qna/list" },
+    // 자주 묻는 질문
+    { name: "よくある質問（FAQ）", value: "3", path: "/faq/list" },
   ];
   const catlist = [
     // { name: "전체", value: 0 },

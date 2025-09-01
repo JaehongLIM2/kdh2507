@@ -25,7 +25,7 @@ function LeftVisual({ data }) {
         {/*<h2>이번 주 HOT PICK🍓</h2>*/}
         {/*<p>by. KDH 쇼핑몰</p>*/}
         <h2>今週のHOT PICK🍓</h2>
-        <p>by. KDH ショッピングモール</p>
+        <p>by. KDHショップ</p>
       </div>
     </div>
   );
