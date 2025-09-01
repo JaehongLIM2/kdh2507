@@ -101,21 +101,21 @@ public class ChatController {
 
     @MessageMapping("/chat/enter")
     public void enter(ChatForm message) {
-        message.setMessage(message.getFrom() + "님이 입장했습니다.");
+        message.setMessage(message.getFrom() + "さんが入室しました。"); // 님이 입장했습니다.
         message.setType(ChatForm.MessageType.ENTER);
         template.convertAndSend("/topic/chat/" + message.getRoomId(), message);
     }
 
     @MessageMapping("/chat/leave")
     public void leave(ChatForm message) {
-        message.setMessage(message.getFrom() + "님이 퇴장했습니다.");
+        message.setMessage(message.getFrom() + "さんが退室しました。"); // 님이 퇴장했습니다.
         message.setType(ChatForm.MessageType.LEAVE);
         template.convertAndSend("/topic/chat/" + message.getRoomId(), message);
     }
 
     @MessageMapping("/chat/end")
     public void end(ChatForm message) {
-        message.setMessage(message.getFrom() + "님이 대화를 종료하였습니다.");
+        message.setMessage(message.getFrom() + "さんが会話を終了しました。"); // 님이 대화를 종료하였습니다.
         message.setType(ChatForm.MessageType.END);
         template.convertAndSend("/topic/chat/" + message.getRoomId(), message);
         chatservice.chatRoomclose(message.getRoomId());
