@@ -40,6 +40,7 @@ export default function PrivacyModal({ show, onClose, onAgree }) {
               onClose();
             }}
           >
+            {/*동의하기*/}
             同意する
           </button>
           <button
@@ -47,6 +48,7 @@ export default function PrivacyModal({ show, onClose, onAgree }) {
             className="btn btn-sm btn-neutral"
             onClick={onClose}
           >
+            {/*닫기*/}
             閉じる
           </button>
         </div>

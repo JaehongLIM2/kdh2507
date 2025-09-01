@@ -55,7 +55,7 @@ function SearchOverlay({
           <input
             autoFocus
             type="text"
-            placeholder="상품명을 검색해보세요"
+            placeholder="キーワードで検索" // 키워드로 검색
             className="search-wide-input"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
@@ -72,7 +72,8 @@ function SearchOverlay({
         {/* 추천 카테고리 */}
         {categories.length > 0 && (
           <>
-            <div className="suggest-title">추천 카테고리</div>
+            {/*추천 카테고리*/}
+            <div className="suggest-title">おすすめカテゴリー</div>
             <div className="suggest-scroll">
               {categories.map((c) => (
                 <button
@@ -93,7 +94,8 @@ function SearchOverlay({
         {/* 최근 본 상품 */}
         {recentProducts.length > 0 && (
           <>
-            <div className="suggest-title">최근 본 상품</div>
+            {/*최근 본 상품*/}
+            <div className="suggest-title">最近チェックした商品</div>
             <div className="recent-products-scroll">
               {recentProducts.map((p) => (
                 <a

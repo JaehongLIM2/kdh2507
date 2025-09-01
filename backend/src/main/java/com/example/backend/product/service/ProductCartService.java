@@ -88,7 +88,7 @@ public class ProductCartService {
 
         // 재고 초과 검증
         if (req.getQuantity() > product.getQuantity()) {
-            throw new IllegalArgumentException(product.getQuantity() + "개 이상 구매하실 수 없습니다.");
+            throw new IllegalArgumentException(product.getQuantity() + "個以上は購入できません。"); // 개 이상 구매하실 수 없습니다.
         }
 
 

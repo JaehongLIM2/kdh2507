@@ -3,10 +3,8 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 import { Col, Row } from "react-bootstrap";
-import { v4 as uuidv4 } from "uuid";
 import { useSearchParams } from "react-router";
 import axios from "axios";
-import { polluteGlobalNamespace } from "sockjs-client/lib/utils/iframe.js";
 import { toast } from "sonner";
 
 const WS_URL = "http://localhost:8080/ws-chat";
@@ -45,7 +43,7 @@ export function Chat() {
         })
         .catch((err) => {
           if (err.response && err.response.status === 401) {
-            alert("로그인 후 이용해주세요.");
+            toast.error("로그인 후 이용해주세요.");
             window.location.href = "/login";
           } else if (
             err.response &&
@@ -53,7 +51,7 @@ export function Chat() {
             err.response.data.message
           ) {
           } else {
-            alert("접근 권한이 없습니다.");
+            toast.error("접근 권한이 없습니다.");
             window.location.href = "/Home";
             // toast.error("접근 권한이 없습니다");
           }
@@ -100,7 +98,7 @@ export function Chat() {
                                                                                                                                                                                                                 timestamp: data.timestamp,
                                                                                                                                                                                                                 type: "SYSTEM",
                                                                                                                                                                                                               },
-                                                                                                                                                                                                            ]);*/
+                                                                                                                                                                                                    ]);*/
           } else if (/*data.type === "LEAVE" || */ data.type === "END") {
             if (data.currentUsers) {
               setRoomUsers(data.currentUsers);
@@ -202,7 +200,8 @@ export function Chat() {
 
             {/*채팅 로그*/}
             <div className="border rounded-t-lg chat chat-head border-b p-2.5 border-gray-300">
-              <h2>1:1 상담 서비스</h2>
+              {/*1:1 상담 서비스*/}
+              <h2>個別チャットサポート</h2>
             </div>
             <div className="border border-gray-300  h-150 overflow-y-auto">
               <div className="chat chat-main p-2.5 ">
@@ -240,7 +239,7 @@ export function Chat() {
             </div>
             <div className="chat chat-footer border rounded-b-lg p-2 border-gray-300 bg-white mb-2.5 flex items-center gap-2.5">
               <input
-                placeholder="메시지 입력"
+                placeholder="メッセージを入力" // 메세지 입력
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && sendGroupMessage()}
@@ -250,7 +249,8 @@ export function Chat() {
                 className="btn btn-primary ml-auto"
                 onClick={sendGroupMessage}
               >
-                전송
+                {/*전송*/}
+                送信
               </button>
             </div>
 
@@ -259,7 +259,8 @@ export function Chat() {
                 className={"btn btn-error"}
                 onClick={() => setModalshow(true)}
               >
-                대화 종료
+                {/*대화 종료*/}
+                チャットを終了
               </button>
             )}
           </div>
@@ -267,15 +268,11 @@ export function Chat() {
         {modalshow && (
           <div className="modal modal-open">
             <div className="modal-box">
-              <h3 className="font-bold text-lg mb-3">대화 종료</h3>
-              <p className="mb-6">대화를 종료하시겠습니까?</p>
+              {/*대화종료*/}
+              <h3 className="font-bold text-lg mb-3">チャットを終了</h3>
+              {/*대화를 종료하시겠습니까?*/}
+              <p className="mb-6">チャットを終了しますか？</p>
               <div className="modal-action">
-                <button
-                  className="btn btn-outline btn-neutral"
-                  onClick={() => setModalshow(false)}
-                >
-                  취소
-                </button>
                 <button
                   className="btn btn-primary"
                   onClick={() => {
@@ -283,7 +280,15 @@ export function Chat() {
                     setModalshow(false);
                   }}
                 >
-                  대화 종료
+                  {/*대화 종료*/}
+                  終了
+                </button>
+                <button
+                  className="btn btn-outline btn-neutral"
+                  onClick={() => setModalshow(false)}
+                >
+                  {/*취소*/}
+                  戻る
                 </button>
               </div>
               <button

@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 
 const categories = [
-  { name: "겉옷", value: "outer", image: "/CategoryImage/outer.png" },
-  { name: "상의", value: "top", image: "/CategoryImage/top.png" },
-  { name: "하의", value: "bottom", image: "/CategoryImage/bottom.png" },
-  { name: "모자", value: "hat", image: "/CategoryImage/hat.png" },
-  { name: "가방", value: "bag", image: "/CategoryImage/bag.png" },
-  { name: "신발", value: "shoes", image: "/CategoryImage/shoes.png" },
-  { name: "양말", value: "socks", image: "/CategoryImage/socks.png" },
-  { name: "벨트", value: "belt", image: "/CategoryImage/belt.png" },
+  { name: "アウター", value: "outer", image: "/CategoryImage/outer.png" },
+  { name: "トップス", value: "top", image: "/CategoryImage/top.png" },
+  { name: "ボトムス", value: "bottom", image: "/CategoryImage/bottom.png" },
+  { name: "帽子", value: "hat", image: "/CategoryImage/hat.png" },
+  { name: "バッグ", value: "bag", image: "/CategoryImage/bag.png" },
+  { name: "シューズ", value: "shoes", image: "/CategoryImage/shoes.png" },
+  { name: "ソックス", value: "socks", image: "/CategoryImage/socks.png" },
+  { name: "ベルト", value: "belt", image: "/CategoryImage/belt.png" },
 ];
 
 function CategoryMenu() {
@@ -39,7 +39,8 @@ function CategoryMenu() {
 
   return (
     <div className="category-menu-wrapper">
-      <h3 className="category-title">카테고리별 상품 찾기</h3>
+      {/*카테고리별 상품찾기*/}
+      <h3 className="category-title">カテゴリーから探す</h3>
 
       {/* 스크롤 영역 */}
       <div className="category-list-scroll" ref={scrollRef}>

@@ -90,7 +90,8 @@ public class ProductService {
                         thumb.setIsMain(i == 0); // 첫 번째 이미지를 대표로 설정
                         thumbnailList.add(thumb);
                     } catch (IOException e) {
-                        throw new RuntimeException("썸네일 업로드 실패: " + e.getMessage(), e);
+                        // 썸네일 업로드 실패
+                        throw new RuntimeException("アップロードエラー: " + e.getMessage(), e);
                     }
                 }
             }
@@ -109,7 +110,8 @@ public class ProductService {
                         image.setProduct(product);
                         imageList.add(image);
                     } catch (IOException e) {
-                        throw new RuntimeException("본문 이미지 업로드 실패: " + e.getMessage(), e);
+                        // 본문 이미지 업로드 실패
+                        throw new RuntimeException("アップロードエラー: " + e.getMessage(), e);
                     }
                 }
             }

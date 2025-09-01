@@ -46,12 +46,12 @@ public class AlertController {
             return ResponseEntity.ok().body(Map.of(
                     "message", Map.of(
                             "type", "success",
-                            "text", "문의가 등록되었습니다.")));
+                            "text", "お問い合わせが完了しました。"))); // 문의가 등록되었습니다.
         } else {
             return ResponseEntity.badRequest().body(Map.of(
                     "message", Map.of(
                             "type", "error",
-                            "text", "입력한 내용이 유효하지 않습니다.")));
+                            "text", "入力内容が正しくありません。"))); // 입력한 내용이 유효하지않습니다.
         }
     }
 
@@ -71,7 +71,7 @@ public class AlertController {
         } else {
             return Map.of(
                     "type", "error",
-                    "text", "입력한 내용이 유효하지 않습니다.");
+                    "text", "入力内容が正しくありません。"); // 입력한 내용이 유효하지않습니다.
         }
     }
 }

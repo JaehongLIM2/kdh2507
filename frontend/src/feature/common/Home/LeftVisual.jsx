@@ -22,8 +22,10 @@ function LeftVisual({ data }) {
         style={{ opacity: 1 }}
       />
       <div className="main-visual-text">
-        <h2>이번 주 HOT PICK🍓</h2>
-        <p>by. KDH 쇼핑몰</p>
+        {/*<h2>이번 주 HOT PICK🍓</h2>*/}
+        {/*<p>by. KDH 쇼핑몰</p>*/}
+        <h2>今週のHOT PICK🍓</h2>
+        <p>by. KDHショップ</p>
       </div>
     </div>
   );

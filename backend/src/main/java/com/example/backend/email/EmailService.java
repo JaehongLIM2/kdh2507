@@ -25,16 +25,17 @@ public class EmailService {
         if (redisUtil.existData(toEmail)) {
             long remainTime = redisUtil.getExpire(toEmail); // 남은 유효 시간 (초 단위)
             return new EmailAuthResponseDto(false,
-                    "이미 인증번호가 전송되었습니다." + remainTime + "초 후 다시 시도하세요.", remainTime);
+                    // 이미 인증번호가 전송되었습니다. ~초후 다시 시도하세요
+                    "すでに認証コードが送信されています。" + remainTime + "秒後に再度お試しください。", remainTime);
         }
 
         try {
             MimeMessage emailForm = createEmailForm(toEmail);
             mailSender.send(emailForm);
             long remainTime = redisUtil.getExpire(toEmail); // 남은 유효 시간 (초 단위)
-            return new EmailAuthResponseDto(true, "인증번호가 메일로 전송되었습니다.", remainTime);
+            return new EmailAuthResponseDto(true, "認証コードがメールで送信されました。", remainTime); // 인증번호가 메일로 전송되었습니다.
         } catch (MessagingException | MailSendException e) {
-            return new EmailAuthResponseDto(false, "메일 전송 중 오류가 발생하였습니다. 다시 시도해주세요.", 0);
+            return new EmailAuthResponseDto(false, "メール送信中にエラーが発生しました。もう一度お試しください。", 0); // 메일 전송 중 오류가 발생하였습니다. 다시 시도해주세요.
         }
     }
 
@@ -45,7 +46,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         message.setFrom(senderEmail);
         message.setRecipients(MimeMessage.RecipientType.TO, email);
-        message.setSubject("코데헌 가입 인증코드입니다.");
+        message.setSubject("コーデハンの認証コードです。"); // 코데헌 인증코드입니다.
         message.setText(setContext(authCode), "utf-8", "html");
 
         redisUtil.setDataExpire(email, authCode, 3 * 60L); // 3분
@@ -55,8 +56,8 @@ public class EmailService {
 
     private String setContext(String authCode) {
         String body = "";
-        body += "<h3>" + "코데헌 가입 인증코드입니다." + "</h3>";
-        body += "<h4>" + "인증 코드를 입력하세요." + "</h4>";
+        body += "<h3>" + "コーデハンの認証コードです。" + "</h3>"; // 코데헌 인증코드입니다.
+        body += "<h4>" + "認証コードを入力してください。" + "</h4>"; // 인증코드를 입력하세요.
         body += "<h2>" + "[ " + authCode + " ]" + "</h2>";
         return body;
     }
@@ -64,15 +65,18 @@ public class EmailService {
     public EmailAuthResponseDto validateAuthCode(String email, String authCode) {
         String findAuthCode = redisUtil.getData(email);
         if (findAuthCode == null) {
-            return new EmailAuthResponseDto(false, "인증번호가 만료되었습니다. 다시 시도해주세요.", 0);
+            // 인증번호가 만료되었습니다. 다시 시도해주세요.
+            return new EmailAuthResponseDto(false, "認証コードの有効期限が切れました。再度お試しください。", 0);
         }
 
         if (findAuthCode.equals(authCode)) {
             redisUtil.deleteData(email);
-            return new EmailAuthResponseDto(true, "인증 성공에 성공했습니다.", 0);
+            // 인증에 성공했습니다.
+            return new EmailAuthResponseDto(true, "認証に成功しました。", 0);
 
         } else {
-            return new EmailAuthResponseDto(false, "인증번호가 일치하지 않습니다.", 0);
+            // 인증번호가 일치하지 않습니다.
+            return new EmailAuthResponseDto(false, "認証コードが一致しません", 0);
         }
     }
 }

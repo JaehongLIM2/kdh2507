@@ -30,14 +30,14 @@ function NavBar(props) {
 
   // 추천 카테고리
   const RECO_CATEGORIES = [
-    { label: "신발", key: "shoes", image: "/CategoryImage/shoes.png" },
-    { label: "모자", key: "hat", image: "/CategoryImage/hat.png" },
-    { label: "가방", key: "bag", image: "/CategoryImage/bag.png" },
-    // { label: "겉옷", key: "outer", image: "/CategoryImage/outer.png" },
-    { label: "상의", key: "top", image: "/CategoryImage/top.png" },
-    // { label: "하의", key: "bottom", image: "/CategoryImage/bottom.png" },
-    { label: "양말", key: "socks", image: "/CategoryImage/socks.png" },
-    { label: "벨트", key: "belt", image: "/CategoryImage/belt.png" },
+    { label: "シューズ", key: "shoes", image: "/CategoryImage/shoes.png" },
+    { label: "帽子", key: "hat", image: "/CategoryImage/hat.png" },
+    { label: "バッグ", key: "bag", image: "/CategoryImage/bag.png" },
+    // { label: "アウター", key: "outer", image: "/CategoryImage/outer.png" },
+    { label: "トップス", key: "top", image: "/CategoryImage/top.png" },
+    // { label: "ボトムス", key: "bottom", image: "/CategoryImage/bottom.png" },
+    { label: "ソックス", key: "socks", image: "/CategoryImage/socks.png" },
+    { label: "ベルト", key: "belt", image: "/CategoryImage/belt.png" },
   ];
 
   // 카테고리 키 → 한글/영문 별칭들
@@ -163,10 +163,7 @@ function NavBar(props) {
           <div className="navbar-center">
             <Link to="/Home" className="navbar-logo">
               {/*코데헌*/}
-              <img
-                src="/logo/kdh.png"
-                style={{ width: "80px" }}
-              />
+              <img src="/logo/kdh.png" style={{ width: "80px" }} />
             </Link>
           </div>
           {/*왼쪽 메뉴*/}
@@ -201,7 +198,7 @@ function NavBar(props) {
           <div className="mobile-search-form">
             <input
               type="text"
-              placeholder="키워드로 검색"
+              placeholder="キーワードで検索" // 키워드로 검색
               className="mobile-search-input"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
@@ -223,13 +220,91 @@ function NavBar(props) {
               {user.name}
             </Link>
           )}
+
+          <div>
+            <div
+              className="btn btn-sm btn-ghost text-left cursor-pointer text-xl"
+              onClick={() => setShowMobileCategory((prev) => !prev)}
+            >
+              {/*모든상품*/}
+              全商品
+            </div>
+            {showMobileCategory && (
+              <div className="mobile-category-list">
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("")}
+                >
+                  {/*전체*/}
+                  すべて
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("outer")}
+                >
+                  {/*겉옷*/}
+                  アウター
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("top")}
+                >
+                  {/*상의*/}
+                  トップス
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("bottom")}
+                >
+                  {/*하의*/}
+                  ボトムス
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("hat")}
+                >
+                  {/*모자*/}
+                  帽子
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("bag")}
+                >
+                  {/*가방*/}
+                  バッグ
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("shoes")}
+                >
+                  {/*신발*/}
+                  シューズ
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("socks")}
+                >
+                  {/*양말*/}
+                  ソックス
+                </button>
+                <button
+                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
+                  onClick={() => handleCategoryClick("belt")}
+                >
+                  {/*벨트*/}
+                  ベルト
+                </button>
+              </div>
+            )}
+          </div>
           {user === null && (
             <Link
               to="/login"
               onClick={() => setIsMobileMenuOpen(false)}
               className="btn btn-ghost w-full justify-start text-left text-xl"
             >
-              로그인
+              {/*로그인*/}
+              ログイン
             </Link>
           )}
           {user !== null && (
@@ -238,83 +313,18 @@ function NavBar(props) {
               onClick={() => setIsMobileMenuOpen(false)}
               className="btn btn-ghost w-full justify-start text-left text-xl"
             >
-              로그아웃
+              {/*로그아웃*/}
+              ログアウト
             </Link>
           )}
-          <div>
-            <div
-              className="btn btn-sm btn-ghost text-left cursor-pointer text-xl"
-              onClick={() => setShowMobileCategory((prev) => !prev)}
-            >
-              모든상품
-            </div>
-            {showMobileCategory && (
-              <div className="mobile-category-list">
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("")}
-                >
-                  전체
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("outer")}
-                >
-                  겉옷
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("top")}
-                >
-                  상의
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("bottom")}
-                >
-                  하의
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("hat")}
-                >
-                  모자
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("bag")}
-                >
-                  가방
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("shoes")}
-                >
-                  신발
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("socks")}
-                >
-                  양말
-                </button>
-                <button
-                  className="text-lg btn btn-sm btn-ghost text-left cursor-pointer"
-                  onClick={() => handleCategoryClick("belt")}
-                >
-                  벨트
-                </button>
-              </div>
-            )}
-          </div>
-
           {user !== null && isAdmin && (
             <Link
               to="/member/list"
               onClick={() => setIsMobileMenuOpen(false)}
               className="btn btn-ghost w-full justify-start text-left text-xl"
             >
-              회원목록
+              {/*회원목록*/}
+              会員一覧
             </Link>
           )}
           {user === null && (
@@ -323,7 +333,8 @@ function NavBar(props) {
               onClick={() => setIsMobileMenuOpen(false)}
               className="btn btn-ghost w-full justify-start text-left text-xl"
             >
-              회원가입
+              {/*회원가입*/}
+              会員登録
             </Link>
           )}
 
@@ -333,7 +344,8 @@ function NavBar(props) {
               onClick={() => setIsMobileMenuOpen(false)}
               className="btn btn-ghost w-full justify-start text-left text-xl"
             >
-              문의 내역
+              {/*문의 내역*/}
+              お問い合わせ履歴
             </Link>
           )}
         </div>

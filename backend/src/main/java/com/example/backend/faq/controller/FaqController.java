@@ -49,12 +49,12 @@ public class FaqController {
             return ResponseEntity.ok().body(Map.of(
                     "message", Map.of(
                             "type", "success",
-                            "text", "FAQ가 등록되었습니다.")));
+                            "text", "FAQの登録が完了しました"))); // FAQ가 등록되었습니다.
         } else {
             return ResponseEntity.badRequest().body(Map.of(
                     "message", Map.of(
                             "type", "error",
-                            "text", "입력한 내용이 유효하지 않습니다.")));
+                            "text", "入力内容が正しくありません。"))); // 입력한 내용이 유효하지않습니다.
         }
     }
 }

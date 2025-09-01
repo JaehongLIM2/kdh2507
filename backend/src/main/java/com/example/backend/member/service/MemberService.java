@@ -46,8 +46,9 @@ public class MemberService {
     public void signup(MemberForm memberForm) {
 
         if (memberForm.getLoginId() != null &&
-            memberForm.getLoginId().toLowerCase().contains("admin")) {
-            throw new IllegalArgumentException("아이디에 'admin'을 포함할 수 없습니다.");
+                memberForm.getLoginId().toLowerCase().contains("admin")) {
+            // 아이디에 'admin'을 포함할 수 없습니다.
+            throw new IllegalArgumentException("ログインIDに「admin」を含めることはできません。");
         }
 
         Member member = new Member();
@@ -91,7 +92,8 @@ public class MemberService {
     // 회원 상세 정보 불러오기
     public MemberDto get(Integer id) {
         Member member = memberRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+                // 존재하지 않는 회원입니다.
+                .orElseThrow(() -> new RuntimeException("存在しない会員です。"));
 
         MemberDto memberDto = new MemberDto();
         memberDto.setId(member.getId());
@@ -109,7 +111,8 @@ public class MemberService {
 
     public boolean delete(MemberDeleteForm memberDeleteForm) {
         Member db = memberRepository.findById(memberDeleteForm.getId())
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+                // 존재하지 않는 회원입니다.
+                .orElseThrow(() -> new RuntimeException("存在しない会員です。"));
 
         String oldPassword = memberDeleteForm.getOldPassword(); // 기존 password
 
@@ -128,7 +131,8 @@ public class MemberService {
 
         // 1. 회원 조회
         Member member = memberRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("해당 회원이 존재하지 않습니다"));
+                // 존재하지 않는 회원입니다.
+                .orElseThrow(() -> new RuntimeException("存在しない会員です。"));
 
         String oldPassword = memberUpdateForm.getOldPassword(); // 기존 password
         String newPassword = memberUpdateForm.getNewPassword(); // 새 password
@@ -136,7 +140,8 @@ public class MemberService {
 
         // 2. 기존 비밀번호 일치 여부 확인
         if (!passwordEncoder.matches(oldPassword, member.getPassword())) {
-            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+            // 비밀번호가 일치하지 않습니다.
+            throw new RuntimeException("パスワードが一致しません。");
         }
 
         // 3. 수정
@@ -151,7 +156,8 @@ public class MemberService {
         // 새 비밀번호가 입력된 경우에만 변경
         if (newPassword != null && !newPassword.isBlank()) {
             if (passwordEncoder.matches(newPassword, member.getPassword())) {
-                throw new RuntimeException("새 비밀번호는 현재 비밀번호와 달라야 합니다.");
+                // 새 비밀번호는 현재 비밀번호와 달라야합니다.
+                throw new RuntimeException("新しいパスワードは現在のパスワードと異なる必要があります。");
             }
 
             member.setPassword(passwordEncoder.encode(newPassword));
@@ -164,7 +170,8 @@ public class MemberService {
 
     public void changePassword(Integer memberId, ChangePasswordForm data) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+                // 존재하지 않는 회원입니다.
+                .orElseThrow(() -> new RuntimeException("存在しない会員です。"));
 
         String oldPassword = data.getOldPassword(); // 현재 password
         String newPassword = data.getNewPassword(); // 새 password
@@ -173,18 +180,21 @@ public class MemberService {
         if (oldPassword != null && !oldPassword.isBlank()) {
             // 1. 기존 비밀번호 확인
             if (!passwordEncoder.matches(oldPassword, member.getPassword())) {
-                throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+                // 비밀번호가 일치하지 않습니다.
+                throw new RuntimeException("パスワードが一致しません。");
             }
         }
 
         // 2. 새 비밀번호 입력 확인
         if (newPassword == null || newPassword.isBlank()) {
-            throw new RuntimeException("새 비밀번호를 입력해주세요.");
+            // 새 비밀번호를 입력해주세요.
+            throw new RuntimeException("新しいパスワードを入力してください。");
         }
 
         // 3. 기존과 동일한 비밀번호 사용 방지
         if (passwordEncoder.matches(newPassword, member.getPassword())) {
-            throw new RuntimeException("새 비밀번호는 현재 비밀번호와 달라야합니다.");
+            // 새 비밀번호는 현재 비밀번호와 달라야합니다.
+            throw new RuntimeException("新しいパスワードは現在のパスワードと異なる必要があります。");
         }
         // 4. 암호화 후 저장
         member.setPassword(passwordEncoder.encode(newPassword));
@@ -195,11 +205,13 @@ public class MemberService {
     public String getToken(MemberLoginForm loginForm) {
         // 아이디가 맞는지
         Member db = memberRepository.findByLoginId(loginForm.getLoginId())
-                .orElseThrow(() -> new RuntimeException("아이디 또는 비밀번호가 일치하지 않습니다"));
+                // 아이디 또는 비밀번호가 일치하지 않습니다.
+                .orElseThrow(() -> new RuntimeException("ログインIDまたはパスワードが一致しません。"));
 
         // 비밀번호가 맞지 않았을때
         if (!passwordEncoder.matches(loginForm.getPassword(), db.getPassword())) {
-            throw new RuntimeException("아이디 또는 비밀번호가 일치하지 않습니다");
+            // 아이디 또는 비밀번호가 일치하지 않습니다.
+            throw new RuntimeException("ログインIDまたはパスワードが一致しません。");
         }
 
         List<MemberRole> memberRoleList = memberRoleRepository.findByMember(db);
@@ -231,7 +243,8 @@ public class MemberService {
             String loginId = member.get().getLoginId();
             return maskedLoginId(loginId);
         }
-        throw new NoSuchElementException("해당 이메일로 가입된 아이디가 없습니다.");
+        // 해당 이메일로 가입된 아이디가 없습니다.
+        throw new NoSuchElementException("該当のメールアドレスで登録されたログインIDはありません。");
     }
 
     private String maskedLoginId(String loginId) {

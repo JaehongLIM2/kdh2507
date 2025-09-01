@@ -19,7 +19,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
         onClick={(e) => e.currentTarget.blur()}
         className={`text-xl font-bold ${textBtnBase} ${textHover}`}
       >
-        홈
+        {/*홈*/}
+        ホーム
       </NavLink>
 
       <div
@@ -36,7 +37,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
           }}
           className={`font-bold text-xl ${textBtnBase} ${textHover}`}
         >
-          모든상품
+          {/*모든 상품*/}
+          全商品
         </NavLink>
 
         <ul
@@ -50,7 +52,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => navigate("/product/list")}
             >
-              전체
+              {/*전체*/}
+              すべて
             </button>
           </li>
           <li>
@@ -59,7 +62,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("outer")}
             >
-              겉옷
+              {/*겉옷*/}
+              アウター
             </button>
           </li>
           <li>
@@ -68,7 +72,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("top")}
             >
-              상의
+              {/*상의*/}
+              トップス
             </button>
           </li>
           <li>
@@ -77,7 +82,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("bottom")}
             >
-              하의
+              {/*하의*/}
+              ボトムス
             </button>
           </li>
           <li>
@@ -86,7 +92,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("hat")}
             >
-              모자
+              {/*모자*/}
+              帽子
             </button>
           </li>
           <li>
@@ -95,7 +102,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("bag")}
             >
-              가방
+              {/*가방*/}
+              バッグ
             </button>
           </li>
           <li>
@@ -104,7 +112,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("shoes")}
             >
-              신발
+              {/*신발*/}
+              シューズ
             </button>
           </li>
           <li>
@@ -113,7 +122,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("socks")}
             >
-              양말
+              {/*양말*/}
+              ソックス
             </button>
           </li>
           <li>
@@ -122,7 +132,8 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => handleCategoryClick("belt")}
             >
-              벨트
+              {/*벨트*/}
+              ベルト
             </button>
           </li>
         </ul>
@@ -134,38 +145,10 @@ function NavLeft({ user, isAdmin, handleCategoryClick }) {
           onMouseDown={(e) => e.preventDefault()}
           className={`text-xl font-bold ${textBtnBase} ${textHover}`}
         >
-          상품등록
+          {/*상품등록*/}
+          商品登録
         </Link>
       )}
-      {/*{user !== null && isAdmin && (*/}
-      {/*  <Link to="/member/list" className="btn btn-ghost text-xl">*/}
-      {/*    회원목록*/}
-      {/*  </Link>*/}
-      {/*)}*/}
-      {/*{user === null && (*/}
-      {/*  <Link to="/signup" className="btn btn-ghost text-xl">*/}
-      {/*    회원가입*/}
-      {/*  </Link>*/}
-      {/*)}*/}
-      {/*{user && (*/}
-      {/*  <>*/}
-      {/*    <Link to="/logout" className="btn btn-ghost text-xl">*/}
-      {/*      로그아웃*/}
-      {/*    </Link>*/}
-      {/*    /!*<Link to={`/member?id=${user.id}`} className="btn btn-ghost text-xl">*!/*/}
-      {/*    /!*  {user.name}*!/*/}
-      {/*    /!*</Link>*!/*/}
-      {/*    <Link to="/qna/list" className="btn btn-ghost text-xl">*/}
-      {/*      문의 내역*/}
-      {/*    </Link>*/}
-      {/*  </>*/}
-      {/*)}*/}
-      {/*<Link to="/chat/chatting" className="btn btn-ghost text-xl">*/}
-      {/*  채팅 프로토콜*/}
-      {/*</Link>*/}
-      {/*<Link to="/pay/Checkout" className="btn btn-ghost text-xl">*/}
-      {/*  토스 페이먼츠*/}
-      {/*</Link>*/}
     </div>
   );
 }

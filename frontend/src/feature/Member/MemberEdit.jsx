@@ -179,15 +179,24 @@ export function MemberEdit() {
         oldPassword: oldPassword,
         newPassword: newPassword1,
       })
-      .then(() => {
+      .then((res) => {
+        const msg = res?.data?.message?.text ?? "パスワードが変更されました。";
+        toast.success(msg);
+
+        // 입력 초기화 & 모달 닫기
         setOldPassword("");
         setNewPassword1("");
         setNewPassword2("");
         setChangePasswordModalShow(false);
       })
-      .catch(() => {
-        // 비밀번호가 일치하지 않습니다.
-        toast("パスワードが一致しません。", { type: "error" });
+      .catch((err) => {
+        const msg =
+          err?.response?.data?.message?.text ||
+          err?.response?.data?.message ||
+          err?.message ||
+          "エラーが発生しました。";
+
+        toast.error(msg);
       })
       .finally(() => {
         setIsPasswordProcessing(false);
