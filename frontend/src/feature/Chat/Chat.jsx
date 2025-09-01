@@ -3,10 +3,8 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 import { Col, Row } from "react-bootstrap";
-import { v4 as uuidv4 } from "uuid";
 import { useSearchParams } from "react-router";
 import axios from "axios";
-import { polluteGlobalNamespace } from "sockjs-client/lib/utils/iframe.js";
 import { toast } from "sonner";
 
 const WS_URL = "http://localhost:8080/ws-chat";

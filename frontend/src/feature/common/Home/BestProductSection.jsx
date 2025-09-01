@@ -14,15 +14,15 @@ const CATEGORIES = [
   "belt",
 ];
 const CATEGORY_LABELS = {
-  전체: "전체",
-  outer: "겉옷",
-  top: "상의",
-  bottom: "하의",
-  hat: "모자",
-  bag: "가방",
-  shoes: "신발",
-  socks: "양말",
-  belt: "벨트",
+  전체: "すべて",
+  outer: "アウター",
+  top: "トップス",
+  bottom: "ボトムス",
+  hat: "帽子",
+  bag: "バッグ",
+  shoes: "シューズ",
+  socks: "ソックス",
+  belt: "ベルト",
 };
 
 function BestProductSection() {
@@ -83,7 +83,8 @@ function BestProductSection() {
       })
       .catch((err) => {
         console.warn(
-          "백엔드 파라미터 미지원 또는 오류. 프론트 필터로 대체.",
+          // "백엔드 파라미터 미지원 또는 오류. 프론트 필터로 대체.",
+          "バックエンドが未対応のため、フロント側でフィルタリングします。",
           err?.response?.status,
         );
         if (selected === "전체") {
@@ -100,7 +101,8 @@ function BestProductSection() {
 
   return (
     <div className="best-product-section">
-      <h3 className="best-title">베스트</h3>
+      {/*베스트*/}
+      <h3 className="best-title">ベスト</h3>
 
       {/* 카테고리 탭 */}
       <div className={`best-category-tabs ${catExpanded ? "expanded" : ""}`}>
@@ -117,7 +119,8 @@ function BestProductSection() {
       </div>
 
       {loading ? (
-        <div className="best-loading">로딩중...</div>
+        // 로딩중
+        <div className="best-loading">読み込み中…</div>
       ) : (
         <div className="best-product-list">
           {bestProducts.map((product) => {
@@ -136,17 +139,18 @@ function BestProductSection() {
                 />
                 <div className="best-product-name">{product.productName}</div>
                 <div className="best-product-price">
-                  {product.price.toLocaleString()}원
+                  {product.price.toLocaleString()} 円
                 </div>
                 <div className="best-product-rating">
-                  ⭐ {rating}점 ({reviews}개)
+                  ⭐ {rating} 点 ({reviews} 件)
                 </div>
               </div>
             );
           })}
           {bestProducts.length === 0 && !loading && (
             <div className="best-empty">
-              해당 카테고리의 베스트 상품이 없습니다.
+              {/*해당 카테고리의 베스트 상품이 없습니다.*/}
+              該当カテゴリーのベスト商品はありません。
             </div>
           )}
         </div>
