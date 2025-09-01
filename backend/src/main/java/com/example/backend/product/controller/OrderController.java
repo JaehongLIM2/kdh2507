@@ -74,7 +74,7 @@ public class OrderController {
                                               HttpSession session) {
         try {
             orderService.verifyGuestOrder(request, session);
-            return ResponseEntity.ok("인증 성공");
+            return ResponseEntity.ok("認証成功"); // 인증 성공
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (SecurityException e) {

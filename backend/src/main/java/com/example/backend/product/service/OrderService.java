@@ -86,7 +86,7 @@ public class OrderService {
             // 관리자: 토큰으로 조회
             orders = orderRepository.findAllByOrderToken(orderToken);
             if (orders.isEmpty()) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "주문을 찾을 수 없습니다.");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "注文が見つかりません。"); // 주문을 찾을 수 없습니다.
             }
         } else {
             // 👤 일반 사용자: 토큰 + 본인 소유 조건으로 조회(여기서 차단)
@@ -95,9 +95,9 @@ public class OrderService {
             if (orders.isEmpty()) {
                 boolean exists = orderRepository.existsByOrderToken(orderToken);
                 if (exists) {
-                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "본인의 주문만 조회할 수 있습니다.");
+                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "ご自身の注文のみ照会できます。"); // 본인의 주문만 조회할 수 있습니다.
                 } else {
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "주문을 찾을 수 없습니다.");
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "注文が見つかりません。"); // 주문을 찾을 수 없습니다.
                 }
             }
         }
@@ -122,14 +122,14 @@ public class OrderService {
         Optional<GuestOrder> guestOrder = guestOrderRepository.findVerifyByToken(request.getGuestOrderToken());
 
         if (guestOrder.isEmpty()) {
-            throw new NoSuchElementException("주문을 찾을 수 없습니다.");
+            throw new NoSuchElementException("注文が見つかりません。"); // 주문을 찾을 수 없습니다.
         }
 
         GuestOrder order = guestOrder.get();
 
         if (!order.getGuestName().equals(request.getGuestName()) ||
-            !order.getGuestPhone().equals(request.getGuestPhone())) {
-            throw new SecurityException("주문자 정보가 일치하지 않습니다");
+                !order.getGuestPhone().equals(request.getGuestPhone())) {
+            throw new SecurityException("注文者情報が一致しません。"); // 주문자 정보가 일치하지 않습니다.
         }
         session.setAttribute("guestOrderToken", order.getGuestOrderToken());
         session.setMaxInactiveInterval(180); // 180초 후 자동 만료
@@ -140,11 +140,11 @@ public class OrderService {
         String token = (String) session.getAttribute("guestOrderToken");
 
         if (token == null) {
-            throw new SecurityException("인증 정보가 없습니다");
+            throw new SecurityException("認証情報がありません。"); // 인증 정보가 없습니다.
         }
 
         GuestOrder order = guestOrderRepository.findDetailByToken(token)
-                .orElseThrow(() -> new NoSuchElementException("주문을 찾을 수 없습니다."));
+                .orElseThrow(() -> new NoSuchElementException("注文が見つかりません。")); // 주문을 찾을 수 없습니다.
 
         // 여기서 LAZY 컬렉션들이 이미 초기화되어 있음
         return GuestOrderDetailDto.fromEntity(order);

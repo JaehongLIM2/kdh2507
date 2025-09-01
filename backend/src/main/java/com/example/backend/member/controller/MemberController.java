@@ -36,8 +36,8 @@ public class MemberController {
 
         // 로그인 된 상태에서 회원가입 방어
         if (authentication != null &&
-            authentication.isAuthenticated() &&
-            !(authentication instanceof AnonymousAuthenticationToken)) {
+                authentication.isAuthenticated() &&
+                !(authentication instanceof AnonymousAuthenticationToken)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
                     Map.of("message", Map.of("type", "error", "text", "이미 로그인되어 있습니다.")));
         }
@@ -57,7 +57,7 @@ public class MemberController {
             return ResponseEntity.status(400).body(
                     Map.of("message", Map.of(
                             "type", "error",
-                            "text", "이미 사용중인 아이디입니다."
+                            "text", "すでに使用されているログインIDです。" // 이미 사용중인 아이디입니다.
                     ))
             );
         }
@@ -67,14 +67,14 @@ public class MemberController {
             return ResponseEntity.status(400).body(
                     Map.of("message", Map.of(
                             "type", "error",
-                            "text", "이미 사용중인 이메일입니다."
+                            "text", "すでに使用されているメールアドレスです。" // 이미 사용중인 이메일입니다.
                     ))
             );
         }
 
         // 개인 정보 수집 및 이용 동의
         if (Boolean.FALSE.equals(memberForm.getPrivacyAgreed())) {
-            throw new IllegalArgumentException("개인정보 수집 및 이용 동의가 필요합니다.");
+            throw new IllegalArgumentException("個人情報の収集および利用への同意が必要です。"); // 개인정보 수집 및 이용 동의가 필요합니다.
         }
 
         // 유효성 검사를 통과했을 때 실행
@@ -82,7 +82,7 @@ public class MemberController {
         return ResponseEntity.ok().body(
                 Map.of("message",
                         Map.of("type", "success",
-                                "text", "회원 가입 되었습니다.")));
+                                "text", "会員登録が完了しました。"))); // 회원가입 되었습니다.
 
     }
 
@@ -116,7 +116,7 @@ public class MemberController {
     @PreAuthorize("isAuthenticated() or hasAuthority('admin')")
     public ResponseEntity<?> getMember(@RequestParam Integer id, Authentication authentication) {
         if (authentication.getName().equals(id.toString()) ||
-            authentication.getAuthorities().contains(new SimpleGrantedAuthority("admin"))) {
+                authentication.getAuthorities().contains(new SimpleGrantedAuthority("admin"))) {
             return ResponseEntity.ok().body(memberService.get(id));
         } else {
             return ResponseEntity.status(403).build();
@@ -175,7 +175,7 @@ public class MemberController {
         return ResponseEntity.ok().body(
                 Map.of("message",
                         Map.of("type", "success",
-                                "text", "회원 정보가 수정되었습니다.")));
+                                "text", "会員情報が更新されました。"))); // 회원정보가 수정되었습니다.
     }
 
     // 비밀번호 수정
@@ -207,7 +207,7 @@ public class MemberController {
         return ResponseEntity.ok().body(
                 Map.of("message",
                         Map.of("type", "success",
-                                "text", "암호가 수정 되었습니다.")));
+                                "text", "パスワードが変更されました。"))); // 암호가 수정되었습니다.
     }
 
 
@@ -222,7 +222,7 @@ public class MemberController {
                     Map.of("token", token,
                             "message",
                             Map.of("type", "success",
-                                    "text", "로그인 되었습니다")));
+                                    "text", "ログインしました。"))); // 로그인 되었습니다.
         } catch (Exception e) {
             e.printStackTrace();
             String message = e.getMessage();
@@ -267,7 +267,7 @@ public class MemberController {
     @PostMapping("/issue-reset-token")
     public ResponseEntity<?> issueResetToken(@RequestBody IdEmailDto dto) {
         if (!memberService.existByLoginIdAndEmail(dto.getLoginId(), dto.getEmail())) {
-            return ResponseEntity.status(400).body("일치하는 정보가 없습니다.");
+            return ResponseEntity.status(400).body("一致する情報がありません。"); // 일치하는 정보가 없습니다.
         }
         String token = UUID.randomUUID().toString();
         redisUtil.setDataExpire(token, dto.getLoginId(), 180); //3분 TTL
@@ -279,7 +279,7 @@ public class MemberController {
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordForm form) {
         String loginId = redisUtil.getData(form.getToken());
         if (loginId == null) {
-            return ResponseEntity.status(400).body("만료되었거나 유효하지 않은 토큰입니다.");
+            return ResponseEntity.status(400).body("期限切れまたは無効なトークンです。"); // 만료되었거나 유효하지 않은 토큰입니다.
         }
         // 로그인 아이디로 회원 조회 -> memberId(Integer 추출)
         Integer memberId = memberService.getMemberIdByLoginId(loginId);

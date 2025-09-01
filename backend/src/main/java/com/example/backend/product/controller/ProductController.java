@@ -70,7 +70,8 @@ public class ProductController {
     @PostMapping("/order/guest")
     public ResponseEntity<?> createGuestOrder(@RequestBody List<GuestOrderRequestDto> dtoList) {
         if (dtoList.isEmpty()) {
-            return ResponseEntity.badRequest().body("주문 항목이 없습니다.");
+            // 주문 항목이 없습니다.
+            return ResponseEntity.badRequest().body("注文項目がありません。");
         }
 
         // GuestOrder 생성
@@ -94,11 +95,13 @@ public class ProductController {
 
         for (GuestOrderRequestDto dto : dtoList) {
             Product product = productRepository.findById(dto.getProductId())
-                    .orElseThrow(() -> new RuntimeException("상품이 존재하지 않습니다."));
+                    // 상품이 존재하지 않습니다.
+                    .orElseThrow(() -> new RuntimeException("商品が存在しません。"));
 
             Integer qty = dto.getQuantity();
             if (product.getQuantity() < qty) {
-                throw new RuntimeException("재고가 부족합니다.");
+                // 재고가 부족합니다.
+                throw new RuntimeException("在庫が不足しています。");
             }
 
             Integer unitPrice = product.getPrice();
@@ -232,7 +235,8 @@ public class ProductController {
             optionList = objectMapper.readValue(options, new TypeReference<List<ProductOptionDto>>() {
             });
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("오류가 발생하였습니다.");
+            // 오류가 발생하였습니다.
+            return ResponseEntity.badRequest().body("エラーが発生しました。");
         }
         ProductRegistDto form = new ProductRegistDto();
         form.setProductName(productName);
@@ -312,9 +316,9 @@ public class ProductController {
         Integer memberId = Integer.parseInt(memberIdStr);
 
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("회원 없음"));
+                .orElseThrow(() -> new RuntimeException("会員なし")); // 회원없음
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("상품 없음"));
+                .orElseThrow(() -> new RuntimeException("商品なし")); // 상품없음
 
         productService.addRecentView(member, product);
         return ResponseEntity.ok().build();
@@ -327,7 +331,7 @@ public class ProductController {
         Integer memberId = Integer.parseInt(memberIdStr);
 
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("회원 없음"));
+                .orElseThrow(() -> new RuntimeException("会員なし")); // 회원없음
 
         List<ProductDto> recentProducts = productService.getRecentProducts(member);
         return ResponseEntity.ok(recentProducts);

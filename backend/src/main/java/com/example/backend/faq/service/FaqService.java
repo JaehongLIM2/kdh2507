@@ -27,7 +27,7 @@ public class FaqService {
         System.out.println("로그인 여부 확인");
         // 로그인 여부 확인해주는 메서드
         if (authentication == null) {
-            throw new RuntimeException("권한이 없습니다.");
+            throw new RuntimeException("権限がありません。"); // 권한이 없습니다.
         }
     }
 
