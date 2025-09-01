@@ -19,7 +19,8 @@ export function AlertList() {
       })
       .catch((err) => {
         if (err.response && err.response.status === 401) {
-          alert("로그인 후 이용해주세요.");
+          // 로그인 후 이용해주세요.
+          toast("ログイン後にご利用ください。");
           window.location.href = "/login";
         }
       });
@@ -36,10 +37,14 @@ export function AlertList() {
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
     // 상대적 시간
-    if (diffMinutes < 1) return "방금 전";
-    if (diffMinutes < 60) return `${diffMinutes}분 전`;
-    if (diffHours < 24) return `${diffHours}시간 전`;
-    if (diffDays < 7) return `${diffDays}일 전`;
+    // if (diffMinutes < 1) return "방금 전";
+    // if (diffMinutes < 60) return `${diffMinutes}분 전`;
+    // if (diffHours < 24) return `${diffHours}시간 전`;
+    // if (diffDays < 7) return `${diffDays}일 전`;
+    if (diffMinutes < 1) return "たった今";
+    if (diffMinutes < 60) return `${diffMinutes}分前`;
+    if (diffHours < 24) return `${diffHours}時間前`;
+    if (diffDays < 7) return `${diffDays}日前`;
 
     // 일주일 이상이면 실제 날짜 표시
     return date.toLocaleDateString("ko-KR", {
@@ -67,7 +72,8 @@ export function AlertList() {
               }
             >
               <div className={"rounded-card"}>
-                <h2>알림</h2>
+                {/*알림*/}
+                <h2>通知</h2>
 
                 {alertList.length > 0 ? (
                   <div>
@@ -100,7 +106,8 @@ export function AlertList() {
                     </ul>
                   </div>
                 ) : (
-                  <p>새로운 소식이 없습니다.</p>
+                  // 알림이 없습니다.
+                  <p>通知はありません。</p>
                 )}
               </div>
             </div>
