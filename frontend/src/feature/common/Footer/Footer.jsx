@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="footer-info">
               <div className="info-title">カスタマーセンター営業時間</div>
               <div className="info-text">平日 10:00 ~ 18:00</div>
-              <div className="info-text">（昼休憩 12:00 ~ 13:00）</div>
+              <div className="info-text">(昼休憩 12:00 ~ 13:00)</div>
               <div className="info-text">土日・祝日 休業</div>
               {/*<div className="info-title">고객센터 운영시간</div>*/}
               {/*<div className="info-text">평일 10:00 ~ 18:00</div>*/}
