@@ -191,7 +191,7 @@ public class MemberController {
         } catch (RuntimeException e) {
             e.printStackTrace();
             String message = e.getMessage();
-            return ResponseEntity.status(403).body(
+            return ResponseEntity.badRequest().body(
                     Map.of("message",
                             Map.of("type", "error",
                                     "text", message)));
