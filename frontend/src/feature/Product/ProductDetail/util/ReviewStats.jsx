@@ -32,13 +32,15 @@ export default function ReviewStats({ productId, refreshTrigger }) {
         <div className="stars">
           ★ {typeof average === "number" ? average.toFixed(1) : "0.0"} / 5.0
         </div>
-        <div>({total ?? 0}개의 구매평)</div>
+        {/*~개의 구매평*/}
+        <div>({total ?? 0} 件のレビュー)</div>
       </div>
 
       <div className="bars">
         {[5, 4, 3, 2, 1].map((star) => (
           <div key={star} className="bar-line">
-            <div className="label">{star}점</div>
+            {/*~점*/}
+            <div className="label">{star} 点</div>
             <div className="bar">
               <div
                 className="fill"

@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
 import StarRating from "./util/StarRating.jsx";
 import { AuthenticationContext } from "../../common/AuthenticationContextProvider.jsx";
+import { toast } from "sonner";
 
 function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
   const [isPurchasable, setIsPurchasable] = useState(false);
@@ -69,7 +70,8 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
         },
       })
       .then(() => {
-        alert("리뷰가 등록되었습니다.");
+        // 리뷰가 등록되었습니다.
+        toast.success("レビューが登録されました。");
         setContent("");
         setShowInput(false);
         onReviewChange && onReviewChange();
@@ -96,17 +98,20 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
   function handleAddCommentButton() {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("로그인이 필요합니다.");
+      // 로그인이 필요합니다.
+      toast.error("ログインが必要です。");
       navigate("/login");
       return;
     }
     if (!isAdmin) {
       if (alreadyReviewed) {
-        alert("구매한 상품은 한 번만 리뷰작성이 가능합니다.");
+        // 구매한 상품은 한 번만 리뷰작성이 가능합니다.
+        toast.error("購入された商品は一度のみレビュー投稿が可能です。");
         return;
       }
       if (!isPurchasable) {
-        alert("해당 상품을 구매한 회원만 리뷰 작성이 가능합니다.");
+        // 해당 상품을 구매한 회원만 리뷰 작성이 가능합니다.
+        toast.error("該当商品を購入された会員のみレビュー投稿が可能です");
         return;
       }
     }
@@ -121,7 +126,8 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
 
   function handleDelete(commentId) {
     const token = localStorage.getItem("token");
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+    // 정말 삭제하시겠습니까?
+    if (!window.confirm("本当に削除しますか？")) return;
 
     axios
       .delete(`/api/product/comment/${commentId}`, {
@@ -130,7 +136,8 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
         },
       })
       .then(() => {
-        alert("리뷰가 삭제되었습니다.");
+        // 리뷰가 삭제되었습니다.
+        toast.success("レビューが削除されました。");
         onReviewChange && onReviewChange();
         return axios.get(`/api/product/comment/${productId}`);
       })
@@ -166,7 +173,8 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
         },
       })
       .then(() => {
-        alert("리뷰가 수정되었습니다.");
+        // 리뷰가 수정되었습니다.
+        toast.success("レビューが修正されました");
         onReviewChange && onReviewChange();
         setEditTargetId(null);
         return axios.get(`/api/product/comment/${productId}`);
@@ -183,8 +191,10 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
         width: "100%",
       }}
     >
-      <h4 className="text-xl mb-2">구매평({comments.length})</h4>
-      <p className="text-sm mb-2">상품을 구매하신 분들이 작성한 리뷰입니다.</p>
+      {/*구매평*/}
+      <h4 className="text-xl mb-2">レビュー({comments.length})</h4>
+      {/*상품을 구매하신 분들이 작성한 리뷰입니다.*/}
+      <p className="text-sm mb-2">商品を購入された方が投稿したレビューです。</p>
       {!showInput && (
         <button
           className="mb-10"
@@ -198,7 +208,8 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
           }}
           onClick={handleAddCommentButton}
         >
-          구매평 작성
+          {/*구매평 작성*/}
+          レビューを書く
         </button>
       )}
       {/* 등록된 리뷰들 */}
@@ -241,13 +252,15 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
                   className="btn btn-sm btn-outline"
                   onClick={() => submitEdit(c.id)}
                 >
-                  저장
+                  {/*저장*/}
+                  保存
                 </button>
                 <button
                   className="btn btn-sm btn-outline"
                   onClick={() => setEditTargetId(null)}
                 >
-                  취소
+                  {/*취소*/}
+                  戻る
                 </button>
               </div>
             </>
@@ -273,16 +286,18 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
               {(c.memberId === currentUserId || isAdmin) && (
                 <div style={{ marginTop: "5px", marginBottom: "5px" }}>
                   <button
-                    className="btn btn-sm btn-outline"
+                    className="btn btn-xs btn-info mr-1"
                     onClick={() => handleEdit(c)}
                   >
-                    수정
+                    {/*수정*/}
+                    修正
                   </button>
                   <button
-                    className="btn btn-sm btn-outline"
+                    className="btn btn-xs btn-error"
                     onClick={() => handleDelete(c.id)}
                   >
-                    삭제
+                    {/*삭제*/}
+                    削除
                   </button>
                 </div>
               )}
@@ -312,7 +327,7 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
               border: "1px solid #ccc",
               marginTop: "10px",
             }}
-            placeholder="리뷰를 작성해 주세요."
+            placeholder="レビューを入力してください。" // 리뷰를 작성해주세요.
             value={content}
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
@@ -327,7 +342,8 @@ function ReviewSection({ productId, onReviewChange, onReviewCountChange }) {
               }}
               onClick={handleSubmit}
             >
-              등록
+              {/*등록*/}
+              登録
             </button>
           </div>
         </>
