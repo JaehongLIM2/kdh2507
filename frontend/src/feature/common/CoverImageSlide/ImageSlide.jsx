@@ -109,7 +109,7 @@ function ImageSlide() {
           >
             <div className="overlay">
               <h1>{product.productName}</h1>
-              <p>{product.price.toLocaleString()}원</p>
+              <p>{product.price.toLocaleString()}円</p>
             </div>
           </div>
         </SwiperSlide>

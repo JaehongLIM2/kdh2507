@@ -46,7 +46,7 @@ export default function RecommendedProduct({ products }) {
               />
               <div className="related-product-info">
                 <p className="name">{item.productName}</p>
-                <p className="price">{item.price.toLocaleString()}원</p>
+                <p className="price">{item.price.toLocaleString()}円</p>
               </div>
             </Link>
           </SwiperSlide>
