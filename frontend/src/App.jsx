@@ -30,10 +30,10 @@ import Main from "./feature/common/Main.jsx";
 import ImageSlide from "./feature/common/CoverImageSlide/ImageSlide.jsx";
 import Home from "./feature/common/Home/Home.jsx";
 import { AlertProvider } from "./feature/common/AlertContext.jsx";
-import { OrderList } from "./Order/OrderList.jsx";
-import { OrderDetail } from "./Order/OrderDetail.jsx";
-import { GuestOrder } from "./Order/GuestOrder.jsx";
-import { GuestOrderDetail } from "./Order/GuestOrderDetail.jsx";
+import { OrderList } from "./feature/Order/OrderList.jsx";
+import { OrderDetail } from "./feature/Order/OrderDetail.jsx";
+import { GuestOrder } from "./feature/Order/GuestOrder.jsx";
+import { GuestOrderDetail } from "./feature/Order/GuestOrderDetail.jsx";
 import { AlertList } from "./feature/alert/AlertList.jsx";
 import { Toaster } from "sonner";
 
