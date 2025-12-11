@@ -22,7 +22,7 @@ function ProductCart() {
     0,
   );
   const shippingFee =
-    checkedIds.length > 0 ? (totalItemPrice >= 100000 ? 0 : 300) : 0;
+    checkedIds.length > 0 ? (totalItemPrice >= 10000 ? 0 : 300) : 0;
 
   useEffect(() => {
     const token = localStorage.getItem("token");

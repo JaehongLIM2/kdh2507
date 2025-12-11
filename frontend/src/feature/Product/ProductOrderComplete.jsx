@@ -12,7 +12,7 @@ export function ProductOrderComplete() {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-  const shippingFee = totalItemPrice >= 100000 ? 0 : 300;
+  const shippingFee = totalItemPrice >= 10000 ? 0 : 300;
 
   // state 유실 가드
   if (!state) {
