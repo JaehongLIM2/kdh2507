@@ -18,7 +18,7 @@ function CartAdded({ show, onHide }) {
       <div className="modal-box p-0">
         <div className="flex flex-col items-center justify-center py-8">
           <p className="text-lg font-semibold mb-2">
-            선택하신 상품을 장바구니에 담았습니다
+            選択した商品をカートに追加しました。
           </p>
         </div>
         <div className="flex border-t border-gray-200">
@@ -26,18 +26,18 @@ function CartAdded({ show, onHide }) {
             onClick={onHide}
             className="flex-1 py-3 text-sm font-bold border-r border-gray-200"
           >
-            계속쇼핑
+            買い物を続ける
           </button>
           <button
             onClick={() => navigate("/product/cart")}
             className="flex-1 py-3 text-sm font-bold"
           >
-            장바구니
+            カートを見る
           </button>
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button onClick={onHide}>닫기</button>
+        <button onClick={onHide}>閉じる</button>
       </form>
     </dialog>
   );

@@ -46,7 +46,7 @@ function Order() {
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
 
   useEffect(() => {
-    const fee = totalItemPrice >= 100000 ? 0 : 3000;
+    const fee = totalItemPrice >= 100000 ? 0 : 300;
     setShippingFee(fee);
   }, [totalItemPrice]);
 
