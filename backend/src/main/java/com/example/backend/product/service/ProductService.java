@@ -454,7 +454,7 @@ public class ProductService {
 
 
         // 금액 필드 분리
-        int shippingFee = (setItemsSubtotal >= 100000) ? 0 : 3000;
+        int shippingFee = (setItemsSubtotal >= 100000) ? 0 : 300;
         order.setItemsSubtotal(setItemsSubtotal);
         order.setShippingFee(shippingFee);
         order.setTotalPrice(setItemsSubtotal + shippingFee);

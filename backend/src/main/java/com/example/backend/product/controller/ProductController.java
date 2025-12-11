@@ -131,7 +131,7 @@ public class ProductController {
             itemList.add(item);
         }
 
-        Integer shippingFee = (itemsSubtotal >= 100000) ? 0 : 3000;
+        Integer shippingFee = (itemsSubtotal >= 100000) ? 0 : 300;
 
         order.setItemsSubtotal(itemsSubtotal);
         order.setShippingFee(shippingFee);
